@@ -1,0 +1,44 @@
+baseURL: http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/
+languageCode: en-us
+theme: smigle
+themesDir: themes
+title: Context Chronicles
+menu:
+  main:
+    - identifier: home
+      name: Home
+      url: /
+      weight: 1
+    - identifier: about
+      name: About
+      url: /about/
+      weight: 2
+    - identifier: posts
+      name: Posts
+      url: /posts/
+      weight: 3
+    - identifier: categories
+      name: Categories
+      url: /categories/
+      weight: 4
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 5
+params:
+  abbrDateFmt: 'Jan 2'
+  author: 'Nicolas Delorme'
+  brandIconFile: 'images/brandIcon.svg'
+  dateFmt: '2006-01-02'
+  #  customStylesheets: # Use to override theme styles, like logo size
+  #    - "css/custom.css"
+  social:
+    - name: GitHub
+      url: https://github.com/cyber-nic
+    - name: LinkedIn
+      url: https://www.linkedin.com/in/nicolas-delorme-588ba619/
+  subtitle: 'Stuff.'
+deployment:
+  targets:
+    name: aws
+    URL: s3://contextchronicles.com?region=us-east-1
