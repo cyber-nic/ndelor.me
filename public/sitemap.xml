@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/computer-vision/</loc>
+    <lastmod>2023-07-11T17:33:59-04:00</lastmod>
+  </url><url>
     <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/</loc>
-    <lastmod>2023-07-10T22:09:00+00:00</lastmod>
+    <lastmod>2023-07-11T17:33:59-04:00</lastmod>
   </url><url>
     <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/history-ai/</loc>
-    <lastmod>2023-07-10T22:09:00+00:00</lastmod>
+    <lastmod>2023-07-11T17:33:59-04:00</lastmod>
   </url><url>
-    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/hai-scraping/</loc>
-    <lastmod>2023-07-10T22:09:00+00:00</lastmod>
+    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/hai-computer-vision/</loc>
+    <lastmod>2023-07-11T17:33:59-04:00</lastmod>
   </url><url>
     <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/</loc>
-    <lastmod>2023-07-10T22:09:00+00:00</lastmod>
+    <lastmod>2023-07-11T17:33:59-04:00</lastmod>
   </url><url>
     <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/</loc>
+    <lastmod>2023-07-11T17:33:59-04:00</lastmod>
+  </url><url>
+    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/hai-scraping/</loc>
     <lastmod>2023-07-10T22:09:00+00:00</lastmod>
   </url><url>
     <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/ai-making-history/</loc>

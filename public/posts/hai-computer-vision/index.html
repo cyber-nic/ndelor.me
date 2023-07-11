@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content=""
+  />
+  
+    
+      <title>History AI - Part IV: Computer Vision | Context Chronicles</title>
+    
+  
+  <link rel="stylesheet" href="/css/reset.css"/>
+  <link rel="stylesheet" href="/css/font.css"/>
+  <link rel="stylesheet" href="/css/smigle.css"/>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+  <body>
+    <div id="root">
+      <header>
+  <div id="brand">
+    <a class="icon-link" href="http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/">
+      <img
+        class="icon"
+        src="/images/logo.png"
+      />
+    </a>
+    <div class="text">
+      <a href="http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/"><h1>Context Chronicles</h1></a>
+      <h3>Stuff.</h3>
+    </div>
+  </div>
+  <nav>
+    
+      
+        
+        <a href="/"><b>Home</b></a>
+      
+         | 
+        <a href="/about/"><b>About</b></a>
+      
+         | 
+        <a href="/posts/"><b>Posts</b></a>
+      
+         | 
+        <a href="/categories/"><b>Categories</b></a>
+      
+         | 
+        <a href="/tags/"><b>Tags</b></a>
+      
+    
+  </nav>
+  <hr />
+</header>
+
+      <div id="content">
+        
+  <main>
+    <article>
+      <h1>History AI - Part IV: Computer Vision</h1>
+      <div class="post-meta">
+  <strong>
+    <span>Posted on</span>
+    <time>2023-07-11</time>
+    
+    
+  </strong>
+  <span> • 390 words</span>
+  <span> • 2 minute read</span>
+  
+  
+    <div>
+      <span>Tags:</span>
+      
+        <a href="/tags/history-ai">history ai</a>, 
+        <a href="/tags/computer-vision">computer vision</a>
+    </div>
+  
+</div>
+
+      <div><p>I have 2,000,000 images which all containt a watermark pattern. This post will explore options for removing the watermarks in order to improve the quality of the OCR operations to follow.</p>
+<h1 id="1-skipping-watermark-removal">1) Skipping Watermark Removal</h1>
+<p>The cheapest option in terms of time and resources is to skip watermark removal altogether. This can be done by filtering out the known watermark text from the OCR results. This is the best short-term solution, as it is relatively easy to implement and does not require any additional software.</p>
+<h1 id="2-saas-image-ai">2) SAAS Image AI</h1>
+<p>There are a number of SAAS image AI services that can be used to remove watermarks. One such service is watermarkremover.io. This service allows you to upload images and have the watermarks removed automatically. However, the quality of the results can vary, and the cost can be prohibitive for large datasets.</p>
+<p><img src="/images/hai-computer-vision-watermarkremover.jpg" alt="watermarkremover"></p>
+<h1 id="3-oss-image-ai">3) OSS Image AI</h1>
+<p>There are also a number of open-source image AI services that can be used to remove watermarks. One such service is <a href="https://github.com/Sanster/lama-cleaner">lama-cleaner</a>. This service is free to use and can be easily installed and run. However, the quality of the results can be inconsistent, and the service may not be able to remove all watermarks. Results were disapointing with my dataset.</p>
+<h1 id="4-custom-watermark-removal-service">4) Custom Watermark Removal Service</h1>
+<p>The most reliable way to remove watermarks is to build a custom watermark removal service. This can be done using a variety of open-source tools, such as OpenCV. However, this option requires the most time and effort, as you will need to develop and test your own code.</p>
+<p>I found examples of gocv examples lacking. While it isn&rsquo;t the solution retained today I plan to loop back and explore more.</p>
+<p>Here is a very basic gocv sample (which clearly doesn&rsquo;t delivery the expected results).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;os&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;gocv.io/x/gocv&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// read image and watermark mask
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Args</span>[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">m</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Args</span>[<span style="color:#ae81ff">2</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// load image
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">img</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gocv</span>.<span style="color:#a6e22e">IMRead</span>(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">gocv</span>.<span style="color:#a6e22e">IMReadGrayScale</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">Empty</span>() {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Error reading image from: %v\n&#34;</span>, <span style="color:#a6e22e">i</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// load watermark mask
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">mask</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gocv</span>.<span style="color:#a6e22e">IMRead</span>(<span style="color:#a6e22e">m</span>, <span style="color:#a6e22e">gocv</span>.<span style="color:#a6e22e">IMReadGrayScale</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// create output mat
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">out</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gocv</span>.<span style="color:#a6e22e">NewMat</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Remove the watermark from the image.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">gocv</span>.<span style="color:#a6e22e">Subtract</span>(<span style="color:#a6e22e">img</span>, <span style="color:#a6e22e">mask</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">out</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// view images
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">w0</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gocv</span>.<span style="color:#a6e22e">NewWindow</span>(<span style="color:#e6db74">&#34;Src&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">w1</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gocv</span>.<span style="color:#a6e22e">NewWindow</span>(<span style="color:#e6db74">&#34;Dst&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">w2</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gocv</span>.<span style="color:#a6e22e">NewWindow</span>(<span style="color:#e6db74">&#34;Mask&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">w0</span>.<span style="color:#a6e22e">IMShow</span>(<span style="color:#a6e22e">img</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">w2</span>.<span style="color:#a6e22e">IMShow</span>(<span style="color:#a6e22e">mask</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">w1</span>.<span style="color:#a6e22e">IMShow</span>(<span style="color:#a6e22e">out</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">w0</span>.<span style="color:#a6e22e">WaitKey</span>(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">w2</span>.<span style="color:#a6e22e">WaitKey</span>(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><img src="/images/hai-computer-vision-apply1.jpg" alt="snippet"></p>
+</div>
+    </article>
+  </main>
+
+      </div>
+      <footer>
+  <hr />
+  
+    <p id="social">
+      Find me around the web:
+      <br />
+      
+        
+        <a href="https://github.com/cyber-nic">GitHub</a>
+      
+         | 
+        <a href="https://www.linkedin.com/in/nicolas-delorme-588ba619/">LinkedIn</a>
+      
+    </p>
+  
+  <p class="copyright">
+    Copyright © 2023
+    <a href="http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/"><strong>Nicolas Delorme</strong></a>.
+    This work is licensed under the
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
+  </p>
+  <p class="builtWith">
+    Built with
+    <a href="http://www.gohugo.io/">Hugo</a>,
+    using the theme
+    <a href="https://gitlab.com/ian-s-mcb/smigle-hugo-theme">smigle</a>,
+    which was influenced by the theme
+    <a href="https://github.com/sumnerevans/smol">smol</a>.
+  </p>
+</footer>
+
+    </div>
+  </body>
+</html>

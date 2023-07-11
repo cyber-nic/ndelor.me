@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Context Chronicles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Jul 2023 22:09:00 +0000</lastBuildDate><atom:link href="http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 Jul 2023 17:33:59 -0400</lastBuildDate><atom:link href="http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>History AI - Part IV: Computer Vision</title>
+      <link>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/hai-computer-vision/</link>
+      <pubDate>Tue, 11 Jul 2023 17:33:59 -0400</pubDate>
+      
+      <guid>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/hai-computer-vision/</guid>
+      <description>I have 2,000,000 images which all containt a watermark pattern. This post will explore options for removing the watermarks in order to improve the quality of the OCR operations to follow.
+1) Skipping Watermark Removal The cheapest option in terms of time and resources is to skip watermark removal altogether. This can be done by filtering out the known watermark text from the OCR results. This is the best short-term solution, as it is relatively easy to implement and does not require any additional software.</description>
+    </item>
+    
     <item>
       <title>History AI - Part III: Scraping</title>
       <link>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/hai-scraping/</link>
