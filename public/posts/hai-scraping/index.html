@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content=""
+  />
+  
+    
+      <title>History AI - Part III: Scraping | Context Chronicles</title>
+    
+  
+  <link rel="stylesheet" href="/css/reset.css"/>
+  <link rel="stylesheet" href="/css/font.css"/>
+  <link rel="stylesheet" href="/css/smigle.css"/>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+  <body>
+    <div id="root">
+      <header>
+  <div id="brand">
+    <a class="icon-link" href="http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/">
+      <img
+        class="icon"
+        src="/images/logo.png"
+      />
+    </a>
+    <div class="text">
+      <a href="http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/"><h1>Context Chronicles</h1></a>
+      <h3>Stuff.</h3>
+    </div>
+  </div>
+  <nav>
+    
+      
+        
+        <a href="/"><b>Home</b></a>
+      
+         | 
+        <a href="/about/"><b>About</b></a>
+      
+         | 
+        <a href="/posts/"><b>Posts</b></a>
+      
+         | 
+        <a href="/categories/"><b>Categories</b></a>
+      
+         | 
+        <a href="/tags/"><b>Tags</b></a>
+      
+    
+  </nav>
+  <hr />
+</header>
+
+      <div id="content">
+        
+  <main>
+    <article>
+      <h1>History AI - Part III: Scraping</h1>
+      <div class="post-meta">
+  <strong>
+    <span>Posted on</span>
+    <time>2023-07-10</time>
+    
+    
+  </strong>
+  <span> • 657 words</span>
+  <span> • 4 minute read</span>
+  
+  
+    <div>
+      <span>Tags:</span>
+      
+        <a href="/tags/history-ai">history ai</a>
+    </div>
+  
+</div>
+
+      <div><h1 id="target">Target</h1>
+<p>The target site is completely free and public. While the site&rsquo;s performance is sufficient it unfortunately isn&rsquo;t well maintained: SSL cert is expired. Luckily the sought after information is available directly via REST calls. No html parsing necessary.</p>
+<h1 id="process">Process</h1>
+<p>The scraping process was performed on a Cloud Compute, Regular Performance, $5/month VM on Vultr.com. The attached 120GB block storage was quickly expanded to 500GB, which increased the cost from $3.00/month to $12.50/month. The scraping operation completed in approximately 1 month using tmux.</p>
+<p>The documents on the target site were stored in a tree structure, with a handful of top-level nodes. Only the leaf nodes contained images. The website itself fetched a few results at a time, but the same pagination mechanism could be used to fetch significantly larger batches.</p>
+<h1 id="the-scraper">The Scraper</h1>
+<p>I created a scraper using a standard Go service architecture. The scraper was resilient to errors and system or network failures. The base code for the scraper can be found at <a href="https://github.com/cyber-nic/go-svc-tpl">cyber-nic/go-svc-tpl</a>.</p>
+<p>Only two scrapers were ever started concurrently. These scrapers targeted different data trees and had network delays of 500 and 1000 milliseconds respectively to limit the strain on the target site.</p>
+<p>The scraper service was originally designed using a recurring function called for each new node encountered. However, this made it difficult to debug. I eventually changed the design so that each data node was added to a queue using the <code>container/list</code> package. The queue size was one of the main metrics that I tracked, and it often reached 500,000.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ctxQueue</span> <span style="color:#66d9ef">struct</span>{}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">contextWithQueue</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">q</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">list</span>.<span style="color:#a6e22e">List</span>) <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithValue</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">ctxQueue</span>{}, <span style="color:#a6e22e">q</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">queueFromContext</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">list</span>.<span style="color:#a6e22e">List</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">q</span>, <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Value</span>(<span style="color:#a6e22e">ctxQueue</span>{}).(<span style="color:#f92672">*</span><span style="color:#a6e22e">list</span>.<span style="color:#a6e22e">List</span>); <span style="color:#a6e22e">ok</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">q</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	panic(<span style="color:#e6db74">&#34;fail to get queue from context&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>It was decided to simply re-created the api folder structure locally as this would allow human use more effective.</p>
+<p>The downloadFile function has to take into consideration that the SSL certificate is expired.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadFile</span>(<span style="color:#a6e22e">URL</span>, <span style="color:#a6e22e">fileName</span> <span style="color:#66d9ef">string</span>) (<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">error</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Get the response bytes from the url
+</span></span></span><span style="display:flex; background-color:#3c3d38"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">t</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">tls</span>.<span style="color:#a6e22e">Config</span>{<span style="color:#a6e22e">InsecureSkipVerify</span>: <span style="color:#66d9ef">true</span>}
+</span></span><span style="display:flex; background-color:#3c3d38"><span>	<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">DefaultTransport</span>.(<span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Transport</span>).<span style="color:#a6e22e">TLSClientConfig</span> = <span style="color:#a6e22e">t</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">response</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Get</span>(<span style="color:#a6e22e">URL</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fileName</span>, <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">Body</span>.<span style="color:#a6e22e">Close</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">StatusCode</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">200</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fileName</span>, <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;received non 200 response code&#34;</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Create a empty file
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">file</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Create</span>(<span style="color:#a6e22e">fileName</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fileName</span>, <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">file</span>.<span style="color:#a6e22e">Close</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Write the bytes to the file
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Copy</span>(<span style="color:#a6e22e">file</span>, <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">Body</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fileName</span>, <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fileName</span>, <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>An interesting problem was not knowing if the api would return a leaf or non-leaf node. Different branches were of various depths so it was challenging to predict. Keeping in mind that leaf nodes have an <code>images</code> property while non-leaf nodes have <code>children</code> nodes my solution was to create a single struct with the combined properties of both.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// Node is the representation of a leaf or non-leaf node returned by the api.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Node</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// both leaf and non-leaf have ID
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">ID</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;id&#34;`</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// non-leaf
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">Childs</span> []<span style="color:#a6e22e">Child</span> <span style="color:#e6db74">`json:&#34;childs&#34;`</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// leaf only
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">Data</span> []<span style="color:#a6e22e">Image</span> <span style="color:#e6db74">`json:&#34;data&#34;`</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Using reflection it possible to write a handy HasField function which help identify if a node is a leaf or non-leaf.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// HasField function returns true if the provided field name exists
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// as a field on the Node
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">n</span> <span style="color:#a6e22e">Node</span>) <span style="color:#a6e22e">HasField</span>(<span style="color:#a6e22e">f</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">bool</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">ValueOf</span>(<span style="color:#a6e22e">n</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">field</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">FieldByName</span>(<span style="color:#a6e22e">f</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">field</span>.<span style="color:#a6e22e">IsValid</span>()
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Node</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">ID</span>: <span style="color:#e6db74">&#34;abc&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Childs</span>: []<span style="color:#a6e22e">Images</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">n</span>.<span style="color:#a6e22e">HasField</span>(<span style="color:#e6db74">&#34;Childs&#34;</span>) <span style="color:#75715e">// true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">n</span>.<span style="color:#a6e22e">HasField</span>(<span style="color:#e6db74">&#34;Data&#34;</span>) <span style="color:#75715e">// false
+</span></span></span></code></pre></div><p>Finally, all json returned by the api was saved to disk. This allows for checking for a local copy prior of performing a network call and possibly avoiding it, saving time and resources on both the scraper and the target site.</p>
+<p>The final tally is over 2,000,000 images of typed and handwritten documents. These were copied from the vultr blockstorage to a GCP bucket.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gsutil -m rsync -r ./bar gs://hai-foo-source/bar
+</span></span></code></pre></div></div>
+    </article>
+  </main>
+
+      </div>
+      <footer>
+  <hr />
+  
+    <p id="social">
+      Find me around the web:
+      <br />
+      
+        
+        <a href="https://github.com/cyber-nic">GitHub</a>
+      
+         | 
+        <a href="https://www.linkedin.com/in/nicolas-delorme-588ba619/">LinkedIn</a>
+      
+    </p>
+  
+  <p class="copyright">
+    Copyright © 2023
+    <a href="http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/"><strong>Nicolas Delorme</strong></a>.
+    This work is licensed under the
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
+  </p>
+  <p class="builtWith">
+    Built with
+    <a href="http://www.gohugo.io/">Hugo</a>,
+    using the theme
+    <a href="https://gitlab.com/ian-s-mcb/smigle-hugo-theme">smigle</a>,
+    which was influenced by the theme
+    <a href="https://github.com/sumnerevans/smol">smol</a>.
+  </p>
+</footer>
+
+    </div>
+  </body>
+</html>

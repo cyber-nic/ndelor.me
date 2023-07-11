@@ -5,6 +5,34 @@
     <link>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/</link>
     <description>Recent content in Tags on Context Chronicles</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Mon, 10 Jul 2023 22:09:00 +0000</lastBuildDate><atom:link href="http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>history ai</title>
+      <link>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/history-ai/</link>
+      <pubDate>Mon, 10 Jul 2023 22:09:00 +0000</pubDate>
+      
+      <guid>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/history-ai/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>new project</title>
+      <link>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/new-project/</link>
+      <pubDate>Mon, 10 Jul 2023 08:58:00 +0000</pubDate>
+      
+      <guid>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/new-project/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>system-design</title>
+      <link>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/system-design/</link>
+      <pubDate>Mon, 10 Jul 2023 01:26:00 +0000</pubDate>
+      
+      <guid>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/system-design/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

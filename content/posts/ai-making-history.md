@@ -1,6 +1,7 @@
 ---
-title: "AI Making History"
-date: 2023-07-10T08:58:35-04:00
+title: "History AI - Part I: AI Making History"
+date: 2023-07-10T08:58:00-00:00
+tags: ["history ai", "new project"]
 draft: false
 ---
 

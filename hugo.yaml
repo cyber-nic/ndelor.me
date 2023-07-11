@@ -28,7 +28,7 @@ menu:
 params:
   abbrDateFmt: 'Jan 2'
   author: 'Nicolas Delorme'
-  brandIconFile: 'images/brandIcon.svg'
+  brandIconFile: 'images/logo.png'
   dateFmt: '2006-01-02'
   #  customStylesheets: # Use to override theme styles, like logo size
   #    - "css/custom.css"
