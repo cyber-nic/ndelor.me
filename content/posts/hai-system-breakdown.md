@@ -13,7 +13,7 @@ draft: false
 
 # System Design
 
-![flow](/images/hai-system-breakdown.svg)
+![breakdown](/images/hai-system-breakdown.svg)
 
 ## Scraping
 
@@ -59,6 +59,6 @@ In the final phase, I will focus on analyzing the NLP entities extracted from th
 
 This diagram illustrates the potential flow of data from one service to the next.
 
-![flow](/images/hai-system-breakdown-i_o.svg)
+![io](/images/hai-system-breakdown-i_o.svg)
 
 Inputs in blue and Outputs in red.
