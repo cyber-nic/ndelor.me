@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content=""
+  />
+  
+    
+      <title>CockroachDB Local | Context Chronicles</title>
+    
+  
+  <link rel="stylesheet" href="/css/reset.css"/>
+  <link rel="stylesheet" href="/css/font.css"/>
+  <link rel="stylesheet" href="/css/smigle.css"/>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+  <body>
+    <div id="root">
+      <header>
+  <div id="brand">
+    <a class="icon-link" href="http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/">
+      <img
+        class="icon"
+        src="/images/logo.png"
+      />
+    </a>
+    <div class="text">
+      <a href="http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/"><h1>Context Chronicles</h1></a>
+      <h3>Stuff.</h3>
+    </div>
+  </div>
+  <nav>
+    
+      
+        
+        <a href="/"><b>Home</b></a>
+      
+         | 
+        <a href="/about/"><b>About</b></a>
+      
+         | 
+        <a href="/posts/"><b>Posts</b></a>
+      
+         | 
+        <a href="/categories/"><b>Categories</b></a>
+      
+         | 
+        <a href="/tags/"><b>Tags</b></a>
+      
+    
+  </nav>
+  <hr />
+</header>
+
+      <div id="content">
+        
+  <main>
+    <article>
+      <h1>CockroachDB Local</h1>
+      <div class="post-meta">
+  <strong>
+    <span>Posted on</span>
+    <time>2023-09-03</time>
+    
+    
+  </strong>
+  <span> • 683 words</span>
+  <span> • 4 minute read</span>
+  
+  
+    <div>
+      <span>Tags:</span>
+      
+        <a href="/tags/go">go</a>, 
+        <a href="/tags/cockroachdb">CockroachDB</a>
+    </div>
+  
+</div>
+
+      <div><p>Needed a SQL database for a project and decided to try out CockroachDB. Setting up the free tier cluster was amazingly simple. Unfortunately after only about ~200,000 queries the 50M RUs were completely used up. The <a href="https://www.cockroachlabs.com/docs/cockroachcloud/plan-your-cluster-serverless#request-units">docs</a> point out <code>an RU is an abstracted metric that represent the size and complexity of requests made to your cluster</code>. The queries were very simply so this did come as a surprise. CockroachDB seems like a good product, but the free tier is in fact quite limited.</p>
+<h1 id="query-examples">Query examples</h1>
+<h2 id="example-1-create-table">Example 1: Create table</h2>
+<p>This query is called once at startup. If the table does not exist it is created. Notice the elegabt handling of the error code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// initTable function performs a CockroachDB sql query using pgx. It uses crdbpgx for transaction handling (retries).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">initTable</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">tx</span> <span style="color:#a6e22e">pgx</span>.<span style="color:#a6e22e">Tx</span>) <span style="color:#66d9ef">error</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Create the images table
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// https://www.cockroachlabs.com/docs/stable/create-table#:~:text=Create%20a%20new%20table%20only,.%2C%20of%20the%20new%20table.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">tx</span>.<span style="color:#a6e22e">Exec</span>(<span style="color:#a6e22e">ctx</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#e6db74">&#34;CREATE TABLE IF NOT EXISTS images (name STRING PRIMARY KEY, section STRING, prefix STRING, size FLOAT, crc32 OID)&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">pgErr</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">pgconn</span>.<span style="color:#a6e22e">PgError</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">As</span>(<span style="color:#a6e22e">err</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">pgErr</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// fmt.Println(pgErr.Message) // =&gt; syntax error at end of input
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#75715e">// fmt.Println(pgErr.Code) // =&gt; 42601
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">pgErr</span>.<span style="color:#a6e22e">Code</span> <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;42P07&#34;</span> {
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// database client
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">dsn</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;postgresql://%s:%s@%s&#34;</span>, <span style="color:#a6e22e">username</span>, <span style="color:#a6e22e">password</span>, <span style="color:#a6e22e">connectionString</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">roach</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">pgx</span>.<span style="color:#a6e22e">Connect</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">dsn</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">roach</span>.<span style="color:#a6e22e">Close</span>(<span style="color:#a6e22e">ctx</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Exit</span>(<span style="color:#a6e22e">exitCodeErr</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Set up table
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">crdbpgx</span>.<span style="color:#a6e22e">ExecuteTx</span>(<span style="color:#a6e22e">svc</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">roach</span>, <span style="color:#a6e22e">pgx</span>.<span style="color:#a6e22e">TxOptions</span>{}, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">tx</span> <span style="color:#a6e22e">pgx</span>.<span style="color:#a6e22e">Tx</span>) <span style="color:#66d9ef">error</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">initTable</span>(<span style="color:#a6e22e">svc</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">tx</span>)
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>    panic(<span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="example-2-get">Example 2: Get</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// getImageCount function performs a CockroachDB sql query using pgx. It uses crdbpgx for transaction handling (retries).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// The inner function allows to return the count value from the query since crdbpgx does not support returning values other than an error.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">getImageCount</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">roach</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">pgx</span>.<span style="color:#a6e22e">Conn</span>, <span style="color:#a6e22e">crc32</span> <span style="color:#66d9ef">uint32</span>) (<span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">error</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// init count
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">count</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// check if image exists in database
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">crdbpgx</span>.<span style="color:#a6e22e">ExecuteTx</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">roach</span>, <span style="color:#a6e22e">pgx</span>.<span style="color:#a6e22e">TxOptions</span>{}, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">tx</span> <span style="color:#a6e22e">pgx</span>.<span style="color:#a6e22e">Tx</span>) <span style="color:#66d9ef">error</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">inner</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">func</span>() <span style="color:#66d9ef">error</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// inner function
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">rows</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">tx</span>.<span style="color:#a6e22e">Query</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#e6db74">&#34;SELECT COUNT(*) FROM images WHERE crc32 = $1&#34;</span>, <span style="color:#a6e22e">crc32</span>)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">rows</span>.<span style="color:#a6e22e">Next</span>() {
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">rows</span>.<span style="color:#a6e22e">Scan</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">count</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">inner</span>()
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">count</span>, <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">count</span>, <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// database client
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// in my exercice attrs is a gcp bucket object
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">count</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">getImageCount</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">roach</span>, <span style="color:#a6e22e">attrs</span>.<span style="color:#a6e22e">CRC32C</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>    panic(<span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="cockroachdb-local">CockroachDB local</h1>
+<p>As a result of the free tier being insufficent for my needs, and not wanting to refactor code (too much), I decided to try out the local version. This is a single node version that can be run on a local machine. It is not intended for production use, but for my particular exercice it was sufficient. The setup was a little more involved than the cloud version, but still very simple. The following are the steps I took to get it up and running.</p>
+<p>WARNING: This is not intended for production use. It is a single node version that is not secure. It is intended for local development only. Also, security was not a concern for me.</p>
+<p>Below are notes, not a proper turorial. I am not a CockroachDB expert. I am just documenting the steps I took to get it up and running.</p>
+<p><a href="https://www.cockroachlabs.com/docs/v23.1/install-cockroachdb-linux">Installation instruction</a></p>
+<h1 id="download">download</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget https://binaries.cockroachdb.com/cockroach-v23.1.8.linux-amd64.tgz
+</span></span><span style="display:flex;"><span>tar xzf cockroach-v23.1.8.linux-amd64.tgz
+</span></span><span style="display:flex;"><span>mv cockroach-v23.1.8.linux-amd64/ cockroach
+</span></span></code></pre></div><h1 id="setup">setup</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir certs my-safe-directory
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./cockroach/cockroach cert create-ca --certs-dir<span style="color:#f92672">=</span>certs --ca-key<span style="color:#f92672">=</span>my-safe-directory/ca.key
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./cockroach/cockroach cert create-node localhost <span style="color:#66d9ef">$(</span>hostname<span style="color:#66d9ef">)</span> --certs-dir<span style="color:#f92672">=</span>certs --ca-key<span style="color:#f92672">=</span>my-safe-directory/ca.key
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./cockroach/cockroach cert create-client root --certs-dir<span style="color:#f92672">=</span>certs --ca-key<span style="color:#f92672">=</span>my-safe-directory/ca.key
+</span></span></code></pre></div><h1 id="start">start</h1>
+<p><a href="https://www.cockroachlabs.com/docs/stable/cockroach-start">https://www.cockroachlabs.com/docs/stable/cockroach-start</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./cockroach/cockroach start-single-node --certs-dir<span style="color:#f92672">=</span>certs --store<span style="color:#f92672">=</span>node1 --listen-addr<span style="color:#f92672">=</span>localhost:26257 --http-addr<span style="color:#f92672">=</span>localhost:8080
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./cockroach/cockroach <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>start-single-node <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--store<span style="color:#f92672">=</span>node1 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--listen-addr<span style="color:#f92672">=</span>localhost:26257 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--http-addr<span style="color:#f92672">=</span>localhost:8080
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>curl -s -o /dev/null -w <span style="color:#e6db74">&#34;%{http_code}&#34;</span> http://localhost:8080/health
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ls ./node1/logs
+</span></span></code></pre></div><h1 id="connect">connect</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./cockroach/cockroach sql --certs-dir<span style="color:#f92672">=</span>certs --host<span style="color:#f92672">=</span>localhost:26257
+</span></span></code></pre></div><h1 id="create-database-and-user">create database and user</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>CREATE DATABASE mydb;
+</span></span><span style="display:flex;"><span>SHOW databases;
+</span></span><span style="display:flex;"><span>USE mydb;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CREATE USER foobar WITH PASSWORD <span style="color:#e6db74">&#39;password&#39;</span>;
+</span></span><span style="display:flex;"><span>ALTER ROLE foobar WITH PASSWORD <span style="color:#e6db74">&#39;password1&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GRANT ALL ON DATABASE mydb TO foobar WITH GRANT OPTION;
+</span></span><span style="display:flex;"><span>SHOW grants;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GRANT admin to foobar;
+</span></span></code></pre></div></div>
+    </article>
+  </main>
+
+      </div>
+      <footer>
+  <hr />
+  
+    <p id="social">
+      Find me around the web:
+      <br />
+      
+        
+        <a href="https://github.com/cyber-nic">GitHub</a>
+      
+         | 
+        <a href="https://www.linkedin.com/in/nicolas-delorme-588ba619/">LinkedIn</a>
+      
+    </p>
+  
+  <p class="copyright">
+    Copyright © 2023
+    <a href="http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/"><strong>Nicolas Delorme</strong></a>.
+    This work is licensed under the
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
+  </p>
+  <p class="builtWith">
+    Built with
+    <a href="http://www.gohugo.io/">Hugo</a>,
+    using the theme
+    <a href="https://gitlab.com/ian-s-mcb/smigle-hugo-theme">smigle</a>,
+    which was influenced by the theme
+    <a href="https://github.com/sumnerevans/smol">smol</a>.
+  </p>
+</footer>
+
+    </div>
+  </body>
+</html>

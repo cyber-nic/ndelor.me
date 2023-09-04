@@ -1,6 +1,8 @@
 # Personal blog
 
 hosted at: http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/
+https://contextchronicles.com
+http://contextchronicles.com
 
 # create new blog post
 

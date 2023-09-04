@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CockroachDB on Context Chronicles</title>
+    <link>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/cockroachdb/</link>
+    <description>Recent content in CockroachDB on Context Chronicles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 03 Sep 2023 07:12:05 +0100</lastBuildDate><atom:link href="http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/cockroachdb/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CockroachDB Local</title>
+      <link>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/cockroachdb-local/</link>
+      <pubDate>Sun, 03 Sep 2023 07:12:05 +0100</pubDate>
+      
+      <guid>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/cockroachdb-local/</guid>
+      <description>Needed a SQL database for a project and decided to try out CockroachDB. Setting up the free tier cluster was amazingly simple. Unfortunately after only about ~200,000 queries the 50M RUs were completely used up. The docs point out an RU is an abstracted metric that represent the size and complexity of requests made to your cluster. The queries were very simply so this did come as a surprise. CockroachDB seems like a good product, but the free tier is in fact quite limited.</description>
+    </item>
+    
+  </channel>
+</rss>
