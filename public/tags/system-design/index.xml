@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>system-design on Context Chronicles</title>
-    <link>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/system-design/</link>
+    <link>http://contextchronicles.com/tags/system-design/</link>
     <description>Recent content in system-design on Context Chronicles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Jul 2023 01:26:00 +0000</lastBuildDate><atom:link href="http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/system-design/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jul 2023 01:26:00 +0000</lastBuildDate><atom:link href="http://contextchronicles.com/tags/system-design/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>History AI - Part II: System Design</title>
-      <link>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/hai-system-breakdown/</link>
+      <link>http://contextchronicles.com/posts/hai-system-breakdown/</link>
       <pubDate>Mon, 10 Jul 2023 01:26:00 +0000</pubDate>
       
-      <guid>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/hai-system-breakdown/</guid>
+      <guid>http://contextchronicles.com/posts/hai-system-breakdown/</guid>
       <description>Assumptions / Constraints We will operate on a dataset of 2,000,000 jpeg images / 500GB The initial budget is $1000. It is expected that this will increase, but the goal is to re-evaluate the budget prior to spending. We will operate using the Google Cloud Platform (GCP) but might explore other cloud offerings when performance or cost become a concern System Design Scraping I&amp;rsquo;ve implemented scrapers using various languages including PowerShell, Node.</description>
     </item>
     

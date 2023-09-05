@@ -29,14 +29,14 @@
     <div id="root">
       <header>
   <div id="brand">
-    <a class="icon-link" href="http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/">
+    <a class="icon-link" href="http://contextchronicles.com/">
       <img
         class="icon"
         src="/images/logo.png"
       />
     </a>
     <div class="text">
-      <a href="http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/"><h1>Context Chronicles</h1></a>
+      <a href="http://contextchronicles.com/"><h1>Context Chronicles</h1></a>
       <h3>Stuff.</h3>
     </div>
   </div>
@@ -75,8 +75,13 @@
     
     
   </strong>
-  <span> • 368 words</span>
-  <span> • 2 minute read</span>
+  <span> • 463 words</span>
+  <span> • 3 minute read</span>
+  
+    <div>
+      Last updated on
+      <time>2023-09-10</time>
+    </div>
   
   
     <div>
@@ -102,6 +107,8 @@
 <p><strong>Output</strong>: image files on disk or in bucket</p>
 <h2 id="image-preprocessing">Image PreProcessing</h2>
 <p>One of the challenges faced is that all the images scraped contain a repetitive watermark. To enhance the quality of subsequent text extraction (OCR), the primary objective is to remove the watermark from these images. By doing so, I aim to obtain clearer and more accurate results.</p>
+<p><strong>Update (09/10/23)</strong>: After some analysis I am of the opinion that the work required to remove the watermark or the processing cloud costs would not provide the necessary ROI to justify the effort and exepense. Instead, tests have demonstrated that the OCR process does detect the watermark and as a result it can be filtered out prior to NLP processing.</p>
+<p><strong>Update (09/10/23)</strong>: Deeper analysis of the upcoming OCR costs (<a href="https://cloud.google.com/document-ai/pricing#:~:text=%241.50%20per%201%2C000%20pages">$1.50/1000 pages</a>) have led me to the conclusion that cost-saving measures are required. A possible solution is the aggregation of several images into a single &ldquo;page&rdquo;.</p>
 <p><strong>Input</strong>: Image (ie. location of)</p>
 <p><strong>Output</strong>: New enhanced image stored in bucket</p>
 <h2 id="ocr-and-text-extraction">OCR and Text Extraction</h2>
@@ -142,7 +149,7 @@
   
   <p class="copyright">
     Copyright © 2023
-    <a href="http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/"><strong>Nicolas Delorme</strong></a>.
+    <a href="http://contextchronicles.com/"><strong>Nicolas Delorme</strong></a>.
     This work is licensed under the
     <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
   </p>

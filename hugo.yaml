@@ -1,8 +1,9 @@
-baseURL: http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/
+baseURL: http://contextchronicles.com/
 languageCode: en-us
 theme: smigle
 themesDir: themes
 title: Context Chronicles
+# enableGitInfo: true
 menu:
   main:
     - identifier: home

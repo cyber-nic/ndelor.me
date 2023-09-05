@@ -2,50 +2,56 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/cockroachdb/</loc>
+    <loc>http://contextchronicles.com/</loc>
+    <lastmod>2023-09-10T05:10:00+00:00</lastmod>
+  </url><url>
+    <loc>http://contextchronicles.com/tags/history-ai/</loc>
+    <lastmod>2023-09-10T05:10:00+00:00</lastmod>
+  </url><url>
+    <loc>http://contextchronicles.com/posts/hai-img-distribution/</loc>
+    <lastmod>2023-09-05T11:16:03+01:00</lastmod>
+  </url><url>
+    <loc>http://contextchronicles.com/posts/</loc>
+    <lastmod>2023-09-10T05:10:00+00:00</lastmod>
+  </url><url>
+    <loc>http://contextchronicles.com/tags/sql/</loc>
+    <lastmod>2023-09-05T11:16:03+01:00</lastmod>
+  </url><url>
+    <loc>http://contextchronicles.com/tags/</loc>
+    <lastmod>2023-09-10T05:10:00+00:00</lastmod>
+  </url><url>
+    <loc>http://contextchronicles.com/tags/cockroachdb/</loc>
     <lastmod>2023-09-03T07:12:05+01:00</lastmod>
   </url><url>
-    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/cockroachdb-local/</loc>
+    <loc>http://contextchronicles.com/posts/cockroachdb-local/</loc>
     <lastmod>2023-09-03T07:12:05+01:00</lastmod>
   </url><url>
-    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/</loc>
+    <loc>http://contextchronicles.com/tags/go/</loc>
     <lastmod>2023-09-03T07:12:05+01:00</lastmod>
   </url><url>
-    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/go/</loc>
-    <lastmod>2023-09-03T07:12:05+01:00</lastmod>
-  </url><url>
-    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/</loc>
-    <lastmod>2023-09-03T07:12:05+01:00</lastmod>
-  </url><url>
-    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/</loc>
-    <lastmod>2023-09-03T07:12:05+01:00</lastmod>
-  </url><url>
-    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/computer-vision/</loc>
+    <loc>http://contextchronicles.com/tags/computer-vision/</loc>
     <lastmod>2023-07-11T17:33:59-04:00</lastmod>
   </url><url>
-    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/history-ai/</loc>
+    <loc>http://contextchronicles.com/posts/hai-computer-vision/</loc>
     <lastmod>2023-07-11T17:33:59-04:00</lastmod>
   </url><url>
-    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/hai-computer-vision/</loc>
-    <lastmod>2023-07-11T17:33:59-04:00</lastmod>
-  </url><url>
-    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/hai-scraping/</loc>
+    <loc>http://contextchronicles.com/posts/hai-scraping/</loc>
     <lastmod>2023-07-10T22:09:00+00:00</lastmod>
   </url><url>
-    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/ai-making-history/</loc>
+    <loc>http://contextchronicles.com/posts/ai-making-history/</loc>
     <lastmod>2023-07-10T08:58:00+00:00</lastmod>
   </url><url>
-    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/new-project/</loc>
+    <loc>http://contextchronicles.com/tags/new-project/</loc>
     <lastmod>2023-07-10T08:58:00+00:00</lastmod>
   </url><url>
-    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/posts/hai-system-breakdown/</loc>
-    <lastmod>2023-07-10T01:26:00+00:00</lastmod>
+    <loc>http://contextchronicles.com/posts/hai-system-breakdown/</loc>
+    <lastmod>2023-09-10T05:10:00+00:00</lastmod>
   </url><url>
-    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/system-design/</loc>
-    <lastmod>2023-07-10T01:26:00+00:00</lastmod>
+    <loc>http://contextchronicles.com/tags/system-design/</loc>
+    <lastmod>2023-09-10T05:10:00+00:00</lastmod>
   </url><url>
-    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/about/</loc>
+    <loc>http://contextchronicles.com/about/</loc>
   </url><url>
-    <loc>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/categories/</loc>
+    <loc>http://contextchronicles.com/categories/</loc>
   </url>
 </urlset>

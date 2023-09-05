@@ -16,6 +16,12 @@ hugo new posts/ai-making-history.md
 hugo server -w -D
 ```
 
+# publish
+
+```
+hugo
+```
+
 # deploy to aws
 
 ```

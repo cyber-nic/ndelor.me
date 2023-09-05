@@ -1,6 +1,7 @@
 ---
 title: "History AI - Part II: System Design"
 date: 2023-07-10T01:26:00-00:00
+lastmod: 2023-09-10T5:10:00-00:00
 tags: ["history ai", "system-design"]
 draft: false
 ---
@@ -26,6 +27,10 @@ I've implemented scrapers using various languages including PowerShell, Node.js,
 ## Image PreProcessing
 
 One of the challenges faced is that all the images scraped contain a repetitive watermark. To enhance the quality of subsequent text extraction (OCR), the primary objective is to remove the watermark from these images. By doing so, I aim to obtain clearer and more accurate results.
+
+**Update (09/10/23)**: After some analysis I am of the opinion that the work required to remove the watermark or the processing cloud costs would not provide the necessary ROI to justify the effort and exepense. Instead, tests have demonstrated that the OCR process does detect the watermark and as a result it can be filtered out prior to NLP processing.
+
+**Update (09/10/23)**: Deeper analysis of the upcoming OCR costs ([$1.50/1000 pages](https://cloud.google.com/document-ai/pricing#:~:text=%241.50%20per%201%2C000%20pages)) have led me to the conclusion that cost-saving measures are required. A possible solution is the aggregation of several images into a single "page".
 
 **Input**: Image (ie. location of)
 

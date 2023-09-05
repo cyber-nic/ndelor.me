@@ -2,62 +2,71 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Context Chronicles</title>
-    <link>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/</link>
+    <link>http://contextchronicles.com/tags/</link>
     <description>Recent content in Tags on Context Chronicles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Sep 2023 07:12:05 +0100</lastBuildDate><atom:link href="http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Sep 2023 11:16:03 +0100</lastBuildDate><atom:link href="http://contextchronicles.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>history ai</title>
+      <link>http://contextchronicles.com/tags/history-ai/</link>
+      <pubDate>Tue, 05 Sep 2023 11:16:03 +0100</pubDate>
+      
+      <guid>http://contextchronicles.com/tags/history-ai/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sql</title>
+      <link>http://contextchronicles.com/tags/sql/</link>
+      <pubDate>Tue, 05 Sep 2023 11:16:03 +0100</pubDate>
+      
+      <guid>http://contextchronicles.com/tags/sql/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>CockroachDB</title>
-      <link>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/cockroachdb/</link>
+      <link>http://contextchronicles.com/tags/cockroachdb/</link>
       <pubDate>Sun, 03 Sep 2023 07:12:05 +0100</pubDate>
       
-      <guid>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/cockroachdb/</guid>
+      <guid>http://contextchronicles.com/tags/cockroachdb/</guid>
       <description></description>
     </item>
     
     <item>
       <title>go</title>
-      <link>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/go/</link>
+      <link>http://contextchronicles.com/tags/go/</link>
       <pubDate>Sun, 03 Sep 2023 07:12:05 +0100</pubDate>
       
-      <guid>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/go/</guid>
+      <guid>http://contextchronicles.com/tags/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>computer vision</title>
-      <link>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/computer-vision/</link>
+      <link>http://contextchronicles.com/tags/computer-vision/</link>
       <pubDate>Tue, 11 Jul 2023 17:33:59 -0400</pubDate>
       
-      <guid>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/computer-vision/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>history ai</title>
-      <link>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/history-ai/</link>
-      <pubDate>Tue, 11 Jul 2023 17:33:59 -0400</pubDate>
-      
-      <guid>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/history-ai/</guid>
+      <guid>http://contextchronicles.com/tags/computer-vision/</guid>
       <description></description>
     </item>
     
     <item>
       <title>new project</title>
-      <link>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/new-project/</link>
+      <link>http://contextchronicles.com/tags/new-project/</link>
       <pubDate>Mon, 10 Jul 2023 08:58:00 +0000</pubDate>
       
-      <guid>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/new-project/</guid>
+      <guid>http://contextchronicles.com/tags/new-project/</guid>
       <description></description>
     </item>
     
     <item>
       <title>system-design</title>
-      <link>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/system-design/</link>
+      <link>http://contextchronicles.com/tags/system-design/</link>
       <pubDate>Mon, 10 Jul 2023 01:26:00 +0000</pubDate>
       
-      <guid>http://contextchronicles.com.s3-website-us-east-1.amazonaws.com/tags/system-design/</guid>
+      <guid>http://contextchronicles.com/tags/system-design/</guid>
       <description></description>
     </item>
     
