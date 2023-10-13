@@ -1,8 +1,9 @@
 ---
 title: "Go Runtime Frames"
 date: 2023-09-16T09:25:51+01:00
-draft: false
+lastmod: 2023-10-16T13:25:51+01:00
 tags: ["go"]
+draft: false
 ---
 
 Both the `go-kit/log` and `rs/zerolog` loggers provide a `Caller` method that returns the caller of the function that called it. This is useful for logging the function name in the log output. This functionality is immensly useful and roused my curiosity as to how it is implemented.

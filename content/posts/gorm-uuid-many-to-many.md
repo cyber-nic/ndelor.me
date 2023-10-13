@@ -1,8 +1,9 @@
 ---
 title: "Gorm UUID Many to Many"
 date: 2023-10-05T13:45:40+01:00
-draft: false
+lastmod: 2023-10-16T13:25:51+01:00
 tags: ["go"]
+draft: false
 ---
 
 Hasham Ali's [How to Use UUID Key Type with Gorm](https://medium.com/@the.hasham.ali/how-to-use-uuid-key-type-with-gorm-cc00d4ec7100) article was terrific for suggesting how to handle using UUID as the ID in gorm. It took a little more fiddling to be able to use the keys in a many-to-many
