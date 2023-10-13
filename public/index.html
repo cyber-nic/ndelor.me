@@ -70,6 +70,67 @@
 		
 		
 			<article>
+  <h1 class="summary-title"><a href="http://contextchronicles.com/posts/gorm-uuid-many-to-many/">Gorm UUID Many to Many</a></h1>
+  <div class="post-meta">
+  <strong>
+    <span>Posted on</span>
+    <time>2023-10-05</time>
+    
+    
+  </strong>
+  <span> • 224 words</span>
+  <span> • 2 minute read</span>
+  
+    <div>
+      <span>Tags:</span>
+      
+        <a href="/tags/go">go</a>
+    </div>
+  
+</div>
+
+  <div class="summary-body">
+    <p>Hasham Ali&rsquo;s How to Use UUID Key Type with Gorm article was terrific for suggesting how to handle using UUID as the ID in gorm. It took a little more fiddling to be able to use the keys in a many-to-many relationship. In the end, it worked by having to explicitly define the join table and the foreign key constraints. Sample code is below.
+import ( &#34;time&#34; &#34;github.com/google/uuid&#34; &#34;gorm.io/gorm&#34; ) // BaseAttributes contains common columns for all tables.</p>
+    
+      <a href="http://contextchronicles.com/posts/gorm-uuid-many-to-many/">Read more...</a>
+    
+  </div>
+</article>
+
+		
+			<article>
+  <h1 class="summary-title"><a href="http://contextchronicles.com/posts/go-runtime-frame/">Go Runtime Frames</a></h1>
+  <div class="post-meta">
+  <strong>
+    <span>Posted on</span>
+    <time>2023-09-16</time>
+    
+    
+  </strong>
+  <span> • 335 words</span>
+  <span> • 2 minute read</span>
+  
+    <div>
+      <span>Tags:</span>
+      
+        <a href="/tags/go">go</a>
+    </div>
+  
+</div>
+
+  <div class="summary-body">
+    <p>Both the go-kit/log and rs/zerolog loggers provide a Caller method that returns the caller of the function that called it. This is useful for logging the function name in the log output. This functionality is immensly useful and roused my curiosity as to how it is implemented.
+zerolog logger caller example
+import &#34;github.com/rs/zerolog&#34; import &#34;github.com/rs/zerolog/log&#34; func main() { log.Logger = log.With().Caller().Logger() // &lt;-- log.Debug().Str(&#34;foo&#34;, &#34;bar&#34;).Msg(&#34;This will be logged with a caller&#34;) } go-kit logger caller example</p>
+    
+      <a href="http://contextchronicles.com/posts/go-runtime-frame/">Read more...</a>
+    
+  </div>
+</article>
+
+		
+			<article>
   <h1 class="summary-title"><a href="http://contextchronicles.com/posts/hai-img-distribution/">History AI - Image Duplicates and Distribtion</a></h1>
   <div class="post-meta">
   <strong>

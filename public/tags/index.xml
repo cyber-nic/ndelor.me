@@ -6,7 +6,16 @@
     <description>Recent content in Tags on Context Chronicles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Sep 2023 11:16:03 +0100</lastBuildDate><atom:link href="http://contextchronicles.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 Oct 2023 13:45:40 +0100</lastBuildDate><atom:link href="http://contextchronicles.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>go</title>
+      <link>http://contextchronicles.com/tags/go/</link>
+      <pubDate>Thu, 05 Oct 2023 13:45:40 +0100</pubDate>
+      
+      <guid>http://contextchronicles.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>history ai</title>
       <link>http://contextchronicles.com/tags/history-ai/</link>
@@ -31,15 +40,6 @@
       <pubDate>Sun, 03 Sep 2023 07:12:05 +0100</pubDate>
       
       <guid>http://contextchronicles.com/tags/cockroachdb/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>go</title>
-      <link>http://contextchronicles.com/tags/go/</link>
-      <pubDate>Sun, 03 Sep 2023 07:12:05 +0100</pubDate>
-      
-      <guid>http://contextchronicles.com/tags/go/</guid>
       <description></description>
     </item>
     
