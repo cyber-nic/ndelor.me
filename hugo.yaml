@@ -43,3 +43,7 @@ deployment:
   targets:
     name: aws
     URL: s3://contextchronicles.com?region=us-east-1
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

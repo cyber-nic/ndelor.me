@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content=""
+  />
+  
+    
+      <title>Cloud Load Balancer Cost Savings | Context Chronicles</title>
+    
+  
+  <link rel="stylesheet" href="/css/reset.css"/>
+  <link rel="stylesheet" href="/css/font.css"/>
+  <link rel="stylesheet" href="/css/smigle.css"/>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+  <body>
+    <div id="root">
+      <header>
+  <div id="brand">
+    <a class="icon-link" href="http://contextchronicles.com/">
+      <img
+        class="icon"
+        src="/images/logo.png"
+      />
+    </a>
+    <div class="text">
+      <a href="http://contextchronicles.com/"><h1>Context Chronicles</h1></a>
+      <h3>Stuff.</h3>
+    </div>
+  </div>
+  <nav>
+    
+      
+        
+        <a href="/"><b>Home</b></a>
+      
+         | 
+        <a href="/about/"><b>About</b></a>
+      
+         | 
+        <a href="/posts/"><b>Posts</b></a>
+      
+         | 
+        <a href="/categories/"><b>Categories</b></a>
+      
+         | 
+        <a href="/tags/"><b>Tags</b></a>
+      
+    
+  </nav>
+  <hr />
+</header>
+
+      <div id="content">
+        
+  <main>
+    <article>
+      <h1>Cloud Load Balancer Cost Savings</h1>
+      <div class="post-meta">
+  <strong>
+    <span>Posted on</span>
+    <time>2023-10-20</time>
+    
+    
+  </strong>
+  <span> • 689 words</span>
+  <span> • 4 minute read</span>
+  
+  
+    <div>
+      <span>Tags:</span>
+      
+        <a href="/tags/aws">aws</a>, 
+        <a href="/tags/gcp">gcp</a>, 
+        <a href="/tags/cloud">cloud</a>
+    </div>
+  
+</div>
+
+      <div><h3 id="context">Context</h3>
+<p>In an effort to learn more about the Google Cloud Platform, I built and deployed a website using Cloud Run functions, hosted behind a GCP Load Balancer. The performance was great. Even without conducting any performance or benchmark tests, I observed that the website was very responsive globally, as relayed by a family member in Singapore.</p>
+<p>Unfortunately, the costs were not as favorable. The cost of running a single load balancer was about ~$25 per month. It is simply too much for a personal project that is not generating any revenue.</p>
+<p>This articles discusses the journey to saving $25/month.</p>
+<h3 id="it-adds-up">It adds up</h3>
+<p>The chart below shows the daily cost of running a single load balancer for a few months.
+<lu></p>
+<li><span style="color: #00abc0;">ManagedZone</span> - This is a fixed cost. $0.06-$0.07/day.</li>
+<li><span style="color: #7cb342;">Network Cloud Armor Rule</span> - Another fixed cost. $0.033/day.</li>
+<li><span style="color: #ff8f00;">Network Cloud Armor Policy</span> - Starts at $0.161/day and creeps up to $0.167/day on the chart below. This is a fixed cost.</li>
+<li><span style="color: #4184f3;">HTTP Load Balancing: Global Forwarding Rule Minimum Service Charge</span> - Renamed to <span style="color: #ff5722;">Cloud Load Balancer Forwarding Rule Minimum Global</span> on August 1st. This is a fixed cost. $0.6/day.</li>
+<li><span style="color: #aa46bb;">Network Load Balancing: Forwarding Rule Minimum Service Charge in Virginia</span> - Cost $0.672/day for the two days I let it run completely.</li>
+</ul>
+<p><img src="/images/cloud-lb-cost-savings-gcp.png" alt="gcp-spending"></p>
+<h3 id="options">Options</h3>
+<p>The journey began with the gruntwork&rsquo;s wonderful GCP load balancer terraform module (<a href="https://github.com/gruntwork-io/terraform-google-load-balancer">link</a>). By default this creates a global LB which costs ~$0.80/day or ~$25/month.</p>
+<p>The module was tweaked to support creating a regional LB which was deployed in the us-east-4 (Virginia) region in May 2023. For clarity, this regional LB replaced the global LB. This blew my mind: the cost increase by ~$0.07 a day to ~$0.87/day or ~$27/month. As you can understand this was not the result I anticipated and the change was quickly reverted.</p>
+<p>There are multiple reddit posts (r/googlecloud) discussing the cost of running a load balancer. The general consensus is that the cost is too high for individual projects. One might point out that there are multiple possible GCP LB configurations. If there is a cheaper option I have not found it.</p>
+<h3 id="aws-to-my-wallets-rescue">AWS to (my wallet&rsquo;s) rescue</h3>
+<p>AWS does have a free tier load balancer but it is only available for 12 months after creating an account. This felt like punting the problem down the road. I wanted a solution that would work for the long term.</p>
+<p>In comes AWS CloudFront. I will update this post in a few weeks once enough billing data has been gathered, but my experience thus far with CloudFront suggests the cost will be much more manageable. Serving contextchronicles.com is currently costing ~$0.50/month for Route53, $0 for CloudFronts.</p>
+<p>Setting up the CloudFront distribution posed no challenge. One important lesson was that the behavior url path cannot be removed when forwarded to an origin. As a result my gin gonic API needed to listen on the <code>/api</code> path and my GCP bucket assets needed to be moved into a /static folder to match the <code>/api/*</code> and <code>/static/*</code> behaviors path.</p>
+<h4 id="cloudfront-gcp-origins">CloudFront GCP Origins</h4>
+<p>For a Google Cloud Storage bucket the CloudFront origin domain should be <code>storage.googleapis.com</code> and the origin path should be the bucket name. For example, <code>/foo-bar-bucket</code>.</p>
+<p>While my webapp behavior seemed to work right out of the box the API origin did not. The API behavior was returning a 404 or 401 error.</p>
+<p>Several Cache Policy and Origin Request Policy combinations result in a 404. It&rsquo;s very hard to troubleshoot this as the API isn&rsquo;t actually receiving any traffic and thus there are no logs or metrics.</p>
+<p>The combination that ended up working is the <code>Managed-CachingDisabled</code> Cache Policy and the <code>AllViewerExceptHostHeader</code> Origin Request Policy.</p>
+<p>Getting CloudFront to forward the <code>Authorization</code> header was slighty more involved then anticipated although it turns out this matter is discussed <a href="https://repost.aws/knowledge-center/cloudfront-authorization-header">here</a> and documented <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/add-origin-custom-headers.html#add-origin-custom-headers-forward-authorization">here</a>.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Navigating cloud infrastructure can be complex and costly, but my switch from GCP Load Balancer to AWS CloudFront underscored the value of research and adaptability. While challenges are inevitable, they often pave the way to more efficient and cost-effective solutions.</p>
+<p>My personal project website <a href="https://www.4ks.io">www.4ks.io</a> now costs $25/month less to operate by combining AWS CloudFront and GCP Cloud Run.</p>
+</div>
+    </article>
+  </main>
+
+      </div>
+      <footer>
+  <hr />
+  
+    <p id="social">
+      Find me around the web:
+      <br />
+      
+        
+        <a href="https://github.com/cyber-nic">GitHub</a>
+      
+         | 
+        <a href="https://www.linkedin.com/in/nicolas-delorme-588ba619/">LinkedIn</a>
+      
+    </p>
+  
+  <p class="copyright">
+    Copyright © 2023
+    <a href="http://contextchronicles.com/"><strong>Nicolas Delorme</strong></a>.
+    This work is licensed under the
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
+  </p>
+  <p class="builtWith">
+    Built with
+    <a href="http://www.gohugo.io/">Hugo</a>,
+    using the theme
+    <a href="https://gitlab.com/ian-s-mcb/smigle-hugo-theme">smigle</a>,
+    which was influenced by the theme
+    <a href="https://github.com/sumnerevans/smol">smol</a>.
+  </p>
+</footer>
+
+    </div>
+  </body>
+</html>
