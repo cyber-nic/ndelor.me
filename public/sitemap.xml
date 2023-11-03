@@ -2,6 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://contextchronicles.com/</loc>
+    <lastmod>2023-11-02T06:33:25+01:00</lastmod>
+  </url><url>
+    <loc>http://contextchronicles.com/posts/dev-k8s-options/</loc>
+    <lastmod>2023-11-02T06:33:25+01:00</lastmod>
+  </url><url>
+    <loc>http://contextchronicles.com/tags/k3d/</loc>
+    <lastmod>2023-11-02T06:33:25+01:00</lastmod>
+  </url><url>
+    <loc>http://contextchronicles.com/tags/kind/</loc>
+    <lastmod>2023-11-02T06:33:25+01:00</lastmod>
+  </url><url>
+    <loc>http://contextchronicles.com/tags/kubernetes/</loc>
+    <lastmod>2023-11-02T06:33:25+01:00</lastmod>
+  </url><url>
+    <loc>http://contextchronicles.com/tags/minikube/</loc>
+    <lastmod>2023-11-02T06:33:25+01:00</lastmod>
+  </url><url>
+    <loc>http://contextchronicles.com/posts/</loc>
+    <lastmod>2023-11-02T06:33:25+01:00</lastmod>
+  </url><url>
+    <loc>http://contextchronicles.com/tags/</loc>
+    <lastmod>2023-11-02T06:33:25+01:00</lastmod>
+  </url><url>
     <loc>http://contextchronicles.com/tags/aws/</loc>
     <lastmod>2023-10-20T10:45:42+01:00</lastmod>
   </url><url>
@@ -11,16 +35,7 @@
     <loc>http://contextchronicles.com/posts/cloud-lb-cost-savings/</loc>
     <lastmod>2023-10-20T10:45:42+01:00</lastmod>
   </url><url>
-    <loc>http://contextchronicles.com/</loc>
-    <lastmod>2023-10-20T10:45:42+01:00</lastmod>
-  </url><url>
     <loc>http://contextchronicles.com/tags/gcp/</loc>
-    <lastmod>2023-10-20T10:45:42+01:00</lastmod>
-  </url><url>
-    <loc>http://contextchronicles.com/posts/</loc>
-    <lastmod>2023-10-20T10:45:42+01:00</lastmod>
-  </url><url>
-    <loc>http://contextchronicles.com/tags/</loc>
     <lastmod>2023-10-20T10:45:42+01:00</lastmod>
   </url><url>
     <loc>http://contextchronicles.com/tags/go/</loc>
@@ -33,7 +48,7 @@
     <lastmod>2023-10-16T13:25:51+01:00</lastmod>
   </url><url>
     <loc>http://contextchronicles.com/tags/history-ai/</loc>
-    <lastmod>2023-09-10T05:10:00+00:00</lastmod>
+    <lastmod>2023-11-02T05:10:00+00:00</lastmod>
   </url><url>
     <loc>http://contextchronicles.com/posts/hai-img-distribution/</loc>
     <lastmod>2023-09-05T11:16:03+01:00</lastmod>
@@ -63,10 +78,10 @@
     <lastmod>2023-07-10T08:58:00+00:00</lastmod>
   </url><url>
     <loc>http://contextchronicles.com/posts/hai-system-breakdown/</loc>
-    <lastmod>2023-09-10T05:10:00+00:00</lastmod>
+    <lastmod>2023-11-02T05:10:00+00:00</lastmod>
   </url><url>
     <loc>http://contextchronicles.com/tags/system-design/</loc>
-    <lastmod>2023-09-10T05:10:00+00:00</lastmod>
+    <lastmod>2023-11-02T05:10:00+00:00</lastmod>
   </url><url>
     <loc>http://contextchronicles.com/about/</loc>
   </url><url>

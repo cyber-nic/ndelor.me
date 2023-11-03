@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content=""
+  />
+  
+    
+      <title>Dev K8s Options | Context Chronicles</title>
+    
+  
+  <link rel="stylesheet" href="/css/reset.css"/>
+  <link rel="stylesheet" href="/css/font.css"/>
+  <link rel="stylesheet" href="/css/smigle.css"/>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+  <body>
+    <div id="root">
+      <header>
+  <div id="brand">
+    <a class="icon-link" href="http://contextchronicles.com/">
+      <img
+        class="icon"
+        src="/images/logo.png"
+      />
+    </a>
+    <div class="text">
+      <a href="http://contextchronicles.com/"><h1>Context Chronicles</h1></a>
+      <h3>Stuff.</h3>
+    </div>
+  </div>
+  <nav>
+    
+      
+        
+        <a href="/"><b>Home</b></a>
+      
+         | 
+        <a href="/about/"><b>About</b></a>
+      
+         | 
+        <a href="/posts/"><b>Posts</b></a>
+      
+         | 
+        <a href="/categories/"><b>Categories</b></a>
+      
+         | 
+        <a href="/tags/"><b>Tags</b></a>
+      
+    
+  </nav>
+  <hr />
+</header>
+
+      <div id="content">
+        
+  <main>
+    <article>
+      <h1>Dev K8s Options</h1>
+      <div class="post-meta">
+  <strong>
+    <span>Posted on</span>
+    <time>2023-11-02</time>
+    
+    
+  </strong>
+  <span> • 564 words</span>
+  <span> • 3 minute read</span>
+  
+  
+    <div>
+      <span>Tags:</span>
+      
+        <a href="/tags/kubernetes">kubernetes</a>, 
+        <a href="/tags/kind">kind</a>, 
+        <a href="/tags/minikube">minikube</a>, 
+        <a href="/tags/k3d">k3d</a>
+    </div>
+  
+</div>
+
+      <div><p><a href="https://minikube.sigs.k8s.io/docs/start/">Minikube</a>, <a href="https://kind.sigs.k8s.io/">KinD</a> (Kubernetes in Docker), and <a href="https://k3d.io/">k3d</a> (K3s in Docker) are all tools for running Kubernetes clusters locally, primarily for development purposes. My personal experience with all 3 has been very positive.</p>
+<p>For the last couple of years I&rsquo;ve been operating on Fedora linux and have been keeping up with the latest releases. Originally I used minikube, but switched over to k3d whe DNS issues prevented it from reaching docker hub. A few months back I switched over to KinD out of simple curiosity. All 3 options drain my laptop&rsquo;s battery, so there isn&rsquo;t a clear winner there.</p>
+<p>Here are some key differences, pros, and cons of each:</p>
+<h3 id="minikube">Minikube</h3>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li>It creates a VM or a Docker container to run the Kubernetes cluster.</li>
+<li>It has various &ldquo;addons&rdquo; which are built-in to provide additional functionality, such as the dashboard.</li>
+</ul>
+<p><strong>Pros:</strong></p>
+<ol>
+<li><strong>Mature</strong>: One of the earliest solutions for local Kubernetes development.</li>
+<li><strong>Driver Choices</strong>: It supports various virtualization backends (VirtualBox, HyperKit, KVM, etc.).</li>
+<li><strong>Addons</strong>: Integrated tools and services like the Kubernetes dashboard, monitoring, logging, and more.</li>
+<li><strong>Flexibility</strong>: It can simulate various Kubernetes features like node conditions.</li>
+</ol>
+<p><strong>Cons:</strong></p>
+<ol>
+<li><strong>Overhead</strong>: VM-based solutions can be heavyweight.</li>
+<li><strong>Complexity</strong>: Can be a bit complicated for new users with various configuration options.</li>
+</ol>
+<h3 id="kind-kubernetes-in-docker">KinD (Kubernetes in Docker)</h3>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li>Uses Docker containers to create Kubernetes &ldquo;nodes&rdquo;.</li>
+<li>Developed by Kubernetes Special Interest Groups (SIGs) for testing Kubernetes itself.</li>
+</ul>
+<p><strong>Pros:</strong></p>
+<ol>
+<li><strong>Lightweight</strong>: Runs entirely within Docker, no VM overhead.</li>
+<li><strong>Quick Setup</strong>: Typically faster setup times than VM-based solutions.</li>
+<li><strong>Multi-node Clusters</strong>: Easy to create multi-node clusters.</li>
+<li><strong>CI Friendly</strong>: Designed for CI/CD environments and Kubernetes conformance tests.</li>
+</ol>
+<p><strong>Cons:</strong></p>
+<ol>
+<li><strong>Networking</strong>: Docker-in-Docker can occasionally have networking hiccups.</li>
+<li><strong>Storage</strong>: Not designed for complex storage scenarios, which can be limiting if you want to test storage features or solutions.</li>
+</ol>
+<h3 id="k3d-k3s-in-docker">k3d (K3s in Docker)</h3>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li>Uses Docker containers to run K3s, a lightweight Kubernetes distribution.</li>
+<li>Ideal for edge and IoT use cases.</li>
+</ul>
+<p><strong>Pros:</strong></p>
+<ol>
+<li><strong>Ultra Lightweight</strong>: K3s is a minimal Kubernetes distribution.</li>
+<li><strong>Fast Start</strong>: Starts quickly, making it excellent for local development.</li>
+<li><strong>Integrated Tooling</strong>: K3s has integrated networking (Flannel), storage (Local-path-provisioner), and load balancing (Traefik) solutions.</li>
+<li><strong>Great for Edge</strong>: Designed for edge and IoT scenarios, so running it locally can mimic these environments well.</li>
+</ol>
+<p><strong>Cons:</strong></p>
+<ol>
+<li><strong>Limited Features</strong>: Some of the advanced Kubernetes features are stripped out in K3s to keep it lean.</li>
+<li><strong>Different Experience</strong>: Because it&rsquo;s a minimal distribution, some behaviors might differ from a full-fledged Kubernetes.</li>
+</ol>
+<h3 id="conclusion">Conclusion:</h3>
+<p>The best tool often depends on the user&rsquo;s specific needs:</p>
+<ul>
+<li><strong>Minikube</strong> might be suitable for those who want a more &ldquo;full&rdquo; Kubernetes experience, possibly closer to a production-like environment.</li>
+<li><strong>KinD</strong> is great for users looking for a lightweight solution and those doing CI/CD with Kubernetes.</li>
+<li><strong>k3d</strong> is best for those wanting an ultra-lightweight environment, or if you&rsquo;re specifically looking to work with or test the capabilities of K3s.</li>
+</ul>
+<p>However, it&rsquo;s worth noting that the lines between these tools are blurring. For instance, Minikube now supports a Docker driver, which means it can also run without a VM, much like KinD and k3d.</p>
+<p>As a final note, all 3 local Kubernetes options are great for development and work especially well with <a href="https://tilt.dev/">tilt.dev</a>. Tilt is a tool for local development with Kubernetes. It watches your files for edits, rebuilds your Docker images and restarts your pods automatically. It&rsquo;s a great tool for local development and I highly recommend it.</p>
+<p>** this article was written with AI assistance</p>
+</div>
+    </article>
+  </main>
+
+      </div>
+      <footer>
+  <hr />
+  
+    <p id="social">
+      Find me around the web:
+      <br />
+      
+        
+        <a href="https://github.com/cyber-nic">GitHub</a>
+      
+         | 
+        <a href="https://www.linkedin.com/in/nicolas-delorme-588ba619/">LinkedIn</a>
+      
+    </p>
+  
+  <p class="copyright">
+    Copyright © 2023
+    <a href="http://contextchronicles.com/"><strong>Nicolas Delorme</strong></a>.
+    This work is licensed under the
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
+  </p>
+  <p class="builtWith">
+    Built with
+    <a href="http://www.gohugo.io/">Hugo</a>,
+    using the theme
+    <a href="https://gitlab.com/ian-s-mcb/smigle-hugo-theme">smigle</a>,
+    which was influenced by the theme
+    <a href="https://github.com/sumnerevans/smol">smol</a>.
+  </p>
+</footer>
+
+    </div>
+  </body>
+</html>

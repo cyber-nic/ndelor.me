@@ -6,7 +6,17 @@
     <description>Recent content on Context Chronicles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Oct 2023 10:45:42 +0100</lastBuildDate><atom:link href="http://contextchronicles.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 02 Nov 2023 06:33:25 +0100</lastBuildDate><atom:link href="http://contextchronicles.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dev K8s Options</title>
+      <link>http://contextchronicles.com/posts/dev-k8s-options/</link>
+      <pubDate>Thu, 02 Nov 2023 06:33:25 +0100</pubDate>
+      
+      <guid>http://contextchronicles.com/posts/dev-k8s-options/</guid>
+      <description>Minikube, KinD (Kubernetes in Docker), and k3d (K3s in Docker) are all tools for running Kubernetes clusters locally, primarily for development purposes. My personal experience with all 3 has been very positive.
+For the last couple of years I&amp;rsquo;ve been operating on Fedora linux and have been keeping up with the latest releases. Originally I used minikube, but switched over to k3d whe DNS issues prevented it from reaching docker hub.</description>
+    </item>
+    
     <item>
       <title>Cloud Load Balancer Cost Savings</title>
       <link>http://contextchronicles.com/posts/cloud-lb-cost-savings/</link>
@@ -93,7 +103,7 @@ While I won&amp;rsquo;t disclose the name of the archive or share any documents 
       <pubDate>Mon, 10 Jul 2023 01:26:00 +0000</pubDate>
       
       <guid>http://contextchronicles.com/posts/hai-system-breakdown/</guid>
-      <description>Assumptions / Constraints We will operate on a dataset of 2,000,000 jpeg images / 500GB The initial budget is $1000. It is expected that this will increase, but the goal is to re-evaluate the budget prior to spending. We will operate using the Google Cloud Platform (GCP) but might explore other cloud offerings when performance or cost become a concern System Design Scraping I&amp;rsquo;ve implemented scrapers using various languages including PowerShell, Node.</description>
+      <description>Assumptions / Constraints We will operate on a dataset of ~2,000,000 jpeg images / ~500GB The initial budget is $1000. It is expected that this will increase, but the goal is to re-evaluate the budget prior to spending. We will operate using the Google Cloud Platform (GCP) but might explore other cloud offerings when performance or cost become a concern System Design Scraping I&amp;rsquo;ve implemented scrapers using various languages including PowerShell, Node.</description>
     </item>
     
     <item>

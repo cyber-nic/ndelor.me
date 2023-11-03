@@ -1,14 +1,14 @@
 ---
 title: "History AI - Part II: System Design"
 date: 2023-07-10T01:26:00-00:00
-lastmod: 2023-09-10T5:10:00-00:00
+lastmod: 2023-11-02T5:10:00-00:00
 tags: ["history ai", "system-design"]
 draft: false
 ---
 
 # Assumptions / Constraints
 
-1. We will operate on a dataset of 2,000,000 jpeg images / 500GB
+1. We will operate on a dataset of ~2,000,000 jpeg images / ~500GB
 1. The initial budget is $1000. It is expected that this will increase, but the goal is to re-evaluate the budget prior to spending.
 1. We will operate using the Google Cloud Platform (GCP) but might explore other cloud offerings when performance or cost become a concern
 
@@ -32,6 +32,8 @@ One of the challenges faced is that all the images scraped contain a repetitive 
 
 **Update (09/10/23)**: Deeper analysis of the upcoming OCR costs ([$1.50/1000 pages](https://cloud.google.com/document-ai/pricing#:~:text=%241.50%20per%201%2C000%20pages)) have led me to the conclusion that cost-saving measures are required. A possible solution is the aggregation of several images into a single "page".
 
+**Update (2/11/23)**: Final conclusion, the idea of combining images into a single page is pointless has GCP's Document AI OCR documentation states that it will auto-detect, and bill accordingly, for multiple pages in a single image. Since the expected cost of OCR'ing this many images is ~$5000USD we've applied for a Google Research grant to cover the costs. Waiting on a response.
+
 **Input**: Image (ie. location of)
 
 **Output**: New enhanced image stored in bucket
@@ -48,13 +50,15 @@ We strive to perform Optical Character Recognition (OCR) and extract text from a
 
 Using Natural Language Processing (NLP), the objective is to perform Named Entity Recognition (NER). This involves identifying and categorizing named entities such as people, organizations, locations, and dates within the extracted text. By leveraging NLP techniques, we can gain valuable insights from the recognized entities.
 
+Part of this step will be producing a weighted score for each entity relationship. This would potentially allow us to visually identify the most important entities and relationships using a tool like [Gephi](https://gephi.org/).
+
 **Input**: Text
 
 **Output**: JSON
 
-## AI
+## LLM
 
-In the final phase, I will focus on analyzing the NLP entities extracted from the previous steps. One potential approach is to utilize a hash table to store NLP entities per image, allowing us to identify patterns and correlations. Additionally, we can explore advanced techniques like using Tensorflow to delve even deeper into the analysis.
+The final step is to leverage the extracted entities and relationships to produce a Large Language Models (LLM). It will be interesting to see if the model is capable of identifying patterns and relationships that are not immediately obvious to the human eye. I'm currently considering multiple options for this step, including GPT-4, [H2O LLM Studio](https://github.com/h2oai/h2o-llmstudio), along with other more customized solutions (as an opportunity to learn more about LLM fundamentals).
 
 **Input**: TBD
 

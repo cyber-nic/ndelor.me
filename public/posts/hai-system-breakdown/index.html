@@ -75,12 +75,12 @@
     
     
   </strong>
-  <span> • 463 words</span>
+  <span> • 574 words</span>
   <span> • 3 minute read</span>
   
     <div>
       Last updated on
-      <time>2023-09-10</time>
+      <time>2023-11-02</time>
     </div>
   
   
@@ -95,7 +95,7 @@
 
       <div><h1 id="assumptions--constraints">Assumptions / Constraints</h1>
 <ol>
-<li>We will operate on a dataset of 2,000,000 jpeg images / 500GB</li>
+<li>We will operate on a dataset of ~2,000,000 jpeg images / ~500GB</li>
 <li>The initial budget is $1000. It is expected that this will increase, but the goal is to re-evaluate the budget prior to spending.</li>
 <li>We will operate using the Google Cloud Platform (GCP) but might explore other cloud offerings when performance or cost become a concern</li>
 </ol>
@@ -109,6 +109,7 @@
 <p>One of the challenges faced is that all the images scraped contain a repetitive watermark. To enhance the quality of subsequent text extraction (OCR), the primary objective is to remove the watermark from these images. By doing so, I aim to obtain clearer and more accurate results.</p>
 <p><strong>Update (09/10/23)</strong>: After some analysis I am of the opinion that the work required to remove the watermark or the processing cloud costs would not provide the necessary ROI to justify the effort and exepense. Instead, tests have demonstrated that the OCR process does detect the watermark and as a result it can be filtered out prior to NLP processing.</p>
 <p><strong>Update (09/10/23)</strong>: Deeper analysis of the upcoming OCR costs (<a href="https://cloud.google.com/document-ai/pricing#:~:text=%241.50%20per%201%2C000%20pages">$1.50/1000 pages</a>) have led me to the conclusion that cost-saving measures are required. A possible solution is the aggregation of several images into a single &ldquo;page&rdquo;.</p>
+<p><strong>Update (2/11/23)</strong>: Final conclusion, the idea of combining images into a single page is pointless has GCP&rsquo;s Document AI OCR documentation states that it will auto-detect, and bill accordingly, for multiple pages in a single image. Since the expected cost of OCR&rsquo;ing this many images is ~$5000USD we&rsquo;ve applied for a Google Research grant to cover the costs. Waiting on a response.</p>
 <p><strong>Input</strong>: Image (ie. location of)</p>
 <p><strong>Output</strong>: New enhanced image stored in bucket</p>
 <h2 id="ocr-and-text-extraction">OCR and Text Extraction</h2>
@@ -117,10 +118,11 @@
 <p><strong>Output</strong>: Text or JSON</p>
 <h2 id="nlp-and-ner">NLP and NER</h2>
 <p>Using Natural Language Processing (NLP), the objective is to perform Named Entity Recognition (NER). This involves identifying and categorizing named entities such as people, organizations, locations, and dates within the extracted text. By leveraging NLP techniques, we can gain valuable insights from the recognized entities.</p>
+<p>Part of this step will be producing a weighted score for each entity relationship. This would potentially allow us to visually identify the most important entities and relationships using a tool like <a href="https://gephi.org/">Gephi</a>.</p>
 <p><strong>Input</strong>: Text</p>
 <p><strong>Output</strong>: JSON</p>
-<h2 id="ai">AI</h2>
-<p>In the final phase, I will focus on analyzing the NLP entities extracted from the previous steps. One potential approach is to utilize a hash table to store NLP entities per image, allowing us to identify patterns and correlations. Additionally, we can explore advanced techniques like using Tensorflow to delve even deeper into the analysis.</p>
+<h2 id="llm">LLM</h2>
+<p>The final step is to leverage the extracted entities and relationships to produce a Large Language Models (LLM). It will be interesting to see if the model is capable of identifying patterns and relationships that are not immediately obvious to the human eye. I&rsquo;m currently considering multiple options for this step, including GPT-4, <a href="https://github.com/h2oai/h2o-llmstudio">H2O LLM Studio</a>, along with other more customized solutions (as an opportunity to learn more about LLM fundamentals).</p>
 <p><strong>Input</strong>: TBD</p>
 <p><strong>Output</strong>: TBD</p>
 <h1 id="inputs--outputs">Inputs / Outputs</h1>
