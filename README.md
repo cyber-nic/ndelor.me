@@ -29,3 +29,10 @@ aws s3 sync ./public s3://contextchronicles.com
 # or
 hugo deploy aws
 ```
+
+# download and install
+
+```
+git clone git@github.com:cyber-nic/contextchronicles.com.git
+git submodule update --init
+```

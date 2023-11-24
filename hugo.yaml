@@ -27,10 +27,10 @@ menu:
       url: /tags/
       weight: 5
 params:
-  abbrDateFmt: 'Jan 2'
-  author: 'Nicolas Delorme'
-  brandIconFile: 'images/logo.png'
-  dateFmt: '2006-01-02'
+  abbrDateFmt: "Jan 2"
+  author: "Nicolas Delorme"
+  brandIconFile: "images/logo.png"
+  dateFmt: "2006-01-02"
   #  customStylesheets: # Use to override theme styles, like logo size
   #    - "css/custom.css"
   social:
@@ -38,7 +38,7 @@ params:
       url: https://github.com/cyber-nic
     - name: LinkedIn
       url: https://www.linkedin.com/in/nicolas-delorme-588ba619/
-  subtitle: 'Stuff.'
+  subtitle: "Stuff."
 deployment:
   targets:
     name: aws

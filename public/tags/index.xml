@@ -6,132 +6,112 @@
     <description>Recent content in Tags on Context Chronicles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 02 Nov 2023 06:33:25 +0100</lastBuildDate><atom:link href="http://contextchronicles.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Nov 2023 16:03:34 +0000</lastBuildDate>
+    <atom:link href="http://contextchronicles.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>nextjs</title>
+      <link>http://contextchronicles.com/tags/nextjs/</link>
+      <pubDate>Thu, 23 Nov 2023 16:03:34 +0000</pubDate>
+      <guid>http://contextchronicles.com/tags/nextjs/</guid>
+      <description></description>
+    </item>
     <item>
       <title>k3d</title>
       <link>http://contextchronicles.com/tags/k3d/</link>
       <pubDate>Thu, 02 Nov 2023 06:33:25 +0100</pubDate>
-      
       <guid>http://contextchronicles.com/tags/k3d/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>kind</title>
       <link>http://contextchronicles.com/tags/kind/</link>
       <pubDate>Thu, 02 Nov 2023 06:33:25 +0100</pubDate>
-      
       <guid>http://contextchronicles.com/tags/kind/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>kubernetes</title>
       <link>http://contextchronicles.com/tags/kubernetes/</link>
       <pubDate>Thu, 02 Nov 2023 06:33:25 +0100</pubDate>
-      
       <guid>http://contextchronicles.com/tags/kubernetes/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>minikube</title>
       <link>http://contextchronicles.com/tags/minikube/</link>
       <pubDate>Thu, 02 Nov 2023 06:33:25 +0100</pubDate>
-      
       <guid>http://contextchronicles.com/tags/minikube/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>aws</title>
       <link>http://contextchronicles.com/tags/aws/</link>
       <pubDate>Fri, 20 Oct 2023 10:45:42 +0100</pubDate>
-      
       <guid>http://contextchronicles.com/tags/aws/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>cloud</title>
       <link>http://contextchronicles.com/tags/cloud/</link>
       <pubDate>Fri, 20 Oct 2023 10:45:42 +0100</pubDate>
-      
       <guid>http://contextchronicles.com/tags/cloud/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>gcp</title>
       <link>http://contextchronicles.com/tags/gcp/</link>
       <pubDate>Fri, 20 Oct 2023 10:45:42 +0100</pubDate>
-      
       <guid>http://contextchronicles.com/tags/gcp/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>go</title>
       <link>http://contextchronicles.com/tags/go/</link>
       <pubDate>Thu, 05 Oct 2023 13:45:40 +0100</pubDate>
-      
       <guid>http://contextchronicles.com/tags/go/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>history ai</title>
       <link>http://contextchronicles.com/tags/history-ai/</link>
       <pubDate>Tue, 05 Sep 2023 11:16:03 +0100</pubDate>
-      
       <guid>http://contextchronicles.com/tags/history-ai/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>sql</title>
       <link>http://contextchronicles.com/tags/sql/</link>
       <pubDate>Tue, 05 Sep 2023 11:16:03 +0100</pubDate>
-      
       <guid>http://contextchronicles.com/tags/sql/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>CockroachDB</title>
       <link>http://contextchronicles.com/tags/cockroachdb/</link>
       <pubDate>Sun, 03 Sep 2023 07:12:05 +0100</pubDate>
-      
       <guid>http://contextchronicles.com/tags/cockroachdb/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>computer vision</title>
       <link>http://contextchronicles.com/tags/computer-vision/</link>
       <pubDate>Tue, 11 Jul 2023 17:33:59 -0400</pubDate>
-      
       <guid>http://contextchronicles.com/tags/computer-vision/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>new project</title>
       <link>http://contextchronicles.com/tags/new-project/</link>
       <pubDate>Mon, 10 Jul 2023 08:58:00 +0000</pubDate>
-      
       <guid>http://contextchronicles.com/tags/new-project/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>system-design</title>
       <link>http://contextchronicles.com/tags/system-design/</link>
       <pubDate>Mon, 10 Jul 2023 01:26:00 +0000</pubDate>
-      
       <guid>http://contextchronicles.com/tags/system-design/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>
