@@ -6,8 +6,16 @@
     <description>Recent content on Context Chronicles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 23 Nov 2023 16:03:34 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 12 Jan 2024 09:11:12 +0000</lastBuildDate>
     <atom:link href="http://contextchronicles.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GCP Instance with NVIDIA Tesla T4</title>
+      <link>http://contextchronicles.com/posts/gcp-gpu-instance/</link>
+      <pubDate>Fri, 12 Jan 2024 09:11:12 +0000</pubDate>
+      <guid>http://contextchronicles.com/posts/gcp-gpu-instance/</guid>
+      <description>Context Many interesting projects now require a modern GPU (or M1, but I&amp;rsquo;m not desperate enough to downgrade from Linux to OSX). Below are notes on how to spin up a VM instance with GPU in GCP and run a basic PyTorch workload. I chose Watermark-Removal-Pytorch.
+Cost/Performance After studying the available GPU configurations as well as [VM instance pricing][https://cloud.google.com/compute/vm-instance-pricing] I determined that the most affordable Accelerator optimized configuration (~$250/month) is the N1 + nvidia-tesla-t4 (I operated in the europe-west1 region).</description>
+    </item>
     <item>
       <title>Next Thoughts</title>
       <link>http://contextchronicles.com/posts/next-thoughts/</link>
@@ -62,7 +70,7 @@ Prefix Size (GB) Images Distinct Images Duplicate Images Duplicate Images % A 12
       <link>http://contextchronicles.com/posts/cockroachdb-local/</link>
       <pubDate>Sun, 03 Sep 2023 07:12:05 +0100</pubDate>
       <guid>http://contextchronicles.com/posts/cockroachdb-local/</guid>
-      <description>Needed a SQL database for a project and decided to try out CockroachDB. Setting up the free tier cluster was amazingly simple. Unfortunately after only about ~200,000 queries the 50M RUs were completely used up. The docs point out an RU is an abstracted metric that represent the size and complexity of requests made to your cluster. The queries were very simply so this did come as a surprise. CockroachDB seems like a good product, but the free tier is in fact quite limited.</description>
+      <description>update 2024-01-11 While not central to this article the use of the CRC32 hash in the code below is noticeable. Since writing this article I learned that the CRC32, particularly the CRC32C variant used by Google Cloud Storage (GCS), is optimized for error detection, not as a unique identifier for data. It has a higher probability of collisions (1 in 4.3 billion) compared to more robust algorithms. To overcome these limitations, SHA-256, a more robust hashing algorithm, is recommended.</description>
     </item>
     <item>
       <title>History AI - Part IV: Computer Vision</title>

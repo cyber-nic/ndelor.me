@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content=""
+  />
+  
+    
+      <title>GCP Instance with NVIDIA Tesla T4 | Context Chronicles</title>
+    
+  
+  <link rel="stylesheet" href="/css/reset.css"/>
+  <link rel="stylesheet" href="/css/font.css"/>
+  <link rel="stylesheet" href="/css/smigle.css"/>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+  <body>
+    <div id="root">
+      <header>
+  <div id="brand">
+    <a class="icon-link" href="http://contextchronicles.com/">
+      <img
+        class="icon"
+        src="/images/logo.png"
+      />
+    </a>
+    <div class="text">
+      <a href="http://contextchronicles.com/"><h1>Context Chronicles</h1></a>
+      <h3>Stuff.</h3>
+    </div>
+  </div>
+  <nav>
+    
+      
+        
+        <a href="/"><b>Home</b></a>
+      
+         | 
+        <a href="/about/"><b>About</b></a>
+      
+         | 
+        <a href="/posts/"><b>Posts</b></a>
+      
+         | 
+        <a href="/categories/"><b>Categories</b></a>
+      
+         | 
+        <a href="/tags/"><b>Tags</b></a>
+      
+    
+  </nav>
+  <hr />
+</header>
+
+      <div id="content">
+        
+  <main>
+    <article>
+      <h1>GCP Instance with NVIDIA Tesla T4</h1>
+      <div class="post-meta">
+  <strong>
+    <span>Posted on</span>
+    <time>2024-01-12</time>
+    
+    
+  </strong>
+  <span> • 667 words</span>
+  <span> • 4 minute read</span>
+  
+  
+</div>
+
+      <div><h1 id="context">Context</h1>
+<p>Many interesting projects now require a modern GPU (or M1, but I&rsquo;m not desperate enough to downgrade from Linux to OSX). Below are notes on how to spin up a VM instance with GPU in GCP and run a basic PyTorch workload. I chose <a href="https://github.com/braindotai/Watermark-Removal-Pytorch">Watermark-Removal-Pytorch</a>.</p>
+<h1 id="costperformance">Cost/Performance</h1>
+<p>After studying the available <a href="https://cloud.google.com/compute/docs/gpus">GPU configurations</a> as well as [VM instance pricing][https://cloud.google.com/compute/vm-instance-pricing] I determined that the most affordable Accelerator optimized configuration (~$250/month) is the <code>N1 + nvidia-tesla-t4</code> (I operated in the europe-west1 region). This was plenty computing-power for my modest needs. This exercice set me back $0.83 USD.</p>
+<h1 id="terraform">Terraform</h1>
+<p>Here are the <code>broad strokes</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform" data-lang="terraform"><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;google_service_account&#34;</span> <span style="color:#e6db74">&#34;default&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">account_id</span>   = <span style="color:#e6db74">&#34;gpu-sa&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">display_name</span> = <span style="color:#e6db74">&#34;Custom SA for VM Instance&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;google_compute_disk&#34;</span> <span style="color:#e6db74">&#34;default&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;disk-data&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span> = <span style="color:#e6db74">&#34;pd-standard&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">zone</span> = <span style="color:#e6db74">&#34;europe-west1-b&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">size</span> = <span style="color:#e6db74">&#34;25&#34;</span>
+</span></span><span style="display:flex;"><span>}<span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;google_compute_instance&#34;</span> <span style="color:#e6db74">&#34;default&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>         = <span style="color:#e6db74">&#34;gpu&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">machine_type</span> = <span style="color:#e6db74">&#34;n1-standard-1&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">zone</span>         = <span style="color:#e6db74">&#34;europe-west1-b&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">boot_disk</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">initialize_params</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">image</span> = <span style="color:#e6db74">&#34;debian-cloud/debian-12&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">attached_disk</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">source</span>      = <span style="color:#a6e22e">google_compute_disk</span>.<span style="color:#a6e22e">default</span>.<span style="color:#a6e22e">id</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">device_name</span> = <span style="color:#a6e22e">google_compute_disk</span>.<span style="color:#a6e22e">default</span>.<span style="color:#a6e22e">name</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">network_interface</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">network</span> = <span style="color:#e6db74">&#34;default&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">access_config</span> {<span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">      // Ephemeral IP
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">guest_accelerator</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">type</span> = <span style="color:#e6db74">&#34;nvidia-tesla-t4&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">count</span> = <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">service_account</span> {<span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">email</span>  = <span style="color:#a6e22e">google_service_account</span>.<span style="color:#a6e22e">default</span>.<span style="color:#a6e22e">email</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">scopes</span> = [<span style="color:#e6db74">&#34;cloud-platform&#34;</span>]
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">metadata</span> = {<span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    # ssh-keys = &#34;${var.gce_ssh_user}:${file(var.gce_ssh_pub_key_file)}&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    # startup-script-url = &#34;gs://&lt;bucket&gt;/path/to/file&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">startup</span><span style="color:#f92672">-</span><span style="color:#a6e22e">script</span> = <span style="color:#f92672">&lt;&lt;-EOF</span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  sudo apt -y install linux-headers-$(uname -r) build-essential python3-distutils tmux git curl vim
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  # install GPU drivers: https://cloud.google.com/compute/docs/gpus/install-drivers-gpu
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  </span><span style="color:#f92672">EOF</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="notes">Notes</h2>
+<ol>
+<li>GCP suggests using existing <code>Deep Learning VM images</code> that <code>have NVIDIA drivers pre-installed, and also include other machine learning applications such as TensorFlow and PyTorch</code>. This seems like a wise choice (next time!).</li>
+<li>The <code>attached_disk</code> will be necessary as soon as you start installing dependencies to run any workload.</li>
+<li>I recommend loading the start-up script from a url (as commented out), but left things inline for this article.</li>
+<li>The start-up script <code>does not work</code> as-is. These are just notes.</li>
+<li>Instead of using the <code>ssh-keys</code> field, I ended up following <a href="https://cloud.google.com/compute/docs/connect/root-ssh#gcloud">these instructions</a> to allow ssh&rsquo;ing from a local terminal into the VM.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export z<span style="color:#f92672">=</span>europe-west1-b
+</span></span><span style="display:flex;"><span>gcloud compute ssh --project<span style="color:#f92672">=</span>foo --zone<span style="color:#f92672">=</span>$z my_user@instance-1
+</span></span><span style="display:flex;"><span>gcloud compute scp --project<span style="color:#f92672">=</span>foo --zone<span style="color:#f92672">=</span>$z <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --recurse some_data/ my_user@instance-1:/home/my_user
+</span></span></code></pre></div><h1 id="mount-disk">Mount Disk</h1>
+<p>Installing all the apt deps, gpu drivers and python deps (eg. PyTorch) requires a certain amount of disk space. Mount a reasonably sized disk to accomodate your needs. See <a href="https://cloud.google.com/tpu/docs/setup-persistent-disk">GCP instructions</a></p>
+<p>Obvioulsy lazy and just trying to deliver, my disk was mounted at <code>/home/my_user/.cache/</code> which is where pip deps are located. Unfortunately pip kept failing because of disk space until it was instructed to also use <code>/home/my_user/.cache/tmp/</code>.</p>
+<h1 id="imagemagick--watermark-removal-pytorch">ImageMagick &amp; Watermark-Removal-Pytorch</h1>
+<p>Watermark-Removal-Pytorch is a neat little project. Unfortunately it doesn&rsquo;t quite deliver when removing a watermark from a page of text. Nevertheless, here are notes on setting up the environment. ImageMagick was used to auto-crop a very large watermak image to the same dimensions as a watermark&rsquo;ed image.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>  <span style="color:#75715e"># install imagemagick</span>
+</span></span><span style="display:flex;"><span>  sudo apt -y install libpng-dev libjpeg-dev libtiff-dev imagemagick
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># deps identified by repeatedly running:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">#   python3 get-pip.py and</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">#  `pip install -r requirements.txt`</span>
+</span></span><span style="display:flex;"><span>  sudo apt -y install sox ffmpeg <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    libcairo2 libcairo2-dev libcairo2-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    pkg-config python3-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    libgirepository1.0-dev
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sudo curl <span style="color:#e6db74">&#34;https://bootstrap.pypa.io/get-pip.py&#34;</span> -o <span style="color:#e6db74">&#34;get-pip.py&#34;</span>
+</span></span><span style="display:flex;"><span>  sudo python3 get-pip.py
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># clone repo</span>
+</span></span><span style="display:flex;"><span>  git clone https://github.com/braindotai/Watermark-Removal-Pytorch
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># mounted disk hack</span>
+</span></span><span style="display:flex;"><span>  TMPDIR<span style="color:#f92672">=</span>/home/my_user/.cache/tmp/ pip install -r requirements.txt
+</span></span></code></pre></div><h1 id="remove-watermark">Remove Watermark</h1>
+<p>I&rsquo;ll eventually write about the actual watermark removal result, but for now, here&rsquo;s the process:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># first copy foo.jpg and watermark.png over from local using scp cmd provided earlier</span>
+</span></span><span style="display:flex;"><span>f<span style="color:#f92672">=</span>foo.jpg; convert ../watermark.png -gravity SouthWest -crop <span style="color:#66d9ef">$(</span>identify -format <span style="color:#e6db74">&#34;%wx%h\n&#34;</span> $f<span style="color:#66d9ef">)</span>+0+0 <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>f%.jpg<span style="color:#e6db74">}</span><span style="color:#e6db74">\_mask.png&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>python3 inference.py --image-path ../foo.jpg --mask-path ../foo_mask.png
+</span></span><span style="display:flex;"><span>time python3 inference.py <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --image-path ../foo.jpg <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --mask-path ../mask.jpg <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --max-dim <span style="color:#ae81ff">2048</span> <span style="color:#ae81ff">\ </span><span style="color:#75715e"># default is 512 which otherwise results in a smaller image</span>
+</span></span><span style="display:flex;"><span>  --training-steps <span style="color:#ae81ff">2000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># completd 20 training steps in 11s</span>
+</span></span><span style="display:flex;"><span>Completed: 100%|██████████████████████████████████████| 20/20 <span style="color:#f92672">[</span>00:08&lt;00:00, 2.37it/s, Loss<span style="color:#f92672">=</span>0.00155<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>real 0m11.974s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># completed 200 training steps in 90s</span>
+</span></span><span style="display:flex;"><span>Completed: 100%|███████████████████████████████████| 200/200 <span style="color:#f92672">[</span>01:24&lt;00:00, 2.36it/s, Loss<span style="color:#f92672">=</span>0.000156<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>real 1m28.352s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># completd 2000 training steps in 14m</span>
+</span></span><span style="display:flex;"><span>Completed: 100%|██████████████████████████████████| 2000/2000 <span style="color:#f92672">[</span>14:13&lt;00:00, 2.34it/s, Loss<span style="color:#f92672">=</span>4.85e-6<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>real 14m16.682s
+</span></span></code></pre></div></div>
+    </article>
+  </main>
+
+      </div>
+      <footer>
+  <hr />
+  
+    <p id="social">
+      Find me around the web:
+      <br />
+      
+        
+        <a href="https://github.com/cyber-nic">GitHub</a>
+      
+         | 
+        <a href="https://www.linkedin.com/in/nicolas-delorme-588ba619/">LinkedIn</a>
+      
+    </p>
+  
+  <p class="copyright">
+    Copyright © 2024
+    <a href="http://contextchronicles.com/"><strong>Nicolas Delorme</strong></a>.
+    This work is licensed under the
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
+  </p>
+  <p class="builtWith">
+    Built with
+    <a href="http://www.gohugo.io/">Hugo</a>,
+    using the theme
+    <a href="https://gitlab.com/ian-s-mcb/smigle-hugo-theme">smigle</a>,
+    which was influenced by the theme
+    <a href="https://github.com/sumnerevans/smol">smol</a>.
+  </p>
+</footer>
+
+    </div>
+  </body>
+</html>

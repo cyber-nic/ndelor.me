@@ -75,8 +75,13 @@
     
     
   </strong>
-  <span> • 683 words</span>
+  <span> • 775 words</span>
   <span> • 4 minute read</span>
+  
+    <div>
+      Last updated on
+      <time>2024-01-11</time>
+    </div>
   
   
     <div>
@@ -88,7 +93,10 @@
   
 </div>
 
-      <div><p>Needed a SQL database for a project and decided to try out CockroachDB. Setting up the free tier cluster was amazingly simple. Unfortunately after only about ~200,000 queries the 50M RUs were completely used up. The <a href="https://www.cockroachlabs.com/docs/cockroachcloud/plan-your-cluster-serverless#request-units">docs</a> point out <code>an RU is an abstracted metric that represent the size and complexity of requests made to your cluster</code>. The queries were very simply so this did come as a surprise. CockroachDB seems like a good product, but the free tier is in fact quite limited.</p>
+      <div><h2 id="update-2024-01-11">update 2024-01-11</h2>
+<p>While not central to this article the use of the CRC32 hash in the code below is noticeable. Since writing this article I learned that the CRC32, particularly the CRC32C variant used by Google Cloud Storage (GCS), is optimized for error detection, not as a unique identifier for data. It has a higher probability of collisions (1 in 4.3 billion) compared to more robust algorithms. To overcome these limitations, SHA-256, a more robust hashing algorithm, is recommended. SHA-256 significantly reduces the likelihood of hash collisions, ensuring better uniqueness for data identification.</p>
+<h1 id="overview">Overview</h1>
+<p>I needed a SQL database for a project and decided to try out CockroachDB. Setting up the free tier cluster was amazingly simple. Unfortunately after only about ~200,000 queries the 50M RUs were completely used up. The <a href="https://www.cockroachlabs.com/docs/cockroachcloud/plan-your-cluster-serverless#request-units">docs</a> point out <code>an RU is an abstracted metric that represent the size and complexity of requests made to your cluster</code>. The queries were very simply so this did come as a surprise. CockroachDB seems like a good product, but the free tier is in fact quite limited.</p>
 <h1 id="query-examples">Query examples</h1>
 <h2 id="example-1-create-table">Example 1: Create table</h2>
 <p>This query is called once at startup. If the table does not exist it is created. Notice the elegabt handling of the error code.</p>
@@ -172,7 +180,7 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">// database client
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// ...
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// in my exercice attrs is a gcp bucket object
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// attrs is a gcp bucket object
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">count</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">getImageCount</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">roach</span>, <span style="color:#a6e22e">attrs</span>.<span style="color:#a6e22e">CRC32C</span>)
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>    panic(<span style="color:#a6e22e">err</span>)
@@ -243,7 +251,7 @@
     </p>
   
   <p class="copyright">
-    Copyright © 2023
+    Copyright © 2024
     <a href="http://contextchronicles.com/"><strong>Nicolas Delorme</strong></a>.
     This work is licensed under the
     <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.

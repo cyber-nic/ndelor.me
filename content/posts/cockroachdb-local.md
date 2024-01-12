@@ -1,11 +1,18 @@
 ---
 title: "CockroachDB Local"
 date: 2023-09-03T07:12:05+01:00
+lastmod: 2024-01-11T09:09:25+01:00
 tags: ["go", "CockroachDB"]
 draft: false
 ---
 
-Needed a SQL database for a project and decided to try out CockroachDB. Setting up the free tier cluster was amazingly simple. Unfortunately after only about ~200,000 queries the 50M RUs were completely used up. The [docs](https://www.cockroachlabs.com/docs/cockroachcloud/plan-your-cluster-serverless#request-units) point out `an RU is an abstracted metric that represent the size and complexity of requests made to your cluster`. The queries were very simply so this did come as a surprise. CockroachDB seems like a good product, but the free tier is in fact quite limited.
+## update 2024-01-11
+
+While not central to this article the use of the CRC32 hash in the code below is noticeable. Since writing this article I learned that the CRC32, particularly the CRC32C variant used by Google Cloud Storage (GCS), is optimized for error detection, not as a unique identifier for data. It has a higher probability of collisions (1 in 4.3 billion) compared to more robust algorithms. To overcome these limitations, SHA-256, a more robust hashing algorithm, is recommended. SHA-256 significantly reduces the likelihood of hash collisions, ensuring better uniqueness for data identification.
+
+# Overview
+
+I needed a SQL database for a project and decided to try out CockroachDB. Setting up the free tier cluster was amazingly simple. Unfortunately after only about ~200,000 queries the 50M RUs were completely used up. The [docs](https://www.cockroachlabs.com/docs/cockroachcloud/plan-your-cluster-serverless#request-units) point out `an RU is an abstracted metric that represent the size and complexity of requests made to your cluster`. The queries were very simply so this did come as a surprise. CockroachDB seems like a good product, but the free tier is in fact quite limited.
 
 # Query examples
 
@@ -98,7 +105,7 @@ func main() {
   // database client
   // ...
 
-  // in my exercice attrs is a gcp bucket object
+  // attrs is a gcp bucket object
 	count, err := getImageCount(ctx, roach, attrs.CRC32C)
   if err != nil {
     panic(err)
