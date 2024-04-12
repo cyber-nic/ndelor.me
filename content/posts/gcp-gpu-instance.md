@@ -49,6 +49,7 @@ resource "google_compute_instance" "default" {
   network_interface {
     network = "default"
     access_config {
+      network_tier = "STANDARD"
       // Ephemeral IP
     }
   }
@@ -56,6 +57,11 @@ resource "google_compute_instance" "default" {
   guest_accelerator {
     type = "nvidia-tesla-t4"
     count = 1
+  }
+
+  scheduling {
+    on_host_maintenance = "TERMINATE"
+    automatic_restart   = true
   }
 
   service_account {
@@ -68,9 +74,19 @@ resource "google_compute_instance" "default" {
     # ssh-keys = "${var.gce_ssh_user}:${file(var.gce_ssh_pub_key_file)}"
     # startup-script-url = "gs://<bucket>/path/to/file"
     startup-script = <<-EOF
-  sudo apt -y install linux-headers-$(uname -r) build-essential python3-distutils tmux git curl vim
+  sudo apt -y install tmux git curl vim python3-full python3-distutils python3-pip
 
-  # install GPU drivers: https://cloud.google.com/compute/docs/gpus/install-drivers-gpu
+  # possibly require open ssl libs
+  sudo apt install zlib1g zlib1g-dev libssl-dev libbz2-dev libsqlite3-dev
+
+  # pyenv to install other python versions
+  curl https://pyenv.run | bash
+
+  # add pyenv instructions to .bashrc
+
+  # install GPU drivers
+  sudo apt install -y linux-headers-$(uname -r) build-essential software-properties-common pciutils gcc make dkms
+  # follow instuctions: https://cloud.google.com/compute/docs/gpus/install-drivers-gpu
 
   EOF
   }
@@ -83,7 +99,6 @@ resource "google_compute_instance" "default" {
 1. The `attached_disk` will be necessary as soon as you start installing dependencies to run any workload.
 1. I recommend loading the start-up script from a url (as commented out), but left things inline for this article.
 1. The start-up script `does not work` as-is. These are just notes.
-1. Instead of using the `ssh-keys` field, I ended up following [these instructions](https://cloud.google.com/compute/docs/connect/root-ssh#gcloud) to allow ssh'ing from a local terminal into the VM.
 
 ```bash {}
 export z=europe-west1-b
@@ -114,14 +129,16 @@ Watermark-Removal-Pytorch is a neat little project. Unfortunately it doesn't qui
     pkg-config python3-dev \
     libgirepository1.0-dev
 
-  sudo curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
-  sudo python3 get-pip.py
+  # install some other python version
+  pyenv install 3.6
+  pyenv local 3.6
 
   # clone repo
   git clone https://github.com/braindotai/Watermark-Removal-Pytorch
 
   # mounted disk hack
-  TMPDIR=/home/my_user/.cache/tmp/ pip install -r requirements.txt
+  # TMPDIR=/home/my_user/.cache/tmp/ pip install -r requirements.txt
+  pip install -r requirements.txt
 ```
 
 # Remove Watermark

@@ -75,7 +75,7 @@
     
     
   </strong>
-  <span> • 667 words</span>
+  <span> • 711 words</span>
   <span> • 4 minute read</span>
   
   
@@ -118,7 +118,8 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">network_interface</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">network</span> = <span style="color:#e6db74">&#34;default&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">access_config</span> {<span style="color:#75715e">
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">access_config</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">network_tier</span> = <span style="color:#e6db74">&#34;STANDARD&#34;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">      // Ephemeral IP
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
 </span></span><span style="display:flex;"><span>  }
@@ -126,6 +127,11 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">guest_accelerator</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">type</span> = <span style="color:#e6db74">&#34;nvidia-tesla-t4&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">count</span> = <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">scheduling</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">on_host_maintenance</span> = <span style="color:#e6db74">&#34;TERMINATE&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">automatic_restart</span>   = <span style="color:#66d9ef">true</span>
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">service_account</span> {<span style="color:#75715e">
@@ -138,9 +144,19 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">    # ssh-keys = &#34;${var.gce_ssh_user}:${file(var.gce_ssh_pub_key_file)}&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">    # startup-script-url = &#34;gs://&lt;bucket&gt;/path/to/file&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">startup</span><span style="color:#f92672">-</span><span style="color:#a6e22e">script</span> = <span style="color:#f92672">&lt;&lt;-EOF</span><span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  sudo apt -y install linux-headers-$(uname -r) build-essential python3-distutils tmux git curl vim
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  sudo apt -y install tmux git curl vim python3-full python3-distutils python3-pip
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  # install GPU drivers: https://cloud.google.com/compute/docs/gpus/install-drivers-gpu
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  # possibly require open ssl libs
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  sudo apt install zlib1g zlib1g-dev libssl-dev libbz2-dev libsqlite3-dev
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  # pyenv to install other python versions
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  curl https://pyenv.run | bash
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  # add pyenv instructions to .bashrc
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  # install GPU drivers
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  sudo apt install -y linux-headers-$(uname -r) build-essential software-properties-common pciutils gcc make dkms
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  # follow instuctions: https://cloud.google.com/compute/docs/gpus/install-drivers-gpu
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  </span><span style="color:#f92672">EOF</span>
 </span></span><span style="display:flex;"><span>  }
@@ -151,7 +167,6 @@
 <li>The <code>attached_disk</code> will be necessary as soon as you start installing dependencies to run any workload.</li>
 <li>I recommend loading the start-up script from a url (as commented out), but left things inline for this article.</li>
 <li>The start-up script <code>does not work</code> as-is. These are just notes.</li>
-<li>Instead of using the <code>ssh-keys</code> field, I ended up following <a href="https://cloud.google.com/compute/docs/connect/root-ssh#gcloud">these instructions</a> to allow ssh&rsquo;ing from a local terminal into the VM.</li>
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export z<span style="color:#f92672">=</span>europe-west1-b
 </span></span><span style="display:flex;"><span>gcloud compute ssh --project<span style="color:#f92672">=</span>foo --zone<span style="color:#f92672">=</span>$z my_user@instance-1
@@ -173,14 +188,16 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    pkg-config python3-dev <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    libgirepository1.0-dev
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  sudo curl <span style="color:#e6db74">&#34;https://bootstrap.pypa.io/get-pip.py&#34;</span> -o <span style="color:#e6db74">&#34;get-pip.py&#34;</span>
-</span></span><span style="display:flex;"><span>  sudo python3 get-pip.py
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># install some other python version</span>
+</span></span><span style="display:flex;"><span>  pyenv install 3.6
+</span></span><span style="display:flex;"><span>  pyenv local 3.6
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e"># clone repo</span>
 </span></span><span style="display:flex;"><span>  git clone https://github.com/braindotai/Watermark-Removal-Pytorch
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e"># mounted disk hack</span>
-</span></span><span style="display:flex;"><span>  TMPDIR<span style="color:#f92672">=</span>/home/my_user/.cache/tmp/ pip install -r requirements.txt
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># TMPDIR=/home/my_user/.cache/tmp/ pip install -r requirements.txt</span>
+</span></span><span style="display:flex;"><span>  pip install -r requirements.txt
 </span></span></code></pre></div><h1 id="remove-watermark">Remove Watermark</h1>
 <p>I&rsquo;ll eventually write about the actual watermark removal result, but for now, here&rsquo;s the process:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># first copy foo.jpg and watermark.png over from local using scp cmd provided earlier</span>

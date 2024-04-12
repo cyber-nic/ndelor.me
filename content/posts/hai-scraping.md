@@ -1,7 +1,7 @@
 ---
 title: "History AI - Part III: Scraping"
 date: 2023-07-10T22:09:00-00:00
-tags: ["history ai"]
+tags: ["history ai", "go"]
 draft: false
 ---
 
