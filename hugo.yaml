@@ -1,8 +1,8 @@
-baseURL: http://contextchronicles.com/
+baseURL: https://ndelor.me/
 languageCode: en-us
 theme: smigle
 themesDir: themes
-title: Context Chronicles
+title: ndelor.me
 # enableGitInfo: true
 menu:
   main:
@@ -42,7 +42,7 @@ params:
 deployment:
   targets:
     name: aws
-    URL: s3://contextchronicles.com?region=us-east-1
+    URL: s3://ndelor.me?region=us-east-1
 markup:
   goldmark:
     renderer:

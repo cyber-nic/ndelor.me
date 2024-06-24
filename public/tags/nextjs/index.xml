@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>nextjs on Context Chronicles</title>
-    <link>http://contextchronicles.com/tags/nextjs/</link>
-    <description>Recent content in nextjs on Context Chronicles</description>
+    <title>nextjs on ndelor.me</title>
+    <link>https://ndelor.me/tags/nextjs/</link>
+    <description>Recent content in nextjs on ndelor.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 23 Nov 2023 16:03:34 +0000</lastBuildDate>
-    <atom:link href="http://contextchronicles.com/tags/nextjs/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://ndelor.me/tags/nextjs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Next Thoughts</title>
-      <link>http://contextchronicles.com/posts/next-thoughts/</link>
+      <link>https://ndelor.me/posts/next-thoughts/</link>
       <pubDate>Thu, 23 Nov 2023 16:03:34 +0000</pubDate>
-      <guid>http://contextchronicles.com/posts/next-thoughts/</guid>
+      <guid>https://ndelor.me/posts/next-thoughts/</guid>
       <description>In 2022, I launched www.4ks.io, a recipe editing and forking website. I used React and ViteJS v2 for the front-end and was really impressed with its performance, particularly its quick Time to Interactive (TTI) metrics.
 Recently, I began exploring NextJS, initially with version 13 and then upgrading to Next 14, to integrate server-side rendering (SSR) for better SEO and providing better i18n tooling. The performance with NextJS was on par with ViteJS, but I ran into some challenges, such as duplicate API calls during SSR.</description>
     </item>

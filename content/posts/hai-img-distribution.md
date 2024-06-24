@@ -31,7 +31,7 @@ The OCR price of [$1.50/1000 pages](https://cloud.google.com/document-ai/pricing
 
 # Image Prefix Distribution
 
-To better understand the distribution of images across the various prefixes, I created a histogram of the image counts. Data was fetched from google Object handlers then stored in a SQL database (ie. Cockroachdb) while filtering out duplicate images. Eventually the code to filter out was commented out and the focus was put entirely on getting metadata into SQL. This task cost about $1.004 USD in Regional Standard Class A Operations. See [CockroachDB Local](http://contextchronicles.com/posts/cockroachdb-local/) for information on the database choice and configuration.
+To better understand the distribution of images across the various prefixes, I created a histogram of the image counts. Data was fetched from google Object handlers then stored in a SQL database (ie. Cockroachdb) while filtering out duplicate images. Eventually the code to filter out was commented out and the focus was put entirely on getting metadata into SQL. This task cost about $1.004 USD in Regional Standard Class A Operations. See [CockroachDB Local](https://ndelor.me/posts/cockroachdb-local/) for information on the database choice and configuration.
 
 [code available on github](https://github.com/cyber-nic/go-gcp-img-meta)
 

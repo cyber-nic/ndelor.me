@@ -9,7 +9,7 @@
   />
   
     
-      <title>History AI - Image Duplicates and Distribtion | Context Chronicles</title>
+      <title>History AI - Image Duplicates and Distribtion | ndelor.me</title>
     
   
   <link rel="stylesheet" href="/css/reset.css"/>
@@ -29,14 +29,14 @@
     <div id="root">
       <header>
   <div id="brand">
-    <a class="icon-link" href="http://contextchronicles.com/">
+    <a class="icon-link" href="https://ndelor.me/">
       <img
         class="icon"
         src="/images/logo.png"
       />
     </a>
     <div class="text">
-      <a href="http://contextchronicles.com/"><h1>Context Chronicles</h1></a>
+      <a href="https://ndelor.me/"><h1>ndelor.me</h1></a>
       <h3>Stuff.</h3>
     </div>
   </div>
@@ -181,7 +181,7 @@
 <p>Additionally it was unexpected to find so many duplicate images under some Prefixes. Prefix A clearly stands out.More on this later as there are posible domain-specific reasons for this. While I was originally tempted to filter out diplicates to save on OCR cost, the bigger picture shows that the total duplicate count it actually quite insignificant. The effort will be better spent on other cost-saving strategies.</p>
 <p>The OCR price of <a href="https://cloud.google.com/document-ai/pricing#:~:text=%241.50%20per%201%2C000%20pages">$1.50/1000 pages</a> leads to a first cost estimate of $3,614 USD. Since this amount is significantly higher than the $1000 budget cost-saving measures are required. Since the documentation states that a page is defined as &ldquo;a single side of a sheet of paper&rdquo;, one possible solution is the aggregation of several images into a single &ldquo;page&rdquo;.</p>
 <h1 id="image-prefix-distribution">Image Prefix Distribution</h1>
-<p>To better understand the distribution of images across the various prefixes, I created a histogram of the image counts. Data was fetched from google Object handlers then stored in a SQL database (ie. Cockroachdb) while filtering out duplicate images. Eventually the code to filter out was commented out and the focus was put entirely on getting metadata into SQL. This task cost about $1.004 USD in Regional Standard Class A Operations. See <a href="http://contextchronicles.com/posts/cockroachdb-local/">CockroachDB Local</a> for information on the database choice and configuration.</p>
+<p>To better understand the distribution of images across the various prefixes, I created a histogram of the image counts. Data was fetched from google Object handlers then stored in a SQL database (ie. Cockroachdb) while filtering out duplicate images. Eventually the code to filter out was commented out and the focus was put entirely on getting metadata into SQL. This task cost about $1.004 USD in Regional Standard Class A Operations. See <a href="https://ndelor.me/posts/cockroachdb-local/">CockroachDB Local</a> for information on the database choice and configuration.</p>
 <p><a href="https://github.com/cyber-nic/go-gcp-img-meta">code available on github</a></p>
 <p>My SQL skills are rudimentary at best. Using Bard, then ChatGPT4, I was able to generate the following SQL query to generate the histogram.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">VIEW</span> PrefixCounts <span style="color:#66d9ef">AS</span>
@@ -311,7 +311,7 @@
   
   <p class="copyright">
     Copyright © 2024
-    <a href="http://contextchronicles.com/"><strong>Nicolas Delorme</strong></a>.
+    <a href="https://ndelor.me/"><strong>Nicolas Delorme</strong></a>.
     This work is licensed under the
     <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
   </p>

@@ -9,7 +9,7 @@
   />
   
     
-      <title>Cloud Load Balancer Cost Savings | Context Chronicles</title>
+      <title>Cloud Load Balancer Cost Savings | ndelor.me</title>
     
   
   <link rel="stylesheet" href="/css/reset.css"/>
@@ -29,14 +29,14 @@
     <div id="root">
       <header>
   <div id="brand">
-    <a class="icon-link" href="http://contextchronicles.com/">
+    <a class="icon-link" href="https://ndelor.me/">
       <img
         class="icon"
         src="/images/logo.png"
       />
     </a>
     <div class="text">
-      <a href="http://contextchronicles.com/"><h1>Context Chronicles</h1></a>
+      <a href="https://ndelor.me/"><h1>ndelor.me</h1></a>
       <h3>Stuff.</h3>
     </div>
   </div>
@@ -109,7 +109,7 @@
 <p>There are multiple reddit posts (r/googlecloud) discussing the cost of running a load balancer. The general consensus is that the cost is too high for individual projects. One might point out that there are multiple possible GCP LB configurations. If there is a cheaper option I have not found it.</p>
 <h3 id="aws-to-my-wallets-rescue">AWS to (my wallet&rsquo;s) rescue</h3>
 <p>AWS does have a free tier load balancer but it is only available for 12 months after creating an account. This felt like punting the problem down the road. I wanted a solution that would work for the long term.</p>
-<p>In comes AWS CloudFront. I will update this post in a few weeks once enough billing data has been gathered, but my experience thus far with CloudFront suggests the cost will be much more manageable. Serving contextchronicles.com is currently costing ~$0.50/month for Route53, $0 for CloudFronts.</p>
+<p>In comes AWS CloudFront. I will update this post in a few weeks once enough billing data has been gathered, but my experience thus far with CloudFront suggests the cost will be much more manageable. Serving ndelor.me is currently costing ~$0.50/month for Route53, $0 for CloudFronts.</p>
 <p>Setting up the CloudFront distribution posed no challenge. One important lesson was that the behavior url path cannot be removed when forwarded to an origin. As a result my gin gonic API needed to listen on the <code>/api</code> path and my GCP bucket assets needed to be moved into a /static folder to match the <code>/api/*</code> and <code>/static/*</code> behaviors path.</p>
 <h4 id="cloudfront-gcp-origins">CloudFront GCP Origins</h4>
 <p>For a Google Cloud Storage bucket the CloudFront origin domain should be <code>storage.googleapis.com</code> and the origin path should be the bucket name. For example, <code>/foo-bar-bucket</code>.</p>
@@ -142,7 +142,7 @@
   
   <p class="copyright">
     Copyright © 2024
-    <a href="http://contextchronicles.com/"><strong>Nicolas Delorme</strong></a>.
+    <a href="https://ndelor.me/"><strong>Nicolas Delorme</strong></a>.
     This work is licensed under the
     <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
   </p>

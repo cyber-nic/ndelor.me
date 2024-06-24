@@ -40,7 +40,7 @@ There are multiple reddit posts (r/googlecloud) discussing the cost of running a
 
 AWS does have a free tier load balancer but it is only available for 12 months after creating an account. This felt like punting the problem down the road. I wanted a solution that would work for the long term.
 
-In comes AWS CloudFront. I will update this post in a few weeks once enough billing data has been gathered, but my experience thus far with CloudFront suggests the cost will be much more manageable. Serving contextchronicles.com is currently costing ~$0.50/month for Route53, $0 for CloudFronts.
+In comes AWS CloudFront. I will update this post in a few weeks once enough billing data has been gathered, but my experience thus far with CloudFront suggests the cost will be much more manageable. Serving ndelor.me is currently costing ~$0.50/month for Route53, $0 for CloudFronts.
 
 Setting up the CloudFront distribution posed no challenge. One important lesson was that the behavior url path cannot be removed when forwarded to an origin. As a result my gin gonic API needed to listen on the `/api` path and my GCP bucket assets needed to be moved into a /static folder to match the `/api/*` and `/static/*` behaviors path.
 

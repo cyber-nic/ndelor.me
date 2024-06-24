@@ -15,4 +15,4 @@ Furthermore, this undertaking provides an opportunity for me to explore and lear
 
 Finally, I plan to document and share my journey through blogging.
 
-Welcome to the Context Chronicles.
+Welcome to the ndelor.me

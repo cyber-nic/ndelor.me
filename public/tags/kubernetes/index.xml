@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>kubernetes on Context Chronicles</title>
-    <link>http://contextchronicles.com/tags/kubernetes/</link>
-    <description>Recent content in kubernetes on Context Chronicles</description>
+    <title>kubernetes on ndelor.me</title>
+    <link>https://ndelor.me/tags/kubernetes/</link>
+    <description>Recent content in kubernetes on ndelor.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 02 Nov 2023 06:33:25 +0100</lastBuildDate>
-    <atom:link href="http://contextchronicles.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://ndelor.me/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Dev K8s Options</title>
-      <link>http://contextchronicles.com/posts/dev-k8s-options/</link>
+      <link>https://ndelor.me/posts/dev-k8s-options/</link>
       <pubDate>Thu, 02 Nov 2023 06:33:25 +0100</pubDate>
-      <guid>http://contextchronicles.com/posts/dev-k8s-options/</guid>
+      <guid>https://ndelor.me/posts/dev-k8s-options/</guid>
       <description>Minikube, KinD (Kubernetes in Docker), and k3d (K3s in Docker) are all tools for running Kubernetes clusters locally, primarily for development purposes. My personal experience with all 3 has been very positive.
 For the last couple of years I&amp;rsquo;ve been operating on Fedora linux and have been keeping up with the latest releases. Originally I used minikube, but switched over to k3d whe DNS issues prevented it from reaching docker hub.</description>
     </item>
