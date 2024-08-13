@@ -1,5 +1,4 @@
 # Personal blog
-
 hosted at: http://ndelor.me.s3-website-us-east-1.amazonaws.com/
 https://ndelor.me
 http://ndelor.me

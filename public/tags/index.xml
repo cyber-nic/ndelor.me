@@ -6,8 +6,29 @@
     <description>Recent content in Tags on ndelor.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 23 Nov 2023 16:03:34 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 07 Aug 2024 10:22:09 +0100</lastBuildDate>
     <atom:link href="https://ndelor.me/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>code</title>
+      <link>https://ndelor.me/tags/code/</link>
+      <pubDate>Wed, 07 Aug 2024 10:22:09 +0100</pubDate>
+      <guid>https://ndelor.me/tags/code/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>iac</title>
+      <link>https://ndelor.me/tags/iac/</link>
+      <pubDate>Wed, 07 Aug 2024 10:22:09 +0100</pubDate>
+      <guid>https://ndelor.me/tags/iac/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>terraform</title>
+      <link>https://ndelor.me/tags/terraform/</link>
+      <pubDate>Wed, 07 Aug 2024 10:22:09 +0100</pubDate>
+      <guid>https://ndelor.me/tags/terraform/</guid>
+      <description></description>
+    </item>
     <item>
       <title>nextjs</title>
       <link>https://ndelor.me/tags/nextjs/</link>
