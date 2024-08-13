@@ -75,7 +75,7 @@
     
     
   </strong>
-  <span> • 2240 words</span>
+  <span> • 2254 words</span>
   <span> • 11 minute read</span>
   
   
@@ -247,14 +247,18 @@
 </span></span><span style="display:flex;"><span>/iac
 </span></span><span style="display:flex;"><span>  /accounts
 </span></span><span style="display:flex;"><span>    /my-dev-project
-</span></span><span style="display:flex;"><span>      state.tf
-</span></span><span style="display:flex;"><span>      main.tf         <span style="color:#75715e"># calls ../../modules/vpc, ../../modules/database</span>
+</span></span><span style="display:flex;"><span>      /base
+</span></span><span style="display:flex;"><span>        state.tf
+</span></span><span style="display:flex;"><span>        main.tf       <span style="color:#75715e"># calls ../../modules/vpc, ../../modules/database</span>
 </span></span><span style="display:flex;"><span>      /apps
+</span></span><span style="display:flex;"><span>        state.tf
 </span></span><span style="display:flex;"><span>        main.tf       <span style="color:#75715e"># calls ../../applications/app1, ../../applications/app2</span>
 </span></span><span style="display:flex;"><span>    /my-prd-project
-</span></span><span style="display:flex;"><span>      state.tf
-</span></span><span style="display:flex;"><span>      main.tf         <span style="color:#75715e"># calls ../../modules/vpc, ../../modules/database</span>
+</span></span><span style="display:flex;"><span>      /base
+</span></span><span style="display:flex;"><span>        state.tf
+</span></span><span style="display:flex;"><span>        main.tf       <span style="color:#75715e"># calls ../../modules/vpc, ../../modules/database</span>
 </span></span><span style="display:flex;"><span>      /apps
+</span></span><span style="display:flex;"><span>        state.tf
 </span></span><span style="display:flex;"><span>        main.tf       <span style="color:#75715e"># calls ../../applications/app1, ../../applications/app2</span>
 </span></span><span style="display:flex;"><span>  /modules
 </span></span><span style="display:flex;"><span>    ...
@@ -287,20 +291,26 @@
 </span></span><span style="display:flex;"><span>/iac
 </span></span><span style="display:flex;"><span>  /accounts
 </span></span><span style="display:flex;"><span>    /my-dev-project
-</span></span><span style="display:flex;"><span>      state.tf
-</span></span><span style="display:flex;"><span>      main.tf         <span style="color:#75715e"># calls ../../modules/vpc, ../../modules/database</span>
+</span></span><span style="display:flex;"><span>      /base
+</span></span><span style="display:flex;"><span>        state.tf
+</span></span><span style="display:flex;"><span>        main.tf       <span style="color:#75715e"># calls ../../modules/vpc, ../../modules/database</span>
 </span></span><span style="display:flex;"><span>      /apps
 </span></span><span style="display:flex;"><span>        /app1
+</span></span><span style="display:flex;"><span>          state.tf
 </span></span><span style="display:flex;"><span>          main.tf     <span style="color:#75715e"># calls ../../applications/app1</span>
 </span></span><span style="display:flex;"><span>        /app2
+</span></span><span style="display:flex;"><span>          state.tf
 </span></span><span style="display:flex;"><span>          main.tf     <span style="color:#75715e"># calls ../../applications/app2</span>
 </span></span><span style="display:flex;"><span>    /my-prd-project
-</span></span><span style="display:flex;"><span>      state.tf
-</span></span><span style="display:flex;"><span>      main.tf
+</span></span><span style="display:flex;"><span>      /base
+</span></span><span style="display:flex;"><span>        state.tf
+</span></span><span style="display:flex;"><span>        main.tf       <span style="color:#75715e"># calls ../../modules/vpc, ../../modules/database</span>
 </span></span><span style="display:flex;"><span>      /apps
 </span></span><span style="display:flex;"><span>        /app1
+</span></span><span style="display:flex;"><span>          state.tf
 </span></span><span style="display:flex;"><span>          main.tf     <span style="color:#75715e"># calls ../../applications/app1</span>
 </span></span><span style="display:flex;"><span>        /app2
+</span></span><span style="display:flex;"><span>          state.tf
 </span></span><span style="display:flex;"><span>          main.tf     <span style="color:#75715e"># calls ../../applications/app2</span>
 </span></span><span style="display:flex;"><span>  /modules
 </span></span><span style="display:flex;"><span>    ...

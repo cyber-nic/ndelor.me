@@ -165,14 +165,18 @@ A single pipeline per environment might handle both infra and application change
 /iac
   /accounts
     /my-dev-project
-      state.tf
-      main.tf         # calls ../../modules/vpc, ../../modules/database
+      /base
+        state.tf
+        main.tf       # calls ../../modules/vpc, ../../modules/database
       /apps
+        state.tf
         main.tf       # calls ../../applications/app1, ../../applications/app2
     /my-prd-project
-      state.tf
-      main.tf         # calls ../../modules/vpc, ../../modules/database
+      /base
+        state.tf
+        main.tf       # calls ../../modules/vpc, ../../modules/database
       /apps
+        state.tf
         main.tf       # calls ../../applications/app1, ../../applications/app2
   /modules
     ...
@@ -207,20 +211,26 @@ Could use separate pipelines for infra and apps or a single pipeline that manage
 /iac
   /accounts
     /my-dev-project
-      state.tf
-      main.tf         # calls ../../modules/vpc, ../../modules/database
+      /base
+        state.tf
+        main.tf       # calls ../../modules/vpc, ../../modules/database
       /apps
         /app1
+          state.tf
           main.tf     # calls ../../applications/app1
         /app2
+          state.tf
           main.tf     # calls ../../applications/app2
     /my-prd-project
-      state.tf
-      main.tf
+      /base
+        state.tf
+        main.tf       # calls ../../modules/vpc, ../../modules/database
       /apps
         /app1
+          state.tf
           main.tf     # calls ../../applications/app1
         /app2
+          state.tf
           main.tf     # calls ../../applications/app2
   /modules
     ...
