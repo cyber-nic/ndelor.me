@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>code on ndelor.me</title>
+    <title>Code on ndelor.me</title>
     <link>https://ndelor.me/tags/code/</link>
-    <description>Recent content in code on ndelor.me</description>
+    <description>Recent content in Code on ndelor.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 07 Aug 2024 10:22:09 +0100</lastBuildDate>
+    <lastBuildDate>Wed, 18 Dec 2024 20:13:21 +0000</lastBuildDate>
     <atom:link href="https://ndelor.me/tags/code/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Capturing WebSocket Traffic with Mitmproxy</title>
+      <link>https://ndelor.me/posts/mitmproxy-node/</link>
+      <pubDate>Wed, 18 Dec 2024 20:13:21 +0000</pubDate>
+      <guid>https://ndelor.me/posts/mitmproxy-node/</guid>
+      <description>Recently I wanted to reverse engineer an application that uses websockets to communicate with with its server. I wanted to see the data that was being sent and received. I used mitmproxy to intercept the traffic and view it in plain text.&#xA;WebSocket traffic operates over TCP, initially using HTTP for handshake (usually port 80 for unencrypted or 443 for encrypted connections). After the handshake, it establishes a persistent, full-duplex communication channel over the same TCP connection.</description>
+    </item>
     <item>
       <title>Terraform Project Structures: Organizing Infrastructure as Code</title>
       <link>https://ndelor.me/posts/terraform-project-structures/</link>

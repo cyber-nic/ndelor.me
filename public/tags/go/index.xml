@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>go on ndelor.me</title>
+    <title>Go on ndelor.me</title>
     <link>https://ndelor.me/tags/go/</link>
-    <description>Recent content in go on ndelor.me</description>
+    <description>Recent content in Go on ndelor.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 05 Oct 2023 13:45:40 +0100</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jan 2024 09:09:25 +0100</lastBuildDate>
     <atom:link href="https://ndelor.me/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Gorm UUID Many to Many</title>
       <link>https://ndelor.me/posts/gorm-uuid-many-to-many/</link>
       <pubDate>Thu, 05 Oct 2023 13:45:40 +0100</pubDate>
       <guid>https://ndelor.me/posts/gorm-uuid-many-to-many/</guid>
-      <description>Hasham Ali&amp;rsquo;s How to Use UUID Key Type with Gorm article was terrific for suggesting how to handle using UUID as the ID in gorm. It took a little more fiddling to be able to use the keys in a many-to-many relationship. In the end, it worked by having to explicitly define the join table and the foreign key constraints. Sample code is below.
-import ( &amp;#34;time&amp;#34; &amp;#34;github.com/google/uuid&amp;#34; &amp;#34;gorm.io/gorm&amp;#34; ) // BaseAttributes contains common columns for all tables.</description>
+      <description>Hasham Ali&amp;rsquo;s How to Use UUID Key Type with Gorm article was terrific for suggesting how to handle using UUID as the ID in gorm. It took a little more fiddling to be able to use the keys in a many-to-many relationship. In the end, it worked by having to explicitly define the join table and the foreign key constraints. Sample code is below.&#xA;import ( &amp;#34;time&amp;#34; &amp;#34;github.com/google/uuid&amp;#34; &amp;#34;gorm.io/gorm&amp;#34; ) // BaseAttributes contains common columns for all tables.</description>
     </item>
     <item>
       <title>Go Runtime Frames</title>
       <link>https://ndelor.me/posts/go-runtime-frame/</link>
       <pubDate>Sat, 16 Sep 2023 09:25:51 +0100</pubDate>
       <guid>https://ndelor.me/posts/go-runtime-frame/</guid>
-      <description>Both the go-kit/log and rs/zerolog loggers provide a Caller method that returns the caller of the function that called it. This is useful for logging the function name in the log output. This functionality is immensly useful and roused my curiosity as to how it is implemented.
-zerolog logger caller example
-import &amp;#34;github.com/rs/zerolog&amp;#34; import &amp;#34;github.com/rs/zerolog/log&amp;#34; func main() { log.Logger = log.With().Caller().Logger() // &amp;lt;-- log.Debug().Str(&amp;#34;foo&amp;#34;, &amp;#34;bar&amp;#34;).Msg(&amp;#34;This will be logged with a caller&amp;#34;) } go-kit logger caller example</description>
+      <description>Both the go-kit/log and rs/zerolog loggers provide a Caller method that returns the caller of the function that called it. This is useful for logging the function name in the log output. This functionality is immensly useful and roused my curiosity as to how it is implemented.&#xA;zerolog logger caller example&#xA;import &amp;#34;github.com/rs/zerolog&amp;#34; import &amp;#34;github.com/rs/zerolog/log&amp;#34; func main() { log.Logger = log.With().Caller().Logger() // &amp;lt;-- log.Debug().Str(&amp;#34;foo&amp;#34;, &amp;#34;bar&amp;#34;).Msg(&amp;#34;This will be logged with a caller&amp;#34;) } go-kit logger caller example</description>
     </item>
     <item>
       <title>CockroachDB Local</title>
@@ -37,8 +34,7 @@ import &amp;#34;github.com/rs/zerolog&amp;#34; import &amp;#34;github.com/rs/zer
       <link>https://ndelor.me/posts/hai-scraping/</link>
       <pubDate>Mon, 10 Jul 2023 22:09:00 +0000</pubDate>
       <guid>https://ndelor.me/posts/hai-scraping/</guid>
-      <description>Target The target site is completely free and public. While the site&amp;rsquo;s performance is sufficient it unfortunately isn&amp;rsquo;t well maintained: SSL cert is expired. Luckily the sought after information is available directly via REST calls. No html parsing necessary.
-Process The scraping process was performed on a Cloud Compute, Regular Performance, $5/month VM on Vultr.com. The attached 120GB block storage was quickly expanded to 500GB, which increased the cost from $3.</description>
+      <description>Target The target site is completely free and public. While the site&amp;rsquo;s performance is sufficient it unfortunately isn&amp;rsquo;t well maintained: SSL cert is expired. Luckily the sought after information is available directly via REST calls. No html parsing necessary.&#xA;Process The scraping process was performed on a Cloud Compute, Regular Performance, $5/month VM on Vultr.com. The attached 120GB block storage was quickly expanded to 500GB, which increased the cost from $3.</description>
     </item>
   </channel>
 </rss>

@@ -1,7 +1,7 @@
 ---
 title: "Terraform Project Structures: Organizing Infrastructure as Code"
 date: 2024-08-07T10:22:09+01:00
-lastmod: 2024-08-07T10:22:09+01:00
+lastmod: 2024-08-13T10:22:09+01:00
 tags: ["terraform", "iac", "code"]
 draft: false
 ---

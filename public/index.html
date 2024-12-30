@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<meta name="generator" content="Hugo 0.120.4">
+	<meta name="generator" content="Hugo 0.123.7">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
@@ -68,6 +68,36 @@
         
 	<main>
 		
+		
+			<article>
+  <h1 class="summary-title"><a href="https://ndelor.me/posts/mitmproxy-node/">Capturing WebSocket Traffic with Mitmproxy</a></h1>
+  <div class="post-meta">
+  <strong>
+    <span>Posted on</span>
+    <time>2024-12-18</time>
+    
+    
+  </strong>
+  <span> • 1498 words</span>
+  <span> • 8 minute read</span>
+  
+    <div>
+      <span>Tags:</span>
+      
+        <a href="/tags/code">code</a>
+    </div>
+  
+</div>
+
+  <div class="summary-body">
+    <p>Recently I wanted to reverse engineer an application that uses websockets to communicate with with its server. I wanted to see the data that was being sent and received. I used mitmproxy to intercept the traffic and view it in plain text.
+WebSocket traffic operates over TCP, initially using HTTP for handshake (usually port 80 for unencrypted or 443 for encrypted connections). After the handshake, it establishes a persistent, full-duplex communication channel over the same TCP connection.</p>
+    
+      <a href="https://ndelor.me/posts/mitmproxy-node/">Read more...</a>
+    
+  </div>
+</article>
+
 		
 			<article>
   <h1 class="summary-title"><a href="https://ndelor.me/posts/terraform-project-structures/">Terraform Project Structures: Organizing Infrastructure as Code</a></h1>
@@ -336,37 +366,6 @@ Prefix Size (GB) Images Distinct Images Duplicate Images Duplicate Images % A 12
     <p>update 2024-01-11 While not central to this article the use of the CRC32 hash in the code below is noticeable. Since writing this article I learned that the CRC32, particularly the CRC32C variant used by Google Cloud Storage (GCS), is optimized for error detection, not as a unique identifier for data. It has a higher probability of collisions (1 in 4.3 billion) compared to more robust algorithms. To overcome these limitations, SHA-256, a more robust hashing algorithm, is recommended.</p>
     
       <a href="https://ndelor.me/posts/cockroachdb-local/">Read more...</a>
-    
-  </div>
-</article>
-
-		
-			<article>
-  <h1 class="summary-title"><a href="https://ndelor.me/posts/hai-computer-vision/">History AI - Part IV: Computer Vision</a></h1>
-  <div class="post-meta">
-  <strong>
-    <span>Posted on</span>
-    <time>2023-07-11</time>
-    
-    
-  </strong>
-  <span> • 390 words</span>
-  <span> • 2 minute read</span>
-  
-    <div>
-      <span>Tags:</span>
-      
-        <a href="/tags/history-ai">history ai</a>, 
-        <a href="/tags/computer-vision">computer vision</a>
-    </div>
-  
-</div>
-
-  <div class="summary-body">
-    <p>I have 2,000,000 images which all containt a watermark pattern. This post will explore options for removing the watermarks in order to improve the quality of the OCR operations to follow.
-1) Skipping Watermark Removal The cheapest option in terms of time and resources is to skip watermark removal altogether. This can be done by filtering out the known watermark text from the OCR results. This is the best short-term solution, as it is relatively easy to implement and does not require any additional software.</p>
-    
-      <a href="https://ndelor.me/posts/hai-computer-vision/">Read more...</a>
     
   </div>
 </article>
