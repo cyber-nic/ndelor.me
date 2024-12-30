@@ -107,6 +107,13 @@
       <description>Assumptions / Constraints We will operate on a dataset of ~2,000,000 jpeg images / ~500GB The initial budget is $1000. It is expected that this will increase, but the goal is to re-evaluate the budget prior to spending. We will operate using the Google Cloud Platform (GCP) but might explore other cloud offerings when performance or cost become a concern System Design Scraping I&amp;rsquo;ve implemented scrapers using various languages including PowerShell, Node.</description>
     </item>
     <item>
+      <title>Links</title>
+      <link>https://ndelor.me/posts/links/</link>
+      <pubDate>Fri, 07 Jul 2023 08:58:00 +0000</pubDate>
+      <guid>https://ndelor.me/posts/links/</guid>
+      <description> Vizualizing IMF Data using d3js </description>
+    </item>
+    <item>
       <title>About</title>
       <link>https://ndelor.me/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
