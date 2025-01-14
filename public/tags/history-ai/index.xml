@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>History Ai on ndelor.me</title>
-    <link>https://ndelor.me/tags/history-ai/</link>
+    <link>http://localhost:1313/tags/history-ai/</link>
     <description>Recent content in History Ai on ndelor.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 02 Nov 2023 05:10:00 +0000</lastBuildDate>
-    <atom:link href="https://ndelor.me/tags/history-ai/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/history-ai/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>History AI - Image Duplicates and Distribtion</title>
-      <link>https://ndelor.me/posts/hai-img-distribution/</link>
+      <link>http://localhost:1313/posts/hai-img-distribution/</link>
       <pubDate>Tue, 05 Sep 2023 11:16:03 +0100</pubDate>
-      <guid>https://ndelor.me/posts/hai-img-distribution/</guid>
+      <guid>http://localhost:1313/posts/hai-img-distribution/</guid>
       <description>Scraping Results This table shows some metadata about the images scraped.&#xA;Prefix Size (GB) Images Distinct Images Duplicate Images Duplicate Images % A 12 71077 48126 22951 32.3% B 456 1672477 1667500 4977 0.3% C 48 290248 278891 11357 3.9% D 29 122001 121977 24 0.0% E 29 212701 209391 3310 1.6% F 5 40301 40301 0 0.0% G 0.04 216 215 1 0.5% &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;- &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;- &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash; &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;- Total 579 2409021 2366401 42620 0 The scraping process resulted in 2.</description>
     </item>
     <item>
       <title>History AI - Part IV: Computer Vision</title>
-      <link>https://ndelor.me/posts/hai-computer-vision/</link>
+      <link>http://localhost:1313/posts/hai-computer-vision/</link>
       <pubDate>Tue, 11 Jul 2023 17:33:59 -0400</pubDate>
-      <guid>https://ndelor.me/posts/hai-computer-vision/</guid>
+      <guid>http://localhost:1313/posts/hai-computer-vision/</guid>
       <description>I have 2,000,000 images which all containt a watermark pattern. This post will explore options for removing the watermarks in order to improve the quality of the OCR operations to follow.&#xA;1) Skipping Watermark Removal The cheapest option in terms of time and resources is to skip watermark removal altogether. This can be done by filtering out the known watermark text from the OCR results. This is the best short-term solution, as it is relatively easy to implement and does not require any additional software.</description>
     </item>
     <item>
       <title>History AI - Part III: Scraping</title>
-      <link>https://ndelor.me/posts/hai-scraping/</link>
+      <link>http://localhost:1313/posts/hai-scraping/</link>
       <pubDate>Mon, 10 Jul 2023 22:09:00 +0000</pubDate>
-      <guid>https://ndelor.me/posts/hai-scraping/</guid>
+      <guid>http://localhost:1313/posts/hai-scraping/</guid>
       <description>Target The target site is completely free and public. While the site&amp;rsquo;s performance is sufficient it unfortunately isn&amp;rsquo;t well maintained: SSL cert is expired. Luckily the sought after information is available directly via REST calls. No html parsing necessary.&#xA;Process The scraping process was performed on a Cloud Compute, Regular Performance, $5/month VM on Vultr.com. The attached 120GB block storage was quickly expanded to 500GB, which increased the cost from $3.</description>
     </item>
     <item>
       <title>History AI - Part I: AI Making History</title>
-      <link>https://ndelor.me/posts/ai-making-history/</link>
+      <link>http://localhost:1313/posts/ai-making-history/</link>
       <pubDate>Mon, 10 Jul 2023 08:58:00 +0000</pubDate>
-      <guid>https://ndelor.me/posts/ai-making-history/</guid>
+      <guid>http://localhost:1313/posts/ai-making-history/</guid>
       <description>In the summer of 2023, I embarked on an ambitious journey to collect an extensive archive of historical images, totaling close to 2 million, from a public online repository. These captivating images capture typed or handwritten accounts of war experiences, predominantly in a single non-English language, although they encompass various other languages as well.&#xA;While I won&amp;rsquo;t disclose the name of the archive or share any documents here, I may provide some information in the future.</description>
     </item>
     <item>
       <title>History AI - Part II: System Design</title>
-      <link>https://ndelor.me/posts/hai-system-breakdown/</link>
+      <link>http://localhost:1313/posts/hai-system-breakdown/</link>
       <pubDate>Mon, 10 Jul 2023 01:26:00 +0000</pubDate>
-      <guid>https://ndelor.me/posts/hai-system-breakdown/</guid>
+      <guid>http://localhost:1313/posts/hai-system-breakdown/</guid>
       <description>Assumptions / Constraints We will operate on a dataset of ~2,000,000 jpeg images / ~500GB The initial budget is $1000. It is expected that this will increase, but the goal is to re-evaluate the budget prior to spending. We will operate using the Google Cloud Platform (GCP) but might explore other cloud offerings when performance or cost become a concern System Design Scraping I&amp;rsquo;ve implemented scrapers using various languages including PowerShell, Node.</description>
     </item>
   </channel>

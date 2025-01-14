@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-	<meta name="generator" content="Hugo 0.123.7">
+
+<head>
+  <meta name="generator" content="Hugo 0.123.7">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    name="description"
-    content=""
-  />
-  
-    
-      <title>ndelor.me</title>
-    
-  
-  <link rel="stylesheet" href="/css/reset.css"/>
-  <link rel="stylesheet" href="/css/font.css"/>
-  <link rel="stylesheet" href="/css/smigle.css"/>
-  
+  <meta name="description" content="" />
+
+
+  <title>ndelor.me</title>
+
+
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/font.css" />
+  <link rel="stylesheet" href="/css/smigle.css" />
+
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -26,393 +24,447 @@
   <meta name="theme-color" content="#ffffff">
 </head>
 
-  <body>
-    <div id="root">
-      <header>
-  <div id="brand">
-    <a class="icon-link" href="https://ndelor.me/">
-      <img
-        class="icon"
-        src="/images/logo.png"
-      />
-    </a>
-    <div class="text">
-      <a href="https://ndelor.me/"><h1>ndelor.me</h1></a>
-      <h3>Stuff.</h3>
-    </div>
-  </div>
-  <nav>
-    
-      
-        
-        <a href="/"><b>Home</b></a>
-      
-         | 
-        <a href="/about/"><b>About</b></a>
-      
-         | 
-        <a href="/posts/"><b>Posts</b></a>
-      
-         | 
-        <a href="/categories/"><b>Categories</b></a>
-      
-         | 
-        <a href="/tags/"><b>Tags</b></a>
-      
-    
-  </nav>
-  <hr />
-</header>
-
-      <div id="content">
-        
-	<main>
-		
-		
-			<article>
-  <h1 class="summary-title"><a href="https://ndelor.me/posts/mitmproxy-node/">Capturing WebSocket Traffic with Mitmproxy</a></h1>
-  <div class="post-meta">
-  <strong>
-    <span>Posted on</span>
-    <time>2024-12-18</time>
-    
-    
-  </strong>
-  <span> • 1498 words</span>
-  <span> • 8 minute read</span>
-  
-    <div>
-      <span>Tags:</span>
-      
-        <a href="/tags/code">code</a>
-    </div>
-  
-</div>
-
-  <div class="summary-body">
-    <p>Recently I wanted to reverse engineer an application that uses websockets to communicate with with its server. I wanted to see the data that was being sent and received. I used mitmproxy to intercept the traffic and view it in plain text.
-WebSocket traffic operates over TCP, initially using HTTP for handshake (usually port 80 for unencrypted or 443 for encrypted connections). After the handshake, it establishes a persistent, full-duplex communication channel over the same TCP connection.</p>
-    
-      <a href="https://ndelor.me/posts/mitmproxy-node/">Read more...</a>
-    
-  </div>
-</article>
-
-		
-			<article>
-  <h1 class="summary-title"><a href="https://ndelor.me/posts/terraform-project-structures/">Terraform Project Structures: Organizing Infrastructure as Code</a></h1>
-  <div class="post-meta">
-  <strong>
-    <span>Posted on</span>
-    <time>2024-08-07</time>
-    
-    
-  </strong>
-  <span> • 2254 words</span>
-  <span> • 11 minute read</span>
-  
-    <div>
-      <span>Tags:</span>
-      
-        <a href="/tags/terraform">terraform</a>, 
-        <a href="/tags/iac">iac</a>, 
-        <a href="/tags/code">code</a>
-    </div>
-  
-</div>
-
-  <div class="summary-body">
-    <p>Table of Contents Managing Security and Cost: Accounts as Environments Managing Performance and Risk: Layers and Overlays Managing Code: Repos. Folders, and Pipelines Dedicated Repo for Account and IaC Service Account Setup Application Specific Service Accounts Managing Releases: Applications as Modules Integrated Deployment Structure Dedicated Deployment Structure Isolated Deployment Structure Managing Environments: Using Terraform Workspaces vs Dedicated Folders Terraform Workspaces Dedicated Folders Summary This article delves into the complexities and best practices of structuring Terraform projects, focusing on optimizing infrastructure as code for security, cost management, and performance.</p>
-    
-      <a href="https://ndelor.me/posts/terraform-project-structures/">Read more...</a>
-    
-  </div>
-</article>
-
-		
-			<article>
-  <h1 class="summary-title"><a href="https://ndelor.me/posts/gcp-gpu-instance/">GCP Instance with NVIDIA Tesla T4</a></h1>
-  <div class="post-meta">
-  <strong>
-    <span>Posted on</span>
-    <time>2024-01-12</time>
-    
-    
-  </strong>
-  <span> • 711 words</span>
-  <span> • 4 minute read</span>
-  
-</div>
-
-  <div class="summary-body">
-    <p>Context Many interesting projects now require a modern GPU (or M1, but I&rsquo;m not desperate enough to downgrade from Linux to OSX). Below are notes on how to spin up a VM instance with GPU in GCP and run a basic PyTorch workload. I chose Watermark-Removal-Pytorch.
-Cost/Performance After studying the available GPU configurations as well as [VM instance pricing][https://cloud.google.com/compute/vm-instance-pricing] I determined that the most affordable Accelerator optimized configuration (~$250/month) is the N1 + nvidia-tesla-t4 (I operated in the europe-west1 region).</p>
-    
-      <a href="https://ndelor.me/posts/gcp-gpu-instance/">Read more...</a>
-    
-  </div>
-</article>
-
-		
-			<article>
-  <h1 class="summary-title"><a href="https://ndelor.me/posts/next-thoughts/">Next Thoughts</a></h1>
-  <div class="post-meta">
-  <strong>
-    <span>Posted on</span>
-    <time>2023-11-23</time>
-    
-    
-  </strong>
-  <span> • 860 words</span>
-  <span> • 5 minute read</span>
-  
-    <div>
-      <span>Tags:</span>
-      
-        <a href="/tags/nextjs">nextjs</a>
-    </div>
-  
-</div>
-
-  <div class="summary-body">
-    <p>In 2022, I launched www.4ks.io, a recipe editing and forking website. I used React and ViteJS v2 for the front-end and was really impressed with its performance, particularly its quick Time to Interactive (TTI) metrics.
-Recently, I began exploring NextJS, initially with version 13 and then upgrading to Next 14, to integrate server-side rendering (SSR) for better SEO and providing better i18n tooling. The performance with NextJS was on par with ViteJS, but I ran into some challenges, such as duplicate API calls during SSR.</p>
-    
-      <a href="https://ndelor.me/posts/next-thoughts/">Read more...</a>
-    
-  </div>
-</article>
-
-		
-			<article>
-  <h1 class="summary-title"><a href="https://ndelor.me/posts/dev-k8s-options/">Dev K8s Options</a></h1>
-  <div class="post-meta">
-  <strong>
-    <span>Posted on</span>
-    <time>2023-11-02</time>
-    
-    
-  </strong>
-  <span> • 564 words</span>
-  <span> • 3 minute read</span>
-  
-    <div>
-      <span>Tags:</span>
-      
-        <a href="/tags/kubernetes">kubernetes</a>, 
-        <a href="/tags/kind">kind</a>, 
-        <a href="/tags/minikube">minikube</a>, 
-        <a href="/tags/k3d">k3d</a>
-    </div>
-  
-</div>
-
-  <div class="summary-body">
-    <p>Minikube, KinD (Kubernetes in Docker), and k3d (K3s in Docker) are all tools for running Kubernetes clusters locally, primarily for development purposes. My personal experience with all 3 has been very positive.
-For the last couple of years I&rsquo;ve been operating on Fedora linux and have been keeping up with the latest releases. Originally I used minikube, but switched over to k3d whe DNS issues prevented it from reaching docker hub.</p>
-    
-      <a href="https://ndelor.me/posts/dev-k8s-options/">Read more...</a>
-    
-  </div>
-</article>
-
-		
-			<article>
-  <h1 class="summary-title"><a href="https://ndelor.me/posts/cloud-lb-cost-savings/">Cloud Load Balancer Cost Savings</a></h1>
-  <div class="post-meta">
-  <strong>
-    <span>Posted on</span>
-    <time>2023-10-20</time>
-    
-    
-  </strong>
-  <span> • 689 words</span>
-  <span> • 4 minute read</span>
-  
-    <div>
-      <span>Tags:</span>
-      
-        <a href="/tags/aws">aws</a>, 
-        <a href="/tags/gcp">gcp</a>, 
-        <a href="/tags/cloud">cloud</a>
-    </div>
-  
-</div>
-
-  <div class="summary-body">
-    <p>Context In an effort to learn more about the Google Cloud Platform, I built and deployed a website using Cloud Run functions, hosted behind a GCP Load Balancer. The performance was great. Even without conducting any performance or benchmark tests, I observed that the website was very responsive globally, as relayed by a family member in Singapore.
-Unfortunately, the costs were not as favorable. The cost of running a single load balancer was about ~$25 per month.</p>
-    
-      <a href="https://ndelor.me/posts/cloud-lb-cost-savings/">Read more...</a>
-    
-  </div>
-</article>
-
-		
-			<article>
-  <h1 class="summary-title"><a href="https://ndelor.me/posts/gorm-uuid-many-to-many/">Gorm UUID Many to Many</a></h1>
-  <div class="post-meta">
-  <strong>
-    <span>Posted on</span>
-    <time>2023-10-05</time>
-    
-    
-  </strong>
-  <span> • 224 words</span>
-  <span> • 2 minute read</span>
-  
-    <div>
-      <span>Tags:</span>
-      
-        <a href="/tags/go">go</a>
-    </div>
-  
-</div>
-
-  <div class="summary-body">
-    <p>Hasham Ali&rsquo;s How to Use UUID Key Type with Gorm article was terrific for suggesting how to handle using UUID as the ID in gorm. It took a little more fiddling to be able to use the keys in a many-to-many relationship. In the end, it worked by having to explicitly define the join table and the foreign key constraints. Sample code is below.
-import ( &#34;time&#34; &#34;github.com/google/uuid&#34; &#34;gorm.io/gorm&#34; ) // BaseAttributes contains common columns for all tables.</p>
-    
-      <a href="https://ndelor.me/posts/gorm-uuid-many-to-many/">Read more...</a>
-    
-  </div>
-</article>
-
-		
-			<article>
-  <h1 class="summary-title"><a href="https://ndelor.me/posts/go-runtime-frame/">Go Runtime Frames</a></h1>
-  <div class="post-meta">
-  <strong>
-    <span>Posted on</span>
-    <time>2023-09-16</time>
-    
-    
-  </strong>
-  <span> • 335 words</span>
-  <span> • 2 minute read</span>
-  
-    <div>
-      <span>Tags:</span>
-      
-        <a href="/tags/go">go</a>
-    </div>
-  
-</div>
-
-  <div class="summary-body">
-    <p>Both the go-kit/log and rs/zerolog loggers provide a Caller method that returns the caller of the function that called it. This is useful for logging the function name in the log output. This functionality is immensly useful and roused my curiosity as to how it is implemented.
-zerolog logger caller example
-import &#34;github.com/rs/zerolog&#34; import &#34;github.com/rs/zerolog/log&#34; func main() { log.Logger = log.With().Caller().Logger() // &lt;-- log.Debug().Str(&#34;foo&#34;, &#34;bar&#34;).Msg(&#34;This will be logged with a caller&#34;) } go-kit logger caller example</p>
-    
-      <a href="https://ndelor.me/posts/go-runtime-frame/">Read more...</a>
-    
-  </div>
-</article>
-
-		
-			<article>
-  <h1 class="summary-title"><a href="https://ndelor.me/posts/hai-img-distribution/">History AI - Image Duplicates and Distribtion</a></h1>
-  <div class="post-meta">
-  <strong>
-    <span>Posted on</span>
-    <time>2023-09-05</time>
-    
-    
-  </strong>
-  <span> • 682 words</span>
-  <span> • 4 minute read</span>
-  
-    <div>
-      <span>Tags:</span>
-      
-        <a href="/tags/history-ai">history ai</a>, 
-        <a href="/tags/sql">sql</a>
-    </div>
-  
-</div>
-
-  <div class="summary-body">
-    <p>Scraping Results This table shows some metadata about the images scraped.
-Prefix Size (GB) Images Distinct Images Duplicate Images Duplicate Images % A 12 71077 48126 22951 32.3% B 456 1672477 1667500 4977 0.3% C 48 290248 278891 11357 3.9% D 29 122001 121977 24 0.0% E 29 212701 209391 3310 1.6% F 5 40301 40301 0 0.0% G 0.04 216 215 1 0.5% &mdash;&mdash;&mdash;&mdash; &mdash;&mdash;&mdash;&mdash;&mdash; &mdash;&mdash;&mdash;&mdash;&mdash;- &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- &mdash;&mdash;&mdash;&mdash;&ndash; &mdash;&mdash;&mdash;&mdash;&mdash;- Total 579 2409021 2366401 42620 0 The scraping process resulted in 2.</p>
-    
-      <a href="https://ndelor.me/posts/hai-img-distribution/">Read more...</a>
-    
-  </div>
-</article>
-
-		
-			<article>
-  <h1 class="summary-title"><a href="https://ndelor.me/posts/cockroachdb-local/">CockroachDB Local</a></h1>
-  <div class="post-meta">
-  <strong>
-    <span>Posted on</span>
-    <time>2023-09-03</time>
-    
-    
-  </strong>
-  <span> • 775 words</span>
-  <span> • 4 minute read</span>
-  
-    <div>
-      <span>Tags:</span>
-      
-        <a href="/tags/go">go</a>, 
-        <a href="/tags/cockroachdb">CockroachDB</a>
-    </div>
-  
-</div>
-
-  <div class="summary-body">
-    <p>update 2024-01-11 While not central to this article the use of the CRC32 hash in the code below is noticeable. Since writing this article I learned that the CRC32, particularly the CRC32C variant used by Google Cloud Storage (GCS), is optimized for error detection, not as a unique identifier for data. It has a higher probability of collisions (1 in 4.3 billion) compared to more robust algorithms. To overcome these limitations, SHA-256, a more robust hashing algorithm, is recommended.</p>
-    
-      <a href="https://ndelor.me/posts/cockroachdb-local/">Read more...</a>
-    
-  </div>
-</article>
-
-		
-		<div>
-  
-  1 of 2
-  
-    <a href="/page/2/">Next Page</a>
-  
-</div>
-
-	</main>
-
+<body>
+  <div id="root">
+    <header>
+      <div id="brand">
+        <a class="icon-link" href="https://ndelor.me/">
+          <img class="icon" src="/images/logo.png" />
+        </a>
+        <div class="text">
+          <a href="https://ndelor.me/">
+            <h1>ndelor.me</h1>
+          </a>
+          <h3>Stuff.</h3>
+        </div>
       </div>
-      <footer>
-  <hr />
-  
-    <p id="social">
-      Find me around the web:
-      <br />
-      
-        
-        <a href="https://github.com/cyber-nic">GitHub</a>
-      
-         | 
-        <a href="https://www.linkedin.com/in/nicolas-delorme-588ba619/">LinkedIn</a>
-      
-    </p>
-  
-  <p class="copyright">
-    Copyright © 2024
-    <a href="https://ndelor.me/"><strong>Nicolas Delorme</strong></a>.
-    This work is licensed under the
-    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
-  </p>
-  <p class="builtWith">
-    Built with
-    <a href="http://www.gohugo.io/">Hugo</a>,
-    using the theme
-    <a href="https://gitlab.com/ian-s-mcb/smigle-hugo-theme">smigle</a>,
-    which was influenced by the theme
-    <a href="https://github.com/sumnerevans/smol">smol</a>.
-  </p>
-</footer>
+      <nav>
+
+
+
+        <a href="/"><b>Home</b></a>
+
+        |
+        <a href="/about/"><b>About</b></a>
+
+        |
+        <a href="/posts/"><b>Posts</b></a>
+
+        |
+        <a href="/projects/"><b>Projects</b></a>
+
+        |
+        <a href="/categories/"><b>Categories</b></a>
+
+        |
+        <a href="/tags/"><b>Tags</b></a>
+
+
+      </nav>
+      <hr />
+    </header>
+
+    <div id="content">
+
+      <main>
+
+
+        <article>
+          <h1 class="summary-title"><a href="https://ndelor.me/posts/mitmproxy-node/">Capturing WebSocket Traffic with
+              Mitmproxy</a></h1>
+          <div class="post-meta">
+            <strong>
+              <span>Posted on</span>
+              <time>2024-12-18</time>
+
+
+            </strong>
+            <span> • 1498 words</span>
+            <span> • 8 minute read</span>
+
+            <div>
+              <span>Tags:</span>
+
+              <a href="/tags/code">code</a>
+            </div>
+
+          </div>
+
+          <div class="summary-body">
+            <p>Recently I wanted to reverse engineer an application that uses websockets to communicate with with its
+              server. I wanted to see the data that was being sent and received. I used mitmproxy to intercept the
+              traffic and view it in plain text.
+              WebSocket traffic operates over TCP, initially using HTTP for handshake (usually port 80 for unencrypted
+              or 443 for encrypted connections). After the handshake, it establishes a persistent, full-duplex
+              communication channel over the same TCP connection.</p>
+
+            <a href="https://ndelor.me/posts/mitmproxy-node/">Read more...</a>
+
+          </div>
+        </article>
+
+
+        <article>
+          <h1 class="summary-title"><a href="https://ndelor.me/posts/terraform-project-structures/">Terraform Project
+              Structures: Organizing Infrastructure as Code</a></h1>
+          <div class="post-meta">
+            <strong>
+              <span>Posted on</span>
+              <time>2024-08-07</time>
+
+
+            </strong>
+            <span> • 2254 words</span>
+            <span> • 11 minute read</span>
+
+            <div>
+              <span>Tags:</span>
+
+              <a href="/tags/terraform">terraform</a>,
+              <a href="/tags/iac">iac</a>,
+              <a href="/tags/code">code</a>
+            </div>
+
+          </div>
+
+          <div class="summary-body">
+            <p>Table of Contents Managing Security and Cost: Accounts as Environments Managing Performance and Risk:
+              Layers and Overlays Managing Code: Repos. Folders, and Pipelines Dedicated Repo for Account and IaC
+              Service Account Setup Application Specific Service Accounts Managing Releases: Applications as Modules
+              Integrated Deployment Structure Dedicated Deployment Structure Isolated Deployment Structure Managing
+              Environments: Using Terraform Workspaces vs Dedicated Folders Terraform Workspaces Dedicated Folders
+              Summary This article delves into the complexities and best practices of structuring Terraform projects,
+              focusing on optimizing infrastructure as code for security, cost management, and performance.</p>
+
+            <a href="https://ndelor.me/posts/terraform-project-structures/">Read more...</a>
+
+          </div>
+        </article>
+
+
+        <article>
+          <h1 class="summary-title"><a href="https://ndelor.me/posts/gcp-gpu-instance/">GCP Instance with NVIDIA Tesla
+              T4</a></h1>
+          <div class="post-meta">
+            <strong>
+              <span>Posted on</span>
+              <time>2024-01-12</time>
+
+
+            </strong>
+            <span> • 711 words</span>
+            <span> • 4 minute read</span>
+
+          </div>
+
+          <div class="summary-body">
+            <p>Context Many interesting projects now require a modern GPU (or M1, but I&rsquo;m not desperate enough to
+              downgrade from Linux to OSX). Below are notes on how to spin up a VM instance with GPU in GCP and run a
+              basic PyTorch workload. I chose Watermark-Removal-Pytorch.
+              Cost/Performance After studying the available GPU configurations as well as [VM instance
+              pricing][https://cloud.google.com/compute/vm-instance-pricing] I determined that the most affordable
+              Accelerator optimized configuration (~$250/month) is the N1 + nvidia-tesla-t4 (I operated in the
+              europe-west1 region).</p>
+
+            <a href="https://ndelor.me/posts/gcp-gpu-instance/">Read more...</a>
+
+          </div>
+        </article>
+
+
+        <article>
+          <h1 class="summary-title"><a href="https://ndelor.me/posts/next-thoughts/">Next Thoughts</a></h1>
+          <div class="post-meta">
+            <strong>
+              <span>Posted on</span>
+              <time>2023-11-23</time>
+
+
+            </strong>
+            <span> • 860 words</span>
+            <span> • 5 minute read</span>
+
+            <div>
+              <span>Tags:</span>
+
+              <a href="/tags/nextjs">nextjs</a>
+            </div>
+
+          </div>
+
+          <div class="summary-body">
+            <p>In 2022, I launched www.4ks.io, a recipe editing and forking website. I used React and ViteJS v2 for the
+              front-end and was really impressed with its performance, particularly its quick Time to Interactive (TTI)
+              metrics.
+              Recently, I began exploring NextJS, initially with version 13 and then upgrading to Next 14, to integrate
+              server-side rendering (SSR) for better SEO and providing better i18n tooling. The performance with NextJS
+              was on par with ViteJS, but I ran into some challenges, such as duplicate API calls during SSR.</p>
+
+            <a href="https://ndelor.me/posts/next-thoughts/">Read more...</a>
+
+          </div>
+        </article>
+
+
+        <article>
+          <h1 class="summary-title"><a href="https://ndelor.me/posts/dev-k8s-options/">Dev K8s Options</a></h1>
+          <div class="post-meta">
+            <strong>
+              <span>Posted on</span>
+              <time>2023-11-02</time>
+
+
+            </strong>
+            <span> • 564 words</span>
+            <span> • 3 minute read</span>
+
+            <div>
+              <span>Tags:</span>
+
+              <a href="/tags/kubernetes">kubernetes</a>,
+              <a href="/tags/kind">kind</a>,
+              <a href="/tags/minikube">minikube</a>,
+              <a href="/tags/k3d">k3d</a>
+            </div>
+
+          </div>
+
+          <div class="summary-body">
+            <p>Minikube, KinD (Kubernetes in Docker), and k3d (K3s in Docker) are all tools for running Kubernetes
+              clusters locally, primarily for development purposes. My personal experience with all 3 has been very
+              positive.
+              For the last couple of years I&rsquo;ve been operating on Fedora linux and have been keeping up with the
+              latest releases. Originally I used minikube, but switched over to k3d whe DNS issues prevented it from
+              reaching docker hub.</p>
+
+            <a href="https://ndelor.me/posts/dev-k8s-options/">Read more...</a>
+
+          </div>
+        </article>
+
+
+        <article>
+          <h1 class="summary-title"><a href="https://ndelor.me/posts/cloud-lb-cost-savings/">Cloud Load Balancer Cost
+              Savings</a></h1>
+          <div class="post-meta">
+            <strong>
+              <span>Posted on</span>
+              <time>2023-10-20</time>
+
+
+            </strong>
+            <span> • 689 words</span>
+            <span> • 4 minute read</span>
+
+            <div>
+              <span>Tags:</span>
+
+              <a href="/tags/aws">aws</a>,
+              <a href="/tags/gcp">gcp</a>,
+              <a href="/tags/cloud">cloud</a>
+            </div>
+
+          </div>
+
+          <div class="summary-body">
+            <p>Context In an effort to learn more about the Google Cloud Platform, I built and deployed a website using
+              Cloud Run functions, hosted behind a GCP Load Balancer. The performance was great. Even without conducting
+              any performance or benchmark tests, I observed that the website was very responsive globally, as relayed
+              by a family member in Singapore.
+              Unfortunately, the costs were not as favorable. The cost of running a single load balancer was about ~$25
+              per month.</p>
+
+            <a href="https://ndelor.me/posts/cloud-lb-cost-savings/">Read more...</a>
+
+          </div>
+        </article>
+
+
+        <article>
+          <h1 class="summary-title"><a href="https://ndelor.me/posts/gorm-uuid-many-to-many/">Gorm UUID Many to Many</a>
+          </h1>
+          <div class="post-meta">
+            <strong>
+              <span>Posted on</span>
+              <time>2023-10-05</time>
+
+
+            </strong>
+            <span> • 224 words</span>
+            <span> • 2 minute read</span>
+
+            <div>
+              <span>Tags:</span>
+
+              <a href="/tags/go">go</a>
+            </div>
+
+          </div>
+
+          <div class="summary-body">
+            <p>Hasham Ali&rsquo;s How to Use UUID Key Type with Gorm article was terrific for suggesting how to handle
+              using UUID as the ID in gorm. It took a little more fiddling to be able to use the keys in a many-to-many
+              relationship. In the end, it worked by having to explicitly define the join table and the foreign key
+              constraints. Sample code is below.
+              import ( &#34;time&#34; &#34;github.com/google/uuid&#34; &#34;gorm.io/gorm&#34; ) // BaseAttributes
+              contains common columns for all tables.</p>
+
+            <a href="https://ndelor.me/posts/gorm-uuid-many-to-many/">Read more...</a>
+
+          </div>
+        </article>
+
+
+        <article>
+          <h1 class="summary-title"><a href="https://ndelor.me/posts/go-runtime-frame/">Go Runtime Frames</a></h1>
+          <div class="post-meta">
+            <strong>
+              <span>Posted on</span>
+              <time>2023-09-16</time>
+
+
+            </strong>
+            <span> • 335 words</span>
+            <span> • 2 minute read</span>
+
+            <div>
+              <span>Tags:</span>
+
+              <a href="/tags/go">go</a>
+            </div>
+
+          </div>
+
+          <div class="summary-body">
+            <p>Both the go-kit/log and rs/zerolog loggers provide a Caller method that returns the caller of the
+              function that called it. This is useful for logging the function name in the log output. This
+              functionality is immensly useful and roused my curiosity as to how it is implemented.
+              zerolog logger caller example
+              import &#34;github.com/rs/zerolog&#34; import &#34;github.com/rs/zerolog/log&#34; func main() { log.Logger
+              = log.With().Caller().Logger() // &lt;-- log.Debug().Str(&#34;foo&#34;, &#34;bar&#34;).Msg(&#34;This will
+              be logged with a caller&#34;) } go-kit logger caller example</p>
+
+            <a href="https://ndelor.me/posts/go-runtime-frame/">Read more...</a>
+
+          </div>
+        </article>
+
+
+        <article>
+          <h1 class="summary-title"><a href="https://ndelor.me/posts/hai-img-distribution/">History AI - Image
+              Duplicates and Distribtion</a></h1>
+          <div class="post-meta">
+            <strong>
+              <span>Posted on</span>
+              <time>2023-09-05</time>
+
+
+            </strong>
+            <span> • 682 words</span>
+            <span> • 4 minute read</span>
+
+            <div>
+              <span>Tags:</span>
+
+              <a href="/tags/history-ai">history ai</a>,
+              <a href="/tags/sql">sql</a>
+            </div>
+
+          </div>
+
+          <div class="summary-body">
+            <p>Scraping Results This table shows some metadata about the images scraped.
+              Prefix Size (GB) Images Distinct Images Duplicate Images Duplicate Images % A 12 71077 48126 22951 32.3% B
+              456 1672477 1667500 4977 0.3% C 48 290248 278891 11357 3.9% D 29 122001 121977 24 0.0% E 29 212701 209391
+              3310 1.6% F 5 40301 40301 0 0.0% G 0.04 216 215 1 0.5% &mdash;&mdash;&mdash;&mdash;
+              &mdash;&mdash;&mdash;&mdash;&mdash; &mdash;&mdash;&mdash;&mdash;&mdash;-
+              &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- &mdash;&mdash;&mdash;&mdash;&ndash;
+              &mdash;&mdash;&mdash;&mdash;&mdash;- Total 579 2409021 2366401 42620 0 The scraping process resulted in 2.
+            </p>
+
+            <a href="https://ndelor.me/posts/hai-img-distribution/">Read more...</a>
+
+          </div>
+        </article>
+
+
+        <article>
+          <h1 class="summary-title"><a href="https://ndelor.me/posts/cockroachdb-local/">CockroachDB Local</a></h1>
+          <div class="post-meta">
+            <strong>
+              <span>Posted on</span>
+              <time>2023-09-03</time>
+
+
+            </strong>
+            <span> • 775 words</span>
+            <span> • 4 minute read</span>
+
+            <div>
+              <span>Tags:</span>
+
+              <a href="/tags/go">go</a>,
+              <a href="/tags/cockroachdb">CockroachDB</a>
+            </div>
+
+          </div>
+
+          <div class="summary-body">
+            <p>update 2024-01-11 While not central to this article the use of the CRC32 hash in the code below is
+              noticeable. Since writing this article I learned that the CRC32, particularly the CRC32C variant used by
+              Google Cloud Storage (GCS), is optimized for error detection, not as a unique identifier for data. It has
+              a higher probability of collisions (1 in 4.3 billion) compared to more robust algorithms. To overcome
+              these limitations, SHA-256, a more robust hashing algorithm, is recommended.</p>
+
+            <a href="https://ndelor.me/posts/cockroachdb-local/">Read more...</a>
+
+          </div>
+        </article>
+
+
+        <div>
+
+          1 of 2
+
+          <a href="/page/2/">Next Page</a>
+
+        </div>
+
+      </main>
 
     </div>
-  </body>
+    <footer>
+      <hr />
+
+      <p id="social">
+        Find me around the web:
+        <br />
+
+
+        <a href="https://github.com/cyber-nic">GitHub</a>
+
+        |
+        <a href="https://www.linkedin.com/in/nicolas-delorme-588ba619/">LinkedIn</a>
+
+      </p>
+
+      <p class="copyright">
+        Copyright © 2024
+        <a href="https://ndelor.me/"><strong>Nicolas Delorme</strong></a>.
+        This work is licensed under the
+        <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
+      </p>
+      <p class="builtWith">
+        Built with
+        <a href="http://www.gohugo.io/">Hugo</a>,
+        using the theme
+        <a href="https://gitlab.com/ian-s-mcb/smigle-hugo-theme">smigle</a>,
+        which was influenced by the theme
+        <a href="https://github.com/sumnerevans/smol">smol</a>.
+      </p>
+    </footer>
+
+  </div>
+</body>
+
 </html>

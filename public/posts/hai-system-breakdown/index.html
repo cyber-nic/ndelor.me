@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    name="description"
-    content=""
-  />
-  
-    
-      <title>History AI - Part II: System Design | ndelor.me</title>
-    
-  
-  <link rel="stylesheet" href="/css/reset.css"/>
-  <link rel="stylesheet" href="/css/font.css"/>
-  <link rel="stylesheet" href="/css/smigle.css"/>
-  
+  <meta name="description" content="" />
+
+
+  <title>History AI - Part II: System Design | ndelor.me</title>
+
+
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/font.css" />
+  <link rel="stylesheet" href="/css/smigle.css" />
+
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -25,146 +23,177 @@
   <meta name="theme-color" content="#ffffff">
 </head>
 
-  <body>
-    <div id="root">
-      <header>
-  <div id="brand">
-    <a class="icon-link" href="https://ndelor.me/">
-      <img
-        class="icon"
-        src="/images/logo.png"
-      />
-    </a>
-    <div class="text">
-      <a href="https://ndelor.me/"><h1>ndelor.me</h1></a>
-      <h3>Stuff.</h3>
-    </div>
-  </div>
-  <nav>
-    
-      
-        
-        <a href="/"><b>Home</b></a>
-      
-         | 
-        <a href="/about/"><b>About</b></a>
-      
-         | 
-        <a href="/posts/"><b>Posts</b></a>
-      
-         | 
-        <a href="/categories/"><b>Categories</b></a>
-      
-         | 
-        <a href="/tags/"><b>Tags</b></a>
-      
-    
-  </nav>
-  <hr />
-</header>
-
-      <div id="content">
-        
-  <main>
-    <article>
-      <h1>History AI - Part II: System Design</h1>
-      <div class="post-meta">
-  <strong>
-    <span>Posted on</span>
-    <time>2023-07-10</time>
-    
-    
-  </strong>
-  <span> • 574 words</span>
-  <span> • 3 minute read</span>
-  
-    <div>
-      Last updated on
-      <time>2023-11-02</time>
-    </div>
-  
-  
-    <div>
-      <span>Tags:</span>
-      
-        <a href="/tags/history-ai">history ai</a>, 
-        <a href="/tags/system-design">system-design</a>
-    </div>
-  
-</div>
-
-      <div><h1 id="assumptions--constraints">Assumptions / Constraints</h1>
-<ol>
-<li>We will operate on a dataset of ~2,000,000 jpeg images / ~500GB</li>
-<li>The initial budget is $1000. It is expected that this will increase, but the goal is to re-evaluate the budget prior to spending.</li>
-<li>We will operate using the Google Cloud Platform (GCP) but might explore other cloud offerings when performance or cost become a concern</li>
-</ol>
-<h1 id="system-design">System Design</h1>
-<p><img src="/images/hai-system-breakdown.svg" alt="breakdown"></p>
-<h2 id="scraping">Scraping</h2>
-<p>I&rsquo;ve implemented scrapers using various languages including PowerShell, Node.js, Python, and Go. This scraper will also be implemented using Go. At a very high level, the scraping service outputs jpeg images in a folder structure specific to the site being scraped.</p>
-<p><strong>Input</strong>: url string</p>
-<p><strong>Output</strong>: image files on disk or in bucket</p>
-<h2 id="image-preprocessing">Image PreProcessing</h2>
-<p>One of the challenges faced is that all the images scraped contain a repetitive watermark. To enhance the quality of subsequent text extraction (OCR), the primary objective is to remove the watermark from these images. By doing so, I aim to obtain clearer and more accurate results.</p>
-<p><strong>Update (09/10/23)</strong>: After some analysis I am of the opinion that the work required to remove the watermark or the processing cloud costs would not provide the necessary ROI to justify the effort and exepense. Instead, tests have demonstrated that the OCR process does detect the watermark and as a result it can be filtered out prior to NLP processing.</p>
-<p><strong>Update (09/10/23)</strong>: Deeper analysis of the upcoming OCR costs (<a href="https://cloud.google.com/document-ai/pricing#:~:text=%241.50%20per%201%2C000%20pages">$1.50/1000 pages</a>) have led me to the conclusion that cost-saving measures are required. A possible solution is the aggregation of several images into a single &ldquo;page&rdquo;.</p>
-<p><strong>Update (2/11/23)</strong>: Final conclusion, the idea of combining images into a single page is pointless has GCP&rsquo;s Document AI OCR documentation states that it will auto-detect, and bill accordingly, for multiple pages in a single image. Since the expected cost of OCR&rsquo;ing this many images is ~$5000USD we&rsquo;ve applied for a Google Research grant to cover the costs. Waiting on a response.</p>
-<p><strong>Input</strong>: Image (ie. location of)</p>
-<p><strong>Output</strong>: New enhanced image stored in bucket</p>
-<h2 id="ocr-and-text-extraction">OCR and Text Extraction</h2>
-<p>We strive to perform Optical Character Recognition (OCR) and extract text from a diverse range of sources, including handwritten and typed documents. It&rsquo;s important to note that many documents may also contain additional layers of handwritten text, adding complexity to the extraction process.</p>
-<p><strong>Input</strong>: Image (ie. location of)</p>
-<p><strong>Output</strong>: Text or JSON</p>
-<h2 id="nlp-and-ner">NLP and NER</h2>
-<p>Using Natural Language Processing (NLP), the objective is to perform Named Entity Recognition (NER). This involves identifying and categorizing named entities such as people, organizations, locations, and dates within the extracted text. By leveraging NLP techniques, we can gain valuable insights from the recognized entities.</p>
-<p>Part of this step will be producing a weighted score for each entity relationship. This would potentially allow us to visually identify the most important entities and relationships using a tool like <a href="https://gephi.org/">Gephi</a>.</p>
-<p><strong>Input</strong>: Text</p>
-<p><strong>Output</strong>: JSON</p>
-<h2 id="llm">LLM</h2>
-<p>The final step is to leverage the extracted entities and relationships to produce a Large Language Models (LLM). It will be interesting to see if the model is capable of identifying patterns and relationships that are not immediately obvious to the human eye. I&rsquo;m currently considering multiple options for this step, including GPT-4, <a href="https://github.com/h2oai/h2o-llmstudio">H2O LLM Studio</a>, along with other more customized solutions (as an opportunity to learn more about LLM fundamentals).</p>
-<p><strong>Input</strong>: TBD</p>
-<p><strong>Output</strong>: TBD</p>
-<h1 id="inputs--outputs">Inputs / Outputs</h1>
-<p>This diagram illustrates the potential flow of data from one service to the next.</p>
-<p><img src="/images/hai-system-breakdown-i_o.svg" alt="io"></p>
-<p>Inputs in blue and Outputs in red.</p>
-</div>
-    </article>
-  </main>
-
+<body>
+  <div id="root">
+    <header>
+      <div id="brand">
+        <a class="icon-link" href="https://ndelor.me/">
+          <img class="icon" src="/images/logo.png" />
+        </a>
+        <div class="text">
+          <a href="https://ndelor.me/">
+            <h1>ndelor.me</h1>
+          </a>
+          <h3>Stuff.</h3>
+        </div>
       </div>
-      <footer>
-  <hr />
-  
-    <p id="social">
-      Find me around the web:
-      <br />
-      
-        
-        <a href="https://github.com/cyber-nic">GitHub</a>
-      
-         | 
-        <a href="https://www.linkedin.com/in/nicolas-delorme-588ba619/">LinkedIn</a>
-      
-    </p>
-  
-  <p class="copyright">
-    Copyright © 2024
-    <a href="https://ndelor.me/"><strong>Nicolas Delorme</strong></a>.
-    This work is licensed under the
-    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
-  </p>
-  <p class="builtWith">
-    Built with
-    <a href="http://www.gohugo.io/">Hugo</a>,
-    using the theme
-    <a href="https://gitlab.com/ian-s-mcb/smigle-hugo-theme">smigle</a>,
-    which was influenced by the theme
-    <a href="https://github.com/sumnerevans/smol">smol</a>.
-  </p>
-</footer>
+      <nav>
+
+
+
+        <a href="/"><b>Home</b></a>
+
+        |
+        <a href="/about/"><b>About</b></a>
+
+        |
+        <a href="/posts/"><b>Posts</b></a>
+
+        |
+        <a href="/projects/"><b>Projects</b></a>
+
+        |
+        <a href="/categories/"><b>Categories</b></a>
+
+        |
+        <a href="/tags/"><b>Tags</b></a>
+
+
+      </nav>
+      <hr />
+    </header>
+
+    <div id="content">
+
+      <main>
+        <article>
+          <h1>History AI - Part II: System Design</h1>
+          <div class="post-meta">
+            <strong>
+              <span>Posted on</span>
+              <time>2023-07-10</time>
+
+
+            </strong>
+            <span> • 574 words</span>
+            <span> • 3 minute read</span>
+
+            <div>
+              Last updated on
+              <time>2023-11-02</time>
+            </div>
+
+
+            <div>
+              <span>Tags:</span>
+
+              <a href="/tags/history-ai">history ai</a>,
+              <a href="/tags/system-design">system-design</a>
+            </div>
+
+          </div>
+
+          <div>
+            <h1 id="assumptions--constraints">Assumptions / Constraints</h1>
+            <ol>
+              <li>We will operate on a dataset of ~2,000,000 jpeg images / ~500GB</li>
+              <li>The initial budget is $1000. It is expected that this will increase, but the goal is to re-evaluate
+                the budget prior to spending.</li>
+              <li>We will operate using the Google Cloud Platform (GCP) but might explore other cloud offerings when
+                performance or cost become a concern</li>
+            </ol>
+            <h1 id="system-design">System Design</h1>
+            <p><img src="/images/hai-system-breakdown.svg" alt="breakdown"></p>
+            <h2 id="scraping">Scraping</h2>
+            <p>I&rsquo;ve implemented scrapers using various languages including PowerShell, Node.js, Python, and Go.
+              This scraper will also be implemented using Go. At a very high level, the scraping service outputs jpeg
+              images in a folder structure specific to the site being scraped.</p>
+            <p><strong>Input</strong>: url string</p>
+            <p><strong>Output</strong>: image files on disk or in bucket</p>
+            <h2 id="image-preprocessing">Image PreProcessing</h2>
+            <p>One of the challenges faced is that all the images scraped contain a repetitive watermark. To enhance the
+              quality of subsequent text extraction (OCR), the primary objective is to remove the watermark from these
+              images. By doing so, I aim to obtain clearer and more accurate results.</p>
+            <p><strong>Update (09/10/23)</strong>: After some analysis I am of the opinion that the work required to
+              remove the watermark or the processing cloud costs would not provide the necessary ROI to justify the
+              effort and exepense. Instead, tests have demonstrated that the OCR process does detect the watermark and
+              as a result it can be filtered out prior to NLP processing.</p>
+            <p><strong>Update (09/10/23)</strong>: Deeper analysis of the upcoming OCR costs (<a
+                href="https://cloud.google.com/document-ai/pricing#:~:text=%241.50%20per%201%2C000%20pages">$1.50/1000
+                pages</a>) have led me to the conclusion that cost-saving measures are required. A possible solution is
+              the aggregation of several images into a single &ldquo;page&rdquo;.</p>
+            <p><strong>Update (2/11/23)</strong>: Final conclusion, the idea of combining images into a single page is
+              pointless has GCP&rsquo;s Document AI OCR documentation states that it will auto-detect, and bill
+              accordingly, for multiple pages in a single image. Since the expected cost of OCR&rsquo;ing this many
+              images is ~$5000USD we&rsquo;ve applied for a Google Research grant to cover the costs. Waiting on a
+              response.</p>
+            <p><strong>Input</strong>: Image (ie. location of)</p>
+            <p><strong>Output</strong>: New enhanced image stored in bucket</p>
+            <h2 id="ocr-and-text-extraction">OCR and Text Extraction</h2>
+            <p>We strive to perform Optical Character Recognition (OCR) and extract text from a diverse range of
+              sources, including handwritten and typed documents. It&rsquo;s important to note that many documents may
+              also contain additional layers of handwritten text, adding complexity to the extraction process.</p>
+            <p><strong>Input</strong>: Image (ie. location of)</p>
+            <p><strong>Output</strong>: Text or JSON</p>
+            <h2 id="nlp-and-ner">NLP and NER</h2>
+            <p>Using Natural Language Processing (NLP), the objective is to perform Named Entity Recognition (NER). This
+              involves identifying and categorizing named entities such as people, organizations, locations, and dates
+              within the extracted text. By leveraging NLP techniques, we can gain valuable insights from the recognized
+              entities.</p>
+            <p>Part of this step will be producing a weighted score for each entity relationship. This would potentially
+              allow us to visually identify the most important entities and relationships using a tool like <a
+                href="https://gephi.org/">Gephi</a>.</p>
+            <p><strong>Input</strong>: Text</p>
+            <p><strong>Output</strong>: JSON</p>
+            <h2 id="llm">LLM</h2>
+            <p>The final step is to leverage the extracted entities and relationships to produce a Large Language Models
+              (LLM). It will be interesting to see if the model is capable of identifying patterns and relationships
+              that are not immediately obvious to the human eye. I&rsquo;m currently considering multiple options for
+              this step, including GPT-4, <a href="https://github.com/h2oai/h2o-llmstudio">H2O LLM Studio</a>, along
+              with other more customized solutions (as an opportunity to learn more about LLM fundamentals).</p>
+            <p><strong>Input</strong>: TBD</p>
+            <p><strong>Output</strong>: TBD</p>
+            <h1 id="inputs--outputs">Inputs / Outputs</h1>
+            <p>This diagram illustrates the potential flow of data from one service to the next.</p>
+            <p><img src="/images/hai-system-breakdown-i_o.svg" alt="io"></p>
+            <p>Inputs in blue and Outputs in red.</p>
+          </div>
+        </article>
+      </main>
 
     </div>
-  </body>
+    <footer>
+      <hr />
+
+      <p id="social">
+        Find me around the web:
+        <br />
+
+
+        <a href="https://github.com/cyber-nic">GitHub</a>
+
+        |
+        <a href="https://www.linkedin.com/in/nicolas-delorme-588ba619/">LinkedIn</a>
+
+      </p>
+
+      <p class="copyright">
+        Copyright © 2024
+        <a href="https://ndelor.me/"><strong>Nicolas Delorme</strong></a>.
+        This work is licensed under the
+        <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
+      </p>
+      <p class="builtWith">
+        Built with
+        <a href="http://www.gohugo.io/">Hugo</a>,
+        using the theme
+        <a href="https://gitlab.com/ian-s-mcb/smigle-hugo-theme">smigle</a>,
+        which was influenced by the theme
+        <a href="https://github.com/sumnerevans/smol">smol</a>.
+      </p>
+    </footer>
+
+  </div>
+</body>
+
 </html>
