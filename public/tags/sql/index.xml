@@ -2,18 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Sql on ndelor.me</title>
-    <link>http://localhost:1313/tags/sql/</link>
+    <link>https://ndelor.me/tags/sql/</link>
     <description>Recent content in Sql on ndelor.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Sep 2023 11:16:03 +0100</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Sep 2023 11:16:03 +0100</lastBuildDate><atom:link href="https://ndelor.me/tags/sql/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>History AI - Image Duplicates and Distribtion</title>
-      <link>http://localhost:1313/posts/hai-img-distribution/</link>
+      <link>https://ndelor.me/posts/hai-img-distribution/</link>
       <pubDate>Tue, 05 Sep 2023 11:16:03 +0100</pubDate>
-      <guid>http://localhost:1313/posts/hai-img-distribution/</guid>
-      <description>Scraping Results This table shows some metadata about the images scraped.&#xA;Prefix Size (GB) Images Distinct Images Duplicate Images Duplicate Images % A 12 71077 48126 22951 32.3% B 456 1672477 1667500 4977 0.3% C 48 290248 278891 11357 3.9% D 29 122001 121977 24 0.0% E 29 212701 209391 3310 1.6% F 5 40301 40301 0 0.0% G 0.04 216 215 1 0.5% &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;- &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;- &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash; &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;- Total 579 2409021 2366401 42620 0 The scraping process resulted in 2.</description>
+      
+      <guid>https://ndelor.me/posts/hai-img-distribution/</guid>
+      
+      <description>Scraping Results This table shows some metadata about the images scraped.
+Prefix Size (GB) Images Distinct Images Duplicate Images Duplicate Images % A 12 71077 48126 22951 32.3% B 456 1672477 1667500 4977 0.3% C 48 290248 278891 11357 3.9% D 29 122001 121977 24 0.0% E 29 212701 209391 3310 1.6% F 5 40301 40301 0 0.0% G 0.04 216 215 1 0.5% &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;- &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;- &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash; &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;- Total 579 2409021 2366401 42620 0 The scraping process resulted in 2.</description>
+      
     </item>
+    
   </channel>
 </rss>

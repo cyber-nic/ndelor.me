@@ -1,8 +1,9 @@
 baseURL: https://ndelor.me/
 languageCode: en-us
-theme: smigle
+theme: hugo-blog-awesome
 themesDir: themes
 title: ndelor.me
+name: foo
 # enableGitInfo: true
 menu:
   main:
@@ -18,26 +19,23 @@ menu:
       name: Posts
       url: /posts/
       weight: 3
-    - identifier: posts
+    - identifier: projects
       name: Projects
       url: /projects/
       weight: 4
-    - identifier: categories
-      name: Categories
-      url: /categories/
-      weight: 5
     - identifier: tags
       name: Tags
       url: /tags/
-      weight: 6
+      weight: 5
 params:
   abbrDateFmt: "Jan 2"
-  author: "Nicolas Delorme"
+  author:
+    name: "Nicolas Delorme"
   brandIconFile: "images/logo.png"
   dateFmt: "2006-01-02"
   #  customStylesheets: # Use to override theme styles, like logo size
   #    - "css/custom.css"
-  social:
+  socialIcons:
     - name: GitHub
       url: https://github.com/cyber-nic
     - name: LinkedIn

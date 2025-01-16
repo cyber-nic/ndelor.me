@@ -1,7 +1,7 @@
 ---
 title: "History AI - Part IV: Computer Vision"
 date: 2023-07-11T17:33:59-04:00
-tags: ["history ai", "computer vision"]
+tags: ["history", "ai", "computer vision", "projects"]
 draft: false
 ---
 

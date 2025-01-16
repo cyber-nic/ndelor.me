@@ -2,18 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Iac on ndelor.me</title>
-    <link>http://localhost:1313/tags/iac/</link>
+    <link>https://ndelor.me/tags/iac/</link>
     <description>Recent content in Iac on ndelor.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 13 Aug 2024 10:22:09 +0100</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/iac/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Aug 2024 10:22:09 +0100</lastBuildDate><atom:link href="https://ndelor.me/tags/iac/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Terraform Project Structures: Organizing Infrastructure as Code</title>
-      <link>http://localhost:1313/posts/terraform-project-structures/</link>
+      <link>https://ndelor.me/posts/terraform-project-structures/</link>
       <pubDate>Wed, 07 Aug 2024 10:22:09 +0100</pubDate>
-      <guid>http://localhost:1313/posts/terraform-project-structures/</guid>
+      
+      <guid>https://ndelor.me/posts/terraform-project-structures/</guid>
+      
       <description>Table of Contents Managing Security and Cost: Accounts as Environments Managing Performance and Risk: Layers and Overlays Managing Code: Repos. Folders, and Pipelines Dedicated Repo for Account and IaC Service Account Setup Application Specific Service Accounts Managing Releases: Applications as Modules Integrated Deployment Structure Dedicated Deployment Structure Isolated Deployment Structure Managing Environments: Using Terraform Workspaces vs Dedicated Folders Terraform Workspaces Dedicated Folders Summary This article delves into the complexities and best practices of structuring Terraform projects, focusing on optimizing infrastructure as code for security, cost management, and performance.</description>
+      
     </item>
+    
   </channel>
 </rss>

@@ -2,7 +2,7 @@
 title: "History AI - Part II: System Design"
 date: 2023-07-10T01:26:00-00:00
 lastmod: 2023-11-02T5:10:00-00:00
-tags: ["history ai", "system-design"]
+tags: ["history", "ai", "system-design", "projects"]
 draft: false
 ---
 

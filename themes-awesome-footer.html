@@ -1,0 +1,20 @@
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+    <img height="48" style="padding-bottom: 16px;" class="author-avatar" src="/images/logo.png" alt="Nicolas Delorme">
+
+    <div class="footer_social-icons">
+
+        {{- partial "socialIcons.html" site.Params.socialIcons -}}
+    </div>
+    <small class="footer_copyright">
+        © {{ now.Format "2006" }} {{ .Site.Params.author.name }}.
+        {{ T "footer.disclaimer" | safeHTML }}
+    </small>
+</footer>
+
+{{- if .Site.Params.goToTop -}}
+<a href="#" title="{{ T " footer.go_to_top" }}" id="totop">
+    {{ partial "svgs/arrowUp.svg" (dict "height" 48 "width" 48) . }}
+</a>
+{{- end -}}

@@ -2,18 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>System-Design on ndelor.me</title>
-    <link>http://localhost:1313/tags/system-design/</link>
+    <link>https://ndelor.me/tags/system-design/</link>
     <description>Recent content in System-Design on ndelor.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 02 Nov 2023 05:10:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/system-design/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jul 2023 01:26:00 +0000</lastBuildDate><atom:link href="https://ndelor.me/tags/system-design/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>History AI - Part II: System Design</title>
-      <link>http://localhost:1313/posts/hai-system-breakdown/</link>
+      <link>https://ndelor.me/posts/hai-system-breakdown/</link>
       <pubDate>Mon, 10 Jul 2023 01:26:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/hai-system-breakdown/</guid>
+      
+      <guid>https://ndelor.me/posts/hai-system-breakdown/</guid>
+      
       <description>Assumptions / Constraints We will operate on a dataset of ~2,000,000 jpeg images / ~500GB The initial budget is $1000. It is expected that this will increase, but the goal is to re-evaluate the budget prior to spending. We will operate using the Google Cloud Platform (GCP) but might explore other cloud offerings when performance or cost become a concern System Design Scraping I&amp;rsquo;ve implemented scrapers using various languages including PowerShell, Node.</description>
+      
     </item>
+    
   </channel>
 </rss>

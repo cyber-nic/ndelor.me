@@ -1,199 +1,289 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="" />
+<title itemprop="name">Cloud Load Balancer Cost Savings | ndelor.me</title>
+<meta property="og:title" content="Cloud Load Balancer Cost Savings | ndelor.me" />
+<meta name="twitter:title" content="Cloud Load Balancer Cost Savings | ndelor.me" />
+<meta itemprop="name" content="Cloud Load Balancer Cost Savings | ndelor.me" />
+<meta name="application-name" content="Cloud Load Balancer Cost Savings | ndelor.me" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+  <link rel="alternate" hreflang="en" href="https://ndelor.me/posts/cloud-lb-cost-savings/" title="" />
 
 
-  <title>Cloud Load Balancer Cost Savings | ndelor.me</title>
 
 
-  <link rel="stylesheet" href="/css/reset.css" />
-  <link rel="stylesheet" href="/css/font.css" />
-  <link rel="stylesheet" href="/css/smigle.css" />
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2023-10-20T10:45:42&#43;0100 />
+    <meta property="article:published_time" content=2023-10-20T10:45:42&#43;0100 />
+    <meta property="og:url" content="https://ndelor.me/posts/cloud-lb-cost-savings/" />
+
+    
+    <meta property="og:article:author" content="Nicolas Delorme" />
+    <meta property="article:author" content="Nicolas Delorme" />
+    <meta name="author" content="Nicolas Delorme" />
+    
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "Cloud Load Balancer Cost Savings",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2023-10-20",
+        "description": "",
+        "wordCount":  689 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2023-10-20",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "ndelor.me"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.123.7">
+
+    
+    <meta property="og:title" content="Cloud Load Balancer Cost Savings" />
+<meta property="og:description" content="Context In an effort to learn more about the Google Cloud Platform, I built and deployed a website using Cloud Run functions, hosted behind a GCP Load Balancer. The performance was great. Even without conducting any performance or benchmark tests, I observed that the website was very responsive globally, as relayed by a family member in Singapore.
+Unfortunately, the costs were not as favorable. The cost of running a single load balancer was about ~$25 per month." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ndelor.me/posts/cloud-lb-cost-savings/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-10-20T10:45:42+01:00" />
+<meta property="article:modified_time" content="2023-10-20T10:45:42+01:00" />
+
+
+
+    
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Cloud Load Balancer Cost Savings"/>
+<meta name="twitter:description" content="Context In an effort to learn more about the Google Cloud Platform, I built and deployed a website using Cloud Run functions, hosted behind a GCP Load Balancer. The performance was great. Even without conducting any performance or benchmark tests, I observed that the website was very responsive globally, as relayed by a family member in Singapore.
+Unfortunately, the costs were not as favorable. The cost of running a single load balancer was about ~$25 per month."/>
+
+
+    
+
+    <link rel="canonical" href="https://ndelor.me/posts/cloud-lb-cost-savings/">
+    <link href="/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://ndelor.me/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+    
 </head>
+<body data-theme = "" class="notransition">
 
-<body>
-  <div id="root">
-    <header>
-      <div id="brand">
-        <a class="icon-link" href="https://ndelor.me/">
-          <img class="icon" src="/images/logo.png" />
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="https://ndelor.me/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title></title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
         </a>
-        <div class="text">
-          <a href="https://ndelor.me/">
-            <h1>ndelor.me</h1>
-          </a>
-          <h3>Stuff.</h3>
-        </div>
-      </div>
-      <nav>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
 
-
-
-        <a href="/"><b>Home</b></a>
-
-        |
-        <a href="/about/"><b>About</b></a>
-
-        |
-        <a href="/posts/"><b>Posts</b></a>
-
-        |
-        <a href="/projects/"><b>Projects</b></a>
-
-        |
-        <a href="/categories/"><b>Categories</b></a>
-
-        |
-        <a href="/tags/"><b>Tags</b></a>
-
-
-      </nav>
-      <hr />
-    </header>
-
-    <div id="content">
-
-      <main>
-        <article>
-          <h1>Cloud Load Balancer Cost Savings</h1>
-          <div class="post-meta">
-            <strong>
-              <span>Posted on</span>
-              <time>2023-10-20</time>
-
-
-            </strong>
-            <span> • 689 words</span>
-            <span> • 4 minute read</span>
-
-
-            <div>
-              <span>Tags:</span>
-
-              <a href="/tags/aws">aws</a>,
-              <a href="/tags/gcp">gcp</a>,
-              <a href="/tags/cloud">cloud</a>
-            </div>
-
-          </div>
-
-          <div>
-            <h3 id="context">Context</h3>
-            <p>In an effort to learn more about the Google Cloud Platform, I built and deployed a website using Cloud
-              Run functions, hosted behind a GCP Load Balancer. The performance was great. Even without conducting any
-              performance or benchmark tests, I observed that the website was very responsive globally, as relayed by a
-              family member in Singapore.</p>
-            <p>Unfortunately, the costs were not as favorable. The cost of running a single load balancer was about ~$25
-              per month. It is simply too much for a personal project that is not generating any revenue.</p>
-            <p>This articles discusses the journey to saving $25/month.</p>
-            <h3 id="it-adds-up">It adds up</h3>
-            <p>The chart below shows the daily cost of running a single load balancer for a few months.
-              <lu>
-            </p>
-            <li><span style="color: #00abc0;">ManagedZone</span> - This is a fixed cost. $0.06-$0.07/day.</li>
-            <li><span style="color: #7cb342;">Network Cloud Armor Rule</span> - Another fixed cost. $0.033/day.</li>
-            <li><span style="color: #ff8f00;">Network Cloud Armor Policy</span> - Starts at $0.161/day and creeps up to
-              $0.167/day on the chart below. This is a fixed cost.</li>
-            <li><span style="color: #4184f3;">HTTP Load Balancing: Global Forwarding Rule Minimum Service Charge</span>
-              - Renamed to <span style="color: #ff5722;">Cloud Load Balancer Forwarding Rule Minimum Global</span> on
-              August 1st. This is a fixed cost. $0.6/day.</li>
-            <li><span style="color: #aa46bb;">Network Load Balancing: Forwarding Rule Minimum Service Charge in
-                Virginia</span> - Cost $0.672/day for the two days I let it run completely.</li>
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/about/">
+                        About
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/projects/">
+                        Projects
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/tags/">
+                        Tags
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
             </ul>
-            <p><img src="/images/cloud-lb-cost-savings-gcp.png" alt="gcp-spending"></p>
-            <h3 id="options">Options</h3>
-            <p>The journey began with the gruntwork&rsquo;s wonderful GCP load balancer terraform module (<a
-                href="https://github.com/gruntwork-io/terraform-google-load-balancer">link</a>). By default this creates
-              a global LB which costs ~$0.80/day or ~$25/month.</p>
-            <p>The module was tweaked to support creating a regional LB which was deployed in the us-east-4 (Virginia)
-              region in May 2023. For clarity, this regional LB replaced the global LB. This blew my mind: the cost
-              increase by ~$0.07 a day to ~$0.87/day or ~$27/month. As you can understand this was not the result I
-              anticipated and the change was quickly reverted.</p>
-            <p>There are multiple reddit posts (r/googlecloud) discussing the cost of running a load balancer. The
-              general consensus is that the cost is too high for individual projects. One might point out that there are
-              multiple possible GCP LB configurations. If there is a cheaper option I have not found it.</p>
-            <h3 id="aws-to-my-wallets-rescue">AWS to (my wallet&rsquo;s) rescue</h3>
-            <p>AWS does have a free tier load balancer but it is only available for 12 months after creating an account.
-              This felt like punting the problem down the road. I wanted a solution that would work for the long term.
-            </p>
-            <p>In comes AWS CloudFront. I will update this post in a few weeks once enough billing data has been
-              gathered, but my experience thus far with CloudFront suggests the cost will be much more manageable.
-              Serving ndelor.me is currently costing ~$0.50/month for Route53, $0 for CloudFronts.</p>
-            <p>Setting up the CloudFront distribution posed no challenge. One important lesson was that the behavior url
-              path cannot be removed when forwarded to an origin. As a result my gin gonic API needed to listen on the
-              <code>/api</code> path and my GCP bucket assets needed to be moved into a /static folder to match the
-              <code>/api/*</code> and <code>/static/*</code> behaviors path.</p>
-            <h4 id="cloudfront-gcp-origins">CloudFront GCP Origins</h4>
-            <p>For a Google Cloud Storage bucket the CloudFront origin domain should be
-              <code>storage.googleapis.com</code> and the origin path should be the bucket name. For example,
-              <code>/foo-bar-bucket</code>.</p>
-            <p>While my webapp behavior seemed to work right out of the box the API origin did not. The API behavior was
-              returning a 404 or 401 error.</p>
-            <p>Several Cache Policy and Origin Request Policy combinations result in a 404. It&rsquo;s very hard to
-              troubleshoot this as the API isn&rsquo;t actually receiving any traffic and thus there are no logs or
-              metrics.</p>
-            <p>The combination that ended up working is the <code>Managed-CachingDisabled</code> Cache Policy and the
-              <code>AllViewerExceptHostHeader</code> Origin Request Policy.</p>
-            <p>Getting CloudFront to forward the <code>Authorization</code> header was slighty more involved then
-              anticipated although it turns out this matter is discussed <a
-                href="https://repost.aws/knowledge-center/cloudfront-authorization-header">here</a> and documented <a
-                href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/add-origin-custom-headers.html#add-origin-custom-headers-forward-authorization">here</a>.
-            </p>
-            <h3 id="conclusion">Conclusion</h3>
-            <p>Navigating cloud infrastructure can be complex and costly, but my switch from GCP Load Balancer to AWS
-              CloudFront underscored the value of research and adaptability. While challenges are inevitable, they often
-              pave the way to more efficient and cost-effective solutions.</p>
-            <p>My personal project website <a href="https://www.4ks.io">www.4ks.io</a> now costs $25/month less to
-              operate by combining AWS CloudFront and GCP Cloud Run.</p>
-          </div>
-        </article>
-      </main>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
 
-    </div>
-    <footer>
-      <hr />
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Cloud Load Balancer Cost Savings</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2023-10-20T10:45:42&#43;01:00" itemprop="datePublished"> Oct 20, 2023 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <h3 id="context">Context</h3>
+<p>In an effort to learn more about the Google Cloud Platform, I built and deployed a website using Cloud Run functions, hosted behind a GCP Load Balancer. The performance was great. Even without conducting any performance or benchmark tests, I observed that the website was very responsive globally, as relayed by a family member in Singapore.</p>
+<p>Unfortunately, the costs were not as favorable. The cost of running a single load balancer was about ~$25 per month. It is simply too much for a personal project that is not generating any revenue.</p>
+<p>This articles discusses the journey to saving $25/month.</p>
+<h3 id="it-adds-up">It adds up</h3>
+<p>The chart below shows the daily cost of running a single load balancer for a few months.
+<lu></p>
+<li><span style="color: #00abc0;">ManagedZone</span> - This is a fixed cost. $0.06-$0.07/day.</li>
+<li><span style="color: #7cb342;">Network Cloud Armor Rule</span> - Another fixed cost. $0.033/day.</li>
+<li><span style="color: #ff8f00;">Network Cloud Armor Policy</span> - Starts at $0.161/day and creeps up to $0.167/day on the chart below. This is a fixed cost.</li>
+<li><span style="color: #4184f3;">HTTP Load Balancing: Global Forwarding Rule Minimum Service Charge</span> - Renamed to <span style="color: #ff5722;">Cloud Load Balancer Forwarding Rule Minimum Global</span> on August 1st. This is a fixed cost. $0.6/day.</li>
+<li><span style="color: #aa46bb;">Network Load Balancing: Forwarding Rule Minimum Service Charge in Virginia</span> - Cost $0.672/day for the two days I let it run completely.</li>
+</ul>
+<p><img src="/images/cloud-lb-cost-savings-gcp.png" alt="gcp-spending"></p>
+<h3 id="options">Options</h3>
+<p>The journey began with the gruntwork&rsquo;s wonderful GCP load balancer terraform module (<a href="https://github.com/gruntwork-io/terraform-google-load-balancer">link</a>). By default this creates a global LB which costs ~$0.80/day or ~$25/month.</p>
+<p>The module was tweaked to support creating a regional LB which was deployed in the us-east-4 (Virginia) region in May 2023. For clarity, this regional LB replaced the global LB. This blew my mind: the cost increase by ~$0.07 a day to ~$0.87/day or ~$27/month. As you can understand this was not the result I anticipated and the change was quickly reverted.</p>
+<p>There are multiple reddit posts (r/googlecloud) discussing the cost of running a load balancer. The general consensus is that the cost is too high for individual projects. One might point out that there are multiple possible GCP LB configurations. If there is a cheaper option I have not found it.</p>
+<h3 id="aws-to-my-wallets-rescue">AWS to (my wallet&rsquo;s) rescue</h3>
+<p>AWS does have a free tier load balancer but it is only available for 12 months after creating an account. This felt like punting the problem down the road. I wanted a solution that would work for the long term.</p>
+<p>In comes AWS CloudFront. I will update this post in a few weeks once enough billing data has been gathered, but my experience thus far with CloudFront suggests the cost will be much more manageable. Serving ndelor.me is currently costing ~$0.50/month for Route53, $0 for CloudFronts.</p>
+<p>Setting up the CloudFront distribution posed no challenge. One important lesson was that the behavior url path cannot be removed when forwarded to an origin. As a result my gin gonic API needed to listen on the <code>/api</code> path and my GCP bucket assets needed to be moved into a /static folder to match the <code>/api/*</code> and <code>/static/*</code> behaviors path.</p>
+<h4 id="cloudfront-gcp-origins">CloudFront GCP Origins</h4>
+<p>For a Google Cloud Storage bucket the CloudFront origin domain should be <code>storage.googleapis.com</code> and the origin path should be the bucket name. For example, <code>/foo-bar-bucket</code>.</p>
+<p>While my webapp behavior seemed to work right out of the box the API origin did not. The API behavior was returning a 404 or 401 error.</p>
+<p>Several Cache Policy and Origin Request Policy combinations result in a 404. It&rsquo;s very hard to troubleshoot this as the API isn&rsquo;t actually receiving any traffic and thus there are no logs or metrics.</p>
+<p>The combination that ended up working is the <code>Managed-CachingDisabled</code> Cache Policy and the <code>AllViewerExceptHostHeader</code> Origin Request Policy.</p>
+<p>Getting CloudFront to forward the <code>Authorization</code> header was slighty more involved then anticipated although it turns out this matter is discussed <a href="https://repost.aws/knowledge-center/cloudfront-authorization-header">here</a> and documented <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/add-origin-custom-headers.html#add-origin-custom-headers-forward-authorization">here</a>.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Navigating cloud infrastructure can be complex and costly, but my switch from GCP Load Balancer to AWS CloudFront underscored the value of research and adaptability. While challenges are inevitable, they often pave the way to more efficient and cost-effective solutions.</p>
+<p>My personal project website <a href="https://www.4ks.io">www.4ks.io</a> now costs $25/month less to operate by combining AWS CloudFront and GCP Cloud Run.</p>
 
-      <p id="social">
-        Find me around the web:
-        <br />
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+    <img height="48" style="padding-bottom: 16px;" class="author-avatar" src="/images/logo.png" alt="Nicolas Delorme">
+
+    <div class="footer_social-icons">
+<a href="https://github.com/cyber-nic" target="_blank" rel="noopener noreferrer me"
+    title="GitHub">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://www.linkedin.com/in/nicolas-delorme-588ba619/" target="_blank" rel="noopener noreferrer me"
+    title="LinkedIn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        © 2025 Nicolas Delorme.
+        
+    </small>
+</footer>
 
 
-        <a href="https://github.com/cyber-nic">GitHub</a>
 
-        |
-        <a href="https://www.linkedin.com/in/nicolas-delorme-588ba619/">LinkedIn</a>
 
-      </p>
 
-      <p class="copyright">
-        Copyright © 2024
-        <a href="https://ndelor.me/"><strong>Nicolas Delorme</strong></a>.
-        This work is licensed under the
-        <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
-      </p>
-      <p class="builtWith">
-        Built with
-        <a href="http://www.gohugo.io/">Hugo</a>,
-        using the theme
-        <a href="https://gitlab.com/ian-s-mcb/smigle-hugo-theme">smigle</a>,
-        which was influenced by the theme
-        <a href="https://github.com/sumnerevans/smol">smol</a>.
-      </p>
-    </footer>
 
-  </div>
+
+    
+    <script src="https://ndelor.me/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
 </body>
-
 </html>

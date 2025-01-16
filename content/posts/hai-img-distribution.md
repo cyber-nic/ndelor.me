@@ -1,7 +1,7 @@
 ---
 title: "History AI - Image Duplicates and Distribtion"
 date: 2023-09-05T11:16:03+01:00
-tags: ["history ai", "sql"]
+tags: ["history", "ai", "sql", "projects"]
 draft: false
 ---
 

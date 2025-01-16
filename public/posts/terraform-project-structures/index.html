@@ -1,164 +1,253 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="" />
+<title itemprop="name">Terraform Project Structures: Organizing Infrastructure as Code | ndelor.me</title>
+<meta property="og:title" content="Terraform Project Structures: Organizing Infrastructure as Code | ndelor.me" />
+<meta name="twitter:title" content="Terraform Project Structures: Organizing Infrastructure as Code | ndelor.me" />
+<meta itemprop="name" content="Terraform Project Structures: Organizing Infrastructure as Code | ndelor.me" />
+<meta name="application-name" content="Terraform Project Structures: Organizing Infrastructure as Code | ndelor.me" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+  <link rel="alternate" hreflang="en" href="https://ndelor.me/posts/terraform-project-structures/" title="" />
 
 
-  <title>Terraform Project Structures: Organizing Infrastructure as Code | ndelor.me</title>
 
 
-  <link rel="stylesheet" href="/css/reset.css" />
-  <link rel="stylesheet" href="/css/font.css" />
-  <link rel="stylesheet" href="/css/smigle.css" />
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2024-08-07T10:22:09&#43;0100 />
+    <meta property="article:published_time" content=2024-08-07T10:22:09&#43;0100 />
+    <meta property="og:url" content="https://ndelor.me/posts/terraform-project-structures/" />
+
+    
+    <meta property="og:article:author" content="Nicolas Delorme" />
+    <meta property="article:author" content="Nicolas Delorme" />
+    <meta name="author" content="Nicolas Delorme" />
+    
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "Terraform Project Structures: Organizing Infrastructure as Code",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2024-08-07",
+        "description": "",
+        "wordCount":  2254 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2024-08-13",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "ndelor.me"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.123.7">
+
+    
+    <meta property="og:title" content="Terraform Project Structures: Organizing Infrastructure as Code" />
+<meta property="og:description" content="Table of Contents Managing Security and Cost: Accounts as Environments Managing Performance and Risk: Layers and Overlays Managing Code: Repos. Folders, and Pipelines Dedicated Repo for Account and IaC Service Account Setup Application Specific Service Accounts Managing Releases: Applications as Modules Integrated Deployment Structure Dedicated Deployment Structure Isolated Deployment Structure Managing Environments: Using Terraform Workspaces vs Dedicated Folders Terraform Workspaces Dedicated Folders Summary This article delves into the complexities and best practices of structuring Terraform projects, focusing on optimizing infrastructure as code for security, cost management, and performance." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ndelor.me/posts/terraform-project-structures/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-08-07T10:22:09+01:00" />
+<meta property="article:modified_time" content="2024-08-13T10:22:09+01:00" />
+
+
+
+    
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Terraform Project Structures: Organizing Infrastructure as Code"/>
+<meta name="twitter:description" content="Table of Contents Managing Security and Cost: Accounts as Environments Managing Performance and Risk: Layers and Overlays Managing Code: Repos. Folders, and Pipelines Dedicated Repo for Account and IaC Service Account Setup Application Specific Service Accounts Managing Releases: Applications as Modules Integrated Deployment Structure Dedicated Deployment Structure Isolated Deployment Structure Managing Environments: Using Terraform Workspaces vs Dedicated Folders Terraform Workspaces Dedicated Folders Summary This article delves into the complexities and best practices of structuring Terraform projects, focusing on optimizing infrastructure as code for security, cost management, and performance."/>
+
+
+    
+
+    <link rel="canonical" href="https://ndelor.me/posts/terraform-project-structures/">
+    <link href="/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://ndelor.me/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+    
 </head>
+<body data-theme = "" class="notransition">
 
-<body>
-  <div id="root">
-    <header>
-      <div id="brand">
-        <a class="icon-link" href="https://ndelor.me/">
-          <img class="icon" src="/images/logo.png" />
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="https://ndelor.me/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title></title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
         </a>
-        <div class="text">
-          <a href="https://ndelor.me/">
-            <h1>ndelor.me</h1>
-          </a>
-          <h3>Stuff.</h3>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/about/">
+                        About
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/projects/">
+                        Projects
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/tags/">
+                        Tags
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
         </div>
-      </div>
-      <nav>
+    </nav>
+</div>
 
-
-
-        <a href="/"><b>Home</b></a>
-
-        |
-        <a href="/about/"><b>About</b></a>
-
-        |
-        <a href="/posts/"><b>Posts</b></a>
-
-        |
-        <a href="/projects/"><b>Projects</b></a>
-
-        |
-        <a href="/categories/"><b>Categories</b></a>
-
-        |
-        <a href="/tags/"><b>Tags</b></a>
-
-
-      </nav>
-      <hr />
-    </header>
-
-    <div id="content">
-
-      <main>
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
         <article>
-          <h1>Terraform Project Structures: Organizing Infrastructure as Code</h1>
-          <div class="post-meta">
-            <strong>
-              <span>Posted on</span>
-              <time>2024-08-07</time>
-
-
-            </strong>
-            <span> • 2254 words</span>
-            <span> • 11 minute read</span>
-
-            <div>
-              Last updated on
-              <time>2024-08-13</time>
-            </div>
-
-
-            <div>
-              <span>Tags:</span>
-
-              <a href="/tags/terraform">terraform</a>,
-              <a href="/tags/iac">iac</a>,
-              <a href="/tags/code">code</a>
-            </div>
-
-          </div>
-
-          <div>
-            <h1 id="table-of-contents">Table of Contents</h1>
-            <ol>
-              <li>Managing Security and Cost: Accounts as Environments</li>
-              <li>Managing Performance and Risk: Layers and Overlays</li>
-              <li>Managing Code: Repos. Folders, and Pipelines
-                <ol>
-                  <li>Dedicated Repo for Account and IaC Service Account Setup</li>
-                  <li>Application Specific Service Accounts</li>
-                </ol>
-              </li>
-              <li>Managing Releases: Applications as Modules
-                <ol>
-                  <li>Integrated Deployment Structure</li>
-                  <li>Dedicated Deployment Structure</li>
-                  <li>Isolated Deployment Structure</li>
-                </ol>
-              </li>
-              <li>Managing Environments: Using Terraform Workspaces vs Dedicated Folders
-                <ol>
-                  <li>Terraform Workspaces</li>
-                  <li>Dedicated Folders</li>
-                </ol>
-              </li>
-            </ol>
-            <h1 id="summary">Summary</h1>
-            <p>This article delves into the complexities and best practices of structuring Terraform projects, focusing
-              on optimizing infrastructure as code for security, cost management, and performance. It discusses the
-              benefits of using separate AWS accounts for each environment to enhance security and manage costs, and
-              explores different strategies for managing code and deployments through layers and overlays. The article
-              compares the use of Terraform workspaces versus dedicated folders, providing guidance on when each method
-              is most effective based on the size and complexity of the project. Ultimately, it offers practical
-              recommendations on setting up and maintaining scalable, secure, and efficient Terraform infrastructure,
-              making it a valuable resource for developers and teams working with infrastructure as code.</p>
-            <blockquote>
-              <p><em>Abstractions are great, but aren&rsquo;t always necessary: “a little copying is better than a
-                  little dependency”</em></p>
-            </blockquote>
-            <h1 id="1-managing-security-and-cost-accounts-as-environments">1. Managing Security and Cost: Accounts as
-              Environments</h1>
-            <blockquote>
-              <p><em>Create an Account for each Environment</em></p>
-            </blockquote>
-            <p>Even if it does present overhead creating an AWS account for each environment offers better cost and
-              security isolation. An AWS account requires a unique email address but this can be managed by using email
-              aliases (eg. <code>my-email+my-dev-account-name@gmail.com</code>). It might even be worth creating Project
-              or Team Accounts, also split into environments (eg. <code>my-dev-eng-shared-resources</code> vs
-              <code>my-prd-eng-shared-resources</code> vs <code>my-prd-stealth-project</code>). Creating many accounts
-              involves overhead, so plan accordingly.</p>
-            <h1 id="2-managing-performance-and-risk-layers-and-overlays">2. Managing Performance and Risk: Layers and
-              Overlays</h1>
-            <blockquote>
-              <p><em>Manage your IaC in well-crafted layers.</em></p>
-            </blockquote>
-            <p>Infrastructure as code (IaC) it can quickly become complex and involve tradeoffs and risk management when
-              it comes to managing dependencies. Let&rsquo;s distinguish between Configuration Management (CM) and
-              [Code] Deployment. To continuously detect and correct these drifts we want to run our Configuration
-              Management layer(s) frequently. In small projects CM might be applied continuously alongside the
-              application code deployments, but as codebases grow this can become the source of overhead (slowness) and
-              needs to be applied separately. This is the bottom of our code release pyramid. The <em>blast radius</em>
-              is large as mistakes can be of severe consequences.</p>
-            <p>Application code is at the top of the pyramid. Ideally, this code deploys for each commit to a branch.
-            </p>
-            <p>The pyramid can be of variable depth. Typically I operate between 1 and 3 layers:</p>
-            <pre tabindex="0"><code>        /\
+            <header class="header">
+                <h1 class="header-title">Terraform Project Structures: Organizing Infrastructure as Code</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2024-08-07T10:22:09&#43;01:00" itemprop="datePublished"> Aug 7, 2024 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <h1 id="table-of-contents">Table of Contents</h1>
+<ol>
+<li>Managing Security and Cost: Accounts as Environments</li>
+<li>Managing Performance and Risk: Layers and Overlays</li>
+<li>Managing Code: Repos. Folders, and Pipelines
+<ol>
+<li>Dedicated Repo for Account and IaC Service Account Setup</li>
+<li>Application Specific Service Accounts</li>
+</ol>
+</li>
+<li>Managing Releases: Applications as Modules
+<ol>
+<li>Integrated Deployment Structure</li>
+<li>Dedicated Deployment Structure</li>
+<li>Isolated Deployment Structure</li>
+</ol>
+</li>
+<li>Managing Environments: Using Terraform Workspaces vs Dedicated Folders
+<ol>
+<li>Terraform Workspaces</li>
+<li>Dedicated Folders</li>
+</ol>
+</li>
+</ol>
+<h1 id="summary">Summary</h1>
+<p>This article delves into the complexities and best practices of structuring Terraform projects, focusing on optimizing infrastructure as code for security, cost management, and performance. It discusses the benefits of using separate AWS accounts for each environment to enhance security and manage costs, and explores different strategies for managing code and deployments through layers and overlays. The article compares the use of Terraform workspaces versus dedicated folders, providing guidance on when each method is most effective based on the size and complexity of the project. Ultimately, it offers practical recommendations on setting up and maintaining scalable, secure, and efficient Terraform infrastructure, making it a valuable resource for developers and teams working with infrastructure as code.</p>
+<blockquote>
+<p><em>Abstractions are great, but aren&rsquo;t always necessary: “a little copying is better than a little dependency”</em></p>
+</blockquote>
+<h1 id="1-managing-security-and-cost-accounts-as-environments">1. Managing Security and Cost: Accounts as Environments</h1>
+<blockquote>
+<p><em>Create an Account for each Environment</em></p>
+</blockquote>
+<p>Even if it does present overhead creating an AWS account for each environment offers better cost and security isolation. An AWS account requires a unique email address but this can be managed by using email aliases (eg. <code>my-email+my-dev-account-name@gmail.com</code>). It might even be worth creating Project or Team Accounts, also split into environments (eg. <code>my-dev-eng-shared-resources</code> vs <code>my-prd-eng-shared-resources</code> vs <code>my-prd-stealth-project</code>). Creating many accounts involves overhead, so plan accordingly.</p>
+<h1 id="2-managing-performance-and-risk-layers-and-overlays">2. Managing Performance and Risk: Layers and Overlays</h1>
+<blockquote>
+<p><em>Manage your IaC in well-crafted layers.</em></p>
+</blockquote>
+<p>Infrastructure as code (IaC) it can quickly become complex and involve tradeoffs and risk management when it comes to managing dependencies. Let&rsquo;s distinguish between Configuration Management (CM) and [Code] Deployment. To continuously detect and correct these drifts we want to run our Configuration Management layer(s) frequently. In small projects CM might be applied continuously alongside the application code deployments, but as codebases grow this can become the source of overhead (slowness) and needs to be applied separately. This is the bottom of our code release pyramid. The <em>blast radius</em> is large as mistakes can be of severe consequences.</p>
+<p>Application code is at the top of the pyramid. Ideally, this code deploys for each commit to a branch.</p>
+<p>The pyramid can be of variable depth. Typically I operate between 1 and 3 layers:</p>
+<pre tabindex="0"><code>        /\
        /  \
       /app \      -&gt; App code, runs continuously
      / code \
@@ -167,30 +256,18 @@
   /            \
  / account setup\ -&gt; Infra or Core layer, runs periodically or on-demand
 /     and iam    \
-</code></pre>
-            <p>Along with <code>Configuration Management</code> and <code>Application Code</code> when writing IaC it is
-              necessary to factor in other dimensions such as <code>Code Repositories</code> (where should the code
-              live?), <code>Environments</code> (dev, prd, etc) and <code>Pipelines</code> (the order in which to apply
-              the various layers). As always the best solution depends on your project and team needs.</p>
-            <h1 id="3-managing-code-repos-folders-and-pipelines">3. Managing Code: Repos. Folders, and Pipelines</h1>
-            <blockquote>
-              <p><em>Set conventions and stick to them.</em></p>
-            </blockquote>
-            <p>Here are a few ideas for organizing IaC layers.</p>
-            <h3 id="31-account-and-pipeline-service-account-setup">3.1 Account and Pipeline Service Account Setup</h3>
-            <blockquote>
-              <p><em>Create a dedicated Repo with Environment-Specific Account Setup and IAM</em></p>
-            </blockquote>
-            <p>While this involves overhead for a small project, I highly recommend starting with this early on in a
-              project. The idea is to isolate more sensitive IaC that is less likely to drift frequently. In this
-              example, each account has a dedicated folder (eg. <code>my-dev-account-name</code>) along with a <a
-                href="github.com/trussworks/terraform-aws-bootstrap">bootstrap</a> folder and terraform.tfstate
-              committed to repo. The env-specific <code>main.tf</code> then uses the bootstrapped backend to create the
-              additional Backends necessary for the application overlays in other repos. It also creates tailor made
-              (ie. with minimal permission policies) Service Accounts for those application overlays.</p>
-            <div class="highlight">
-              <pre tabindex="0"
-                style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/pipelines
+</code></pre><p>Along with <code>Configuration Management</code> and <code>Application Code</code> when writing IaC it is necessary to factor in other dimensions such as <code>Code Repositories</code> (where should the code live?), <code>Environments</code> (dev, prd, etc) and <code>Pipelines</code> (the order in which to apply the various layers). As always the best solution depends on your project and team needs.</p>
+<h1 id="3-managing-code-repos-folders-and-pipelines">3. Managing Code: Repos. Folders, and Pipelines</h1>
+<blockquote>
+<p><em>Set conventions and stick to them.</em></p>
+</blockquote>
+<p>Here are a few ideas for organizing IaC layers.</p>
+<h3 id="31-account-and-pipeline-service-account-setup">3.1 Account and Pipeline Service Account Setup</h3>
+<blockquote>
+<p><em>Create a dedicated Repo with Environment-Specific Account Setup and IAM</em></p>
+</blockquote>
+<p>While this involves overhead for a small project, I highly recommend starting with this early on in a project. The idea is to isolate more sensitive IaC that is less likely to drift frequently. In this example, each account has a dedicated folder (eg. <code>my-dev-account-name</code>) along with a <a href="github.com/trussworks/terraform-aws-bootstrap">bootstrap</a> folder and terraform.tfstate committed to repo. The env-specific <code>main.tf</code> then uses the bootstrapped backend to create the additional Backends necessary for the application overlays in other repos. It also creates tailor made (ie. with minimal permission policies) Service Accounts for those application overlays.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/pipelines
 </span></span><span style="display:flex;"><span>  ci.yaml
 </span></span><span style="display:flex;"><span>/accounts
 </span></span><span style="display:flex;"><span>  /my-dev-account-name
@@ -205,65 +282,40 @@
 </span></span><span style="display:flex;"><span>      terraform.tfstate
 </span></span><span style="display:flex;"><span>  /modules
 </span></span><span style="display:flex;"><span>    /service-account
-</span></span></code></pre>
-            </div>
-            <h3 id="32-application-specific-service-account">3.2 Application Specific Service Account</h3>
-            <p>As for application-specific Service Accounts&hellip;</p>
-            <h4 id="iam-service-account-definition-in-the-same-monorepo">IAM Service Account Definition in the Same
-              Monorepo</h4>
-            <h5 id="pros">Pros</h5>
-            <ol>
-              <li><strong>Simplified Management</strong>: Keeping everything in the same repo simplifies the process.
-                You have a single source of truth, making it easier to manage and reference.</li>
-              <li><strong>Consistent Versioning</strong>: The IAM service account definition will evolve alongside the
-                Terraform code, ensuring that any changes to infrastructure requirements can be synchronized with the
-                corresponding IAM policy updates.</li>
-              <li><strong>SEasier Onboarding</strong>: New team members only need access to one repository to see the
-                full context of the infrastructure and its associated IAM policies.</li>
-            </ol>
-            <h5 id="cons">Cons</h5>
-            <ol>
-              <li><strong>Tight Coupling</strong>: Tying the IAM service account directly to the monorepo may lead to
-                challenges if you later need to reuse or share this IAM configuration across other projects or repos.
-              </li>
-              <li><strong>Potential Security Risks</strong>: With IAM policies living alongside other infrastructure
-                code, there’s a higher risk of accidental modifications, which could lead to security issues.</li>
-            </ol>
-            <p><strong>Best Use Case</strong>: Suitable when you have a tightly coupled environment where infrastructure
-              and IAM policies are closely linked, and where managing everything in a single place is more convenient.
-            </p>
-            <h4 id="iam-service-account-definition-in-a-dedicated-account-repo">IAM Service Account Definition in a
-              Dedicated (Account) Repo</h4>
-            <h5 id="pros-1">Pros</h5>
-            <ol>
-              <li><strong>Separation of Concerns</strong>: A dedicated IAM repository keeps identity and access
-                management separate from your infrastructure code, aligning with the principle of least privilege. This
-                reduces the risk of accidental changes and enhances security.</li>
-              <li><strong>Scalability and Flexibility</strong>: As your AWS environment grows, this separation allows
-                you to manage IAM policies more flexibly, potentially sharing or reusing them across multiple projects
-                or repos.</li>
-              <li><strong>Security Best Practices</strong>: It’s easier to apply stricter access controls and review
-                processes on a dedicated IAM repo, reducing the likelihood of unauthorized changes.</li>
-            </ol>
-            <h5 id="cons-1">Cons</h5>
-            <ol>
-              <li><strong>Increased Complexity</strong>: Requires managing multiple repositories, which can add
-                complexity to your workflow, especially during setup and maintenance.</li>
-              <li><strong>Coordination Overhead</strong>: Changes to IAM policies might need to be coordinated with
-                updates in your Terraform infrastructure, leading to possible synchronization challenges.</li>
-            </ol>
-            <p><strong>Best Use Case</strong>: Ideal for environments that prioritize security, scalability, and
-              flexibility, especially when the IAM service accounts might be shared or reused across different teams or
-              projects.</p>
-            <h2 id="4-managing-releases-applications-as-modules">4. Managing Releases: Applications as Modules</h2>
-            <blockquote>
-              <p>Note that <code>Environment</code> and <code>Account</code> are interchangeable terms in the case of a
-                1:1 mapping</p>
-            </blockquote>
-            <h3 id="41-integrated-deployment-structure">4.1 Integrated Deployment Structure</h3>
-            <div class="highlight">
-              <pre tabindex="0"
-                style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/pipelines
+</span></span></code></pre></div><h3 id="32-application-specific-service-account">3.2 Application Specific Service Account</h3>
+<p>As for application-specific Service Accounts&hellip;</p>
+<h4 id="iam-service-account-definition-in-the-same-monorepo">IAM Service Account Definition in the Same Monorepo</h4>
+<h5 id="pros">Pros</h5>
+<ol>
+<li><strong>Simplified Management</strong>: Keeping everything in the same repo simplifies the process. You have a single source of truth, making it easier to manage and reference.</li>
+<li><strong>Consistent Versioning</strong>: The IAM service account definition will evolve alongside the Terraform code, ensuring that any changes to infrastructure requirements can be synchronized with the corresponding IAM policy updates.</li>
+<li><strong>SEasier Onboarding</strong>: New team members only need access to one repository to see the full context of the infrastructure and its associated IAM policies.</li>
+</ol>
+<h5 id="cons">Cons</h5>
+<ol>
+<li><strong>Tight Coupling</strong>: Tying the IAM service account directly to the monorepo may lead to challenges if you later need to reuse or share this IAM configuration across other projects or repos.</li>
+<li><strong>Potential Security Risks</strong>: With IAM policies living alongside other infrastructure code, there’s a higher risk of accidental modifications, which could lead to security issues.</li>
+</ol>
+<p><strong>Best Use Case</strong>: Suitable when you have a tightly coupled environment where infrastructure and IAM policies are closely linked, and where managing everything in a single place is more convenient.</p>
+<h4 id="iam-service-account-definition-in-a-dedicated-account-repo">IAM Service Account Definition in a Dedicated (Account) Repo</h4>
+<h5 id="pros-1">Pros</h5>
+<ol>
+<li><strong>Separation of Concerns</strong>: A dedicated IAM repository keeps identity and access management separate from your infrastructure code, aligning with the principle of least privilege. This reduces the risk of accidental changes and enhances security.</li>
+<li><strong>Scalability and Flexibility</strong>: As your AWS environment grows, this separation allows you to manage IAM policies more flexibly, potentially sharing or reusing them across multiple projects or repos.</li>
+<li><strong>Security Best Practices</strong>: It’s easier to apply stricter access controls and review processes on a dedicated IAM repo, reducing the likelihood of unauthorized changes.</li>
+</ol>
+<h5 id="cons-1">Cons</h5>
+<ol>
+<li><strong>Increased Complexity</strong>: Requires managing multiple repositories, which can add complexity to your workflow, especially during setup and maintenance.</li>
+<li><strong>Coordination Overhead</strong>: Changes to IAM policies might need to be coordinated with updates in your Terraform infrastructure, leading to possible synchronization challenges.</li>
+</ol>
+<p><strong>Best Use Case</strong>: Ideal for environments that prioritize security, scalability, and flexibility, especially when the IAM service accounts might be shared or reused across different teams or projects.</p>
+<h2 id="4-managing-releases-applications-as-modules">4. Managing Releases: Applications as Modules</h2>
+<blockquote>
+<p>Note that <code>Environment</code> and <code>Account</code> are interchangeable terms in the case of a 1:1 mapping</p>
+</blockquote>
+<h3 id="41-integrated-deployment-structure">4.1 Integrated Deployment Structure</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/pipelines
 </span></span><span style="display:flex;"><span>  my-dev-project.yaml
 </span></span><span style="display:flex;"><span>  my-prd-project.yaml
 </span></span><span style="display:flex;"><span>/iac
@@ -286,35 +338,23 @@
 </span></span><span style="display:flex;"><span>      main.tf
 </span></span><span style="display:flex;"><span>      variables.tf
 </span></span><span style="display:flex;"><span>      outputs.tf
-</span></span></code></pre>
-            </div>
-            <h4 id="overview">Overview</h4>
-            <p>This structure keeps infrastructure and application deployment tightly coupled within the same Terraform
-              configurations (main.tf) in each environment.</p>
-            <h4 id="pros-2">Pros</h4>
-            <ol>
-              <li><strong>Simplicity</strong>: Single main.tf handles all resource deployments, making it
-                straightforward to understand and deploy.</li>
-              <li><strong>Unified Management</strong>: Simplifies state management as there&rsquo;s a single state file
-                per environment. Changes to infrastructure and applications are applied simultaneously, ensuring
-                consistency.</li>
-            </ol>
-            <h4 id="cons-2">Cons</h4>
-            <ol>
-              <li><strong>Complex Dependency Management</strong>: Changes to applications may require re-deployment of
-                infrastructure or vice versa, increasing risk.</li>
-              <li><strong>Reduced Flexibility</strong>: Harder to apply changes to one component (app vs. infra) without
-                affecting the other.</li>
-              <li><strong>Scalability Issues</strong>: As the project grows, the main.tf can become unwieldy, making
-                maintenance challenging.</li>
-            </ol>
-            <h4 id="pipeline-implications">Pipeline Implications</h4>
-            <p>A single pipeline per environment might handle both infra and application changes. This requires careful
-              planning to ensure that infra changes do not unnecessarily impact application deployments.</p>
-            <h3 id="42-dedicated-deployment-structure">4.2 Dedicated Deployment Structure</h3>
-            <div class="highlight">
-              <pre tabindex="0"
-                style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/pipelines
+</span></span></code></pre></div><h4 id="overview">Overview</h4>
+<p>This structure keeps infrastructure and application deployment tightly coupled within the same Terraform configurations (main.tf) in each environment.</p>
+<h4 id="pros-2">Pros</h4>
+<ol>
+<li><strong>Simplicity</strong>: Single main.tf handles all resource deployments, making it straightforward to understand and deploy.</li>
+<li><strong>Unified Management</strong>: Simplifies state management as there&rsquo;s a single state file per environment. Changes to infrastructure and applications are applied simultaneously, ensuring consistency.</li>
+</ol>
+<h4 id="cons-2">Cons</h4>
+<ol>
+<li><strong>Complex Dependency Management</strong>: Changes to applications may require re-deployment of infrastructure or vice versa, increasing risk.</li>
+<li><strong>Reduced Flexibility</strong>: Harder to apply changes to one component (app vs. infra) without affecting the other.</li>
+<li><strong>Scalability Issues</strong>: As the project grows, the main.tf can become unwieldy, making maintenance challenging.</li>
+</ol>
+<h4 id="pipeline-implications">Pipeline Implications</h4>
+<p>A single pipeline per environment might handle both infra and application changes. This requires careful planning to ensure that infra changes do not unnecessarily impact application deployments.</p>
+<h3 id="42-dedicated-deployment-structure">4.2 Dedicated Deployment Structure</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/pipelines
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e"># dev</span>
 </span></span><span style="display:flex;"><span>  my-dev-project.yaml
 </span></span><span style="display:flex;"><span>  my-dev-project-apps.yaml
@@ -341,34 +381,22 @@
 </span></span><span style="display:flex;"><span>    ...
 </span></span><span style="display:flex;"><span>  /applications
 </span></span><span style="display:flex;"><span>    ...
-</span></span></code></pre>
-            </div>
-            <h4 id="overview-1">Overview</h4>
-            <p>Infrastructure and applications are separated at the top level, but applications are still grouped under
-              a single main.tf within /apps for each environment.</p>
-            <h4 id="pros-3">Pros</h4>
-            <ol>
-              <li><strong>Better Isolation</strong>: Infrastructure code is separated from application code, reducing
-                the risk of unintended side effects when deploying applications.</li>
-              <li><strong>Modularity</strong>: Allows for independent updates of infrastructure while having a slightly
-                coupled application setup.</li>
-            </ol>
-            <h4 id="cons-3">Cons</h4>
-            <ol>
-              <li><strong>Moderate Complexity</strong>: While infra is isolated, applications still share a common
-                deployment pipeline which could lead to issues if one application needs changes not applicable to
-                others.</li>
-              <li><strong>Dependency Management</strong>: Still requires coordination between the infra and app
-                deployments but less so than the Integrated structure.</li>
-            </ol>
-            <h4 id="pipeline-implications-1">Pipeline Implications</h4>
-            <p>Could use separate pipelines for infra and apps or a single pipeline that manages dependencies
-              internally. This offers flexibility but requires more sophisticated CI/CD logic to handle the partial
-              coupling of applications.</p>
-            <h3 id="43-isolated-deployment-structure">4.3 Isolated Deployment Structure</h3>
-            <div class="highlight">
-              <pre tabindex="0"
-                style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/pipelines
+</span></span></code></pre></div><h4 id="overview-1">Overview</h4>
+<p>Infrastructure and applications are separated at the top level, but applications are still grouped under a single main.tf within /apps for each environment.</p>
+<h4 id="pros-3">Pros</h4>
+<ol>
+<li><strong>Better Isolation</strong>: Infrastructure code is separated from application code, reducing the risk of unintended side effects when deploying applications.</li>
+<li><strong>Modularity</strong>: Allows for independent updates of infrastructure while having a slightly coupled application setup.</li>
+</ol>
+<h4 id="cons-3">Cons</h4>
+<ol>
+<li><strong>Moderate Complexity</strong>: While infra is isolated, applications still share a common deployment pipeline which could lead to issues if one application needs changes not applicable to others.</li>
+<li><strong>Dependency Management</strong>: Still requires coordination between the infra and app deployments but less so than the Integrated structure.</li>
+</ol>
+<h4 id="pipeline-implications-1">Pipeline Implications</h4>
+<p>Could use separate pipelines for infra and apps or a single pipeline that manages dependencies internally. This offers flexibility but requires more sophisticated CI/CD logic to handle the partial coupling of applications.</p>
+<h3 id="43-isolated-deployment-structure">4.3 Isolated Deployment Structure</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/pipelines
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e"># dev</span>
 </span></span><span style="display:flex;"><span>  my-dev-project.yaml
 </span></span><span style="display:flex;"><span>  my-dev-project-app1.yaml
@@ -405,160 +433,117 @@
 </span></span><span style="display:flex;"><span>    ...
 </span></span><span style="display:flex;"><span>  /applications
 </span></span><span style="display:flex;"><span>    ...
-</span></span></code></pre>
+</span></span></code></pre></div><h4 id="overview-2">Overview</h4>
+<p>Each application has its own directory under /apps, and calls to specific applications are made individually, providing the highest level of isolation.</p>
+<h4 id="pros-4">Pros</h4>
+<ul>
+<li><strong>High Isolation</strong>: Each application can be deployed independently, reducing the deployment risks associated with shared resources.</li>
+<li><strong>Flexibility</strong>: Easier to manage different lifecycle stages for each application, such as different scaling needs or upgrade paths.</li>
+<li><strong>Granular Control</strong>: Changes to one application do not affect others, and rollbacks can be handled per application.</li>
+</ul>
+<h4 id="cons-4">Cons</h4>
+<ul>
+<li><strong>Increased Management Overhead</strong>: More complex directory structure and possibly more state files to manage.</li>
+<li><strong>Potential Redundancy</strong>: Some effort may be duplicated across applications, such as similar CI/CD steps for each app.</li>
+</ul>
+<h4 id="pipeline-implications-2">Pipeline Implications</h4>
+<p>Each application likely has its own pipeline, which increases the number of pipelines but provides maximum control over deployment and versioning. Requires robust orchestration to manage multiple pipelines efficiently.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Choosing between these structures depends on the organization&rsquo;s operational complexity, the interdependencies of applications and infrastructure, and the team&rsquo;s capacity to manage multiple pipelines.</p>
+<ul>
+<li>For smaller projects or those with tightly coupled infra and apps, the <strong>Integrated Deployment Structure</strong> may be simplest.</li>
+<li>For larger teams requiring better separation without full isolation, the <strong>Dedicated Deployment Structure</strong> provides a balanced approach.</li>
+<li>For enterprises with complex environments where applications need to operate independently, the <strong>Isolated Deployment Structure</strong> offers the best control and reduces cross-application risks.</li>
+</ul>
+<p>And of course, there are many hybrid approaches to consider&hellip;</p>
+<h1 id="5-managing-environments-using-terraform-workspaces-vs-dedicated-folders">5. Managing Environments: Using Terraform Workspaces vs Dedicated Folders</h1>
+<p>Here are pros and cons of using Terraform workspaces versus dedicated folders for deploying to different environments (e.g., dev, tst, prd).</p>
+<h3 id="51-terraform-workspaces">5.1 Terraform Workspaces</h3>
+<h4 id="pros-5">Pros</h4>
+<ol>
+<li><strong>Single Codebase</strong>: All environments share a single set of Terraform configuration files, reducing code duplication and making it easier to maintain consistency across environments.</li>
+<li><strong>Simplified Management</strong>: Workspaces allow you to switch between environments easily within the same directory, simplifying workflows for deploying infrastructure to different environments.</li>
+<li><strong>Reduced Repository Complexity</strong>: Since all environments are managed in the same directory, your repository remains simpler with fewer directories or files to manage.</li>
+<li><strong>State Isolation</strong>: Each workspace has its own state file, ensuring that changes in one environment don&rsquo;t affect another.</li>
+</ol>
+<h4 id="cons-5">Cons</h4>
+<ol>
+<li><strong>Limited Environment Customization</strong>: Customizing configurations for each environment (e.g., different resource counts, instance types) can become challenging, as you have to rely on conditionals and variable management within the same set of files.</li>
+<li><strong>Potential for Mistakes</strong>: The risk of accidentally applying changes to the wrong environment increases, especially if developers are not careful when switching workspaces.</li>
+<li><strong>Poor Scalability for Complex Infrastructures</strong>: For complex projects with significantly different environments, managing everything in a single directory with workspaces can become unwieldy.</li>
+<li><strong>Dependency Management</strong>: Managing dependencies between resources across environments (e.g., shared services or resources) can be cumbersome with workspaces, as they don’t naturally support cross-environment resource sharing.</li>
+</ol>
+<h4 id="best-use-case">Best Use Case</h4>
+<ol>
+<li><strong>Small to Medium Projects</strong>: If your environments are very similar and you have a relatively simple infrastructure, workspaces can be a good choice. They simplify management and reduce code duplication, making them well-suited for small to medium-sized projects.</li>
+<li><strong>Consistent Infrastructure:</strong> If the environments do not require significant customization and the main differences can be managed through variables, workspaces offer an efficient way to handle deployments.</li>
+</ol>
+<h3 id="52-dedicated-folders">5.2 Dedicated Folders</h3>
+<h4 id="pros-6">Pros</h4>
+<ol>
+<li><strong>Clear Environment Separation</strong>: Each environment has its own folder with separate Terraform configurations, making it easier to manage and customize infrastructure per environment.</li>
+<li><strong>Environment-Specific Customization</strong>: You can tailor each environment&rsquo;s infrastructure independently, without needing to add complex conditionals or logic to a single set of configurations.</li>
+<li><strong>Better Scalability</strong>: As the infrastructure grows in complexity, dedicated folders offer better scalability, allowing you to manage environments independently without cluttering a single directory.</li>
+<li><strong>Reduced Risk of Mistakes</strong>: Since environments are separated by directories, the risk of accidentally deploying changes to the wrong environment is minimized.</li>
+<li><strong>Easier Cross-Environment Dependencies</strong>: Dedicated folders can more easily handle cross-environment dependencies by referencing shared modules or remote state files.</li>
+</ol>
+<h4 id="cons-6">Cons</h4>
+<ol>
+<li><strong>Code Duplication</strong>: There may be some duplication of code across environment directories, which can lead to inconsistencies if not carefully managed.</li>
+<li><strong>Higher Maintenance Overhead</strong>: Managing multiple folders requires more effort in keeping configurations consistent and synchronized across environments.</li>
+<li><strong>Repository Complexity</strong>: More folders and files can lead to a more complex repository structure, making it harder to navigate, especially for new team members.</li>
+</ol>
+<h4 id="best-use-case-1">Best Use Case</h4>
+<ol>
+<li><strong>Large or Complex Projects:</strong> For large, complex projects where each environment might have different configurations, dedicated folders provide better scalability and clearer separation of concerns.
+Highly Customized Environments: If each environment requires distinct configurations or if your infrastructure needs to scale significantly, dedicated folders offer more flexibility and easier management of cross-environment dependencies.</li>
+<li><strong>Multi-Account Strategies:</strong> If you are employing a multi-account strategy (e.g., different AWS accounts for dev, staging, and production), dedicated folders align better with the need for distinct environments that are isolated not just logically, but also physically across accounts.</li>
+</ol>
+
             </div>
-            <h4 id="overview-2">Overview</h4>
-            <p>Each application has its own directory under /apps, and calls to specific applications are made
-              individually, providing the highest level of isolation.</p>
-            <h4 id="pros-4">Pros</h4>
-            <ul>
-              <li><strong>High Isolation</strong>: Each application can be deployed independently, reducing the
-                deployment risks associated with shared resources.</li>
-              <li><strong>Flexibility</strong>: Easier to manage different lifecycle stages for each application, such
-                as different scaling needs or upgrade paths.</li>
-              <li><strong>Granular Control</strong>: Changes to one application do not affect others, and rollbacks can
-                be handled per application.</li>
-            </ul>
-            <h4 id="cons-4">Cons</h4>
-            <ul>
-              <li><strong>Increased Management Overhead</strong>: More complex directory structure and possibly more
-                state files to manage.</li>
-              <li><strong>Potential Redundancy</strong>: Some effort may be duplicated across applications, such as
-                similar CI/CD steps for each app.</li>
-            </ul>
-            <h4 id="pipeline-implications-2">Pipeline Implications</h4>
-            <p>Each application likely has its own pipeline, which increases the number of pipelines but provides
-              maximum control over deployment and versioning. Requires robust orchestration to manage multiple pipelines
-              efficiently.</p>
-            <h3 id="conclusion">Conclusion</h3>
-            <p>Choosing between these structures depends on the organization&rsquo;s operational complexity, the
-              interdependencies of applications and infrastructure, and the team&rsquo;s capacity to manage multiple
-              pipelines.</p>
-            <ul>
-              <li>For smaller projects or those with tightly coupled infra and apps, the <strong>Integrated Deployment
-                  Structure</strong> may be simplest.</li>
-              <li>For larger teams requiring better separation without full isolation, the <strong>Dedicated Deployment
-                  Structure</strong> provides a balanced approach.</li>
-              <li>For enterprises with complex environments where applications need to operate independently, the
-                <strong>Isolated Deployment Structure</strong> offers the best control and reduces cross-application
-                risks.</li>
-            </ul>
-            <p>And of course, there are many hybrid approaches to consider&hellip;</p>
-            <h1 id="5-managing-environments-using-terraform-workspaces-vs-dedicated-folders">5. Managing Environments:
-              Using Terraform Workspaces vs Dedicated Folders</h1>
-            <p>Here are pros and cons of using Terraform workspaces versus dedicated folders for deploying to different
-              environments (e.g., dev, tst, prd).</p>
-            <h3 id="51-terraform-workspaces">5.1 Terraform Workspaces</h3>
-            <h4 id="pros-5">Pros</h4>
-            <ol>
-              <li><strong>Single Codebase</strong>: All environments share a single set of Terraform configuration
-                files, reducing code duplication and making it easier to maintain consistency across environments.</li>
-              <li><strong>Simplified Management</strong>: Workspaces allow you to switch between environments easily
-                within the same directory, simplifying workflows for deploying infrastructure to different environments.
-              </li>
-              <li><strong>Reduced Repository Complexity</strong>: Since all environments are managed in the same
-                directory, your repository remains simpler with fewer directories or files to manage.</li>
-              <li><strong>State Isolation</strong>: Each workspace has its own state file, ensuring that changes in one
-                environment don&rsquo;t affect another.</li>
-            </ol>
-            <h4 id="cons-5">Cons</h4>
-            <ol>
-              <li><strong>Limited Environment Customization</strong>: Customizing configurations for each environment
-                (e.g., different resource counts, instance types) can become challenging, as you have to rely on
-                conditionals and variable management within the same set of files.</li>
-              <li><strong>Potential for Mistakes</strong>: The risk of accidentally applying changes to the wrong
-                environment increases, especially if developers are not careful when switching workspaces.</li>
-              <li><strong>Poor Scalability for Complex Infrastructures</strong>: For complex projects with significantly
-                different environments, managing everything in a single directory with workspaces can become unwieldy.
-              </li>
-              <li><strong>Dependency Management</strong>: Managing dependencies between resources across environments
-                (e.g., shared services or resources) can be cumbersome with workspaces, as they don’t naturally support
-                cross-environment resource sharing.</li>
-            </ol>
-            <h4 id="best-use-case">Best Use Case</h4>
-            <ol>
-              <li><strong>Small to Medium Projects</strong>: If your environments are very similar and you have a
-                relatively simple infrastructure, workspaces can be a good choice. They simplify management and reduce
-                code duplication, making them well-suited for small to medium-sized projects.</li>
-              <li><strong>Consistent Infrastructure:</strong> If the environments do not require significant
-                customization and the main differences can be managed through variables, workspaces offer an efficient
-                way to handle deployments.</li>
-            </ol>
-            <h3 id="52-dedicated-folders">5.2 Dedicated Folders</h3>
-            <h4 id="pros-6">Pros</h4>
-            <ol>
-              <li><strong>Clear Environment Separation</strong>: Each environment has its own folder with separate
-                Terraform configurations, making it easier to manage and customize infrastructure per environment.</li>
-              <li><strong>Environment-Specific Customization</strong>: You can tailor each environment&rsquo;s
-                infrastructure independently, without needing to add complex conditionals or logic to a single set of
-                configurations.</li>
-              <li><strong>Better Scalability</strong>: As the infrastructure grows in complexity, dedicated folders
-                offer better scalability, allowing you to manage environments independently without cluttering a single
-                directory.</li>
-              <li><strong>Reduced Risk of Mistakes</strong>: Since environments are separated by directories, the risk
-                of accidentally deploying changes to the wrong environment is minimized.</li>
-              <li><strong>Easier Cross-Environment Dependencies</strong>: Dedicated folders can more easily handle
-                cross-environment dependencies by referencing shared modules or remote state files.</li>
-            </ol>
-            <h4 id="cons-6">Cons</h4>
-            <ol>
-              <li><strong>Code Duplication</strong>: There may be some duplication of code across environment
-                directories, which can lead to inconsistencies if not carefully managed.</li>
-              <li><strong>Higher Maintenance Overhead</strong>: Managing multiple folders requires more effort in
-                keeping configurations consistent and synchronized across environments.</li>
-              <li><strong>Repository Complexity</strong>: More folders and files can lead to a more complex repository
-                structure, making it harder to navigate, especially for new team members.</li>
-            </ol>
-            <h4 id="best-use-case-1">Best Use Case</h4>
-            <ol>
-              <li><strong>Large or Complex Projects:</strong> For large, complex projects where each environment might
-                have different configurations, dedicated folders provide better scalability and clearer separation of
-                concerns.
-                Highly Customized Environments: If each environment requires distinct configurations or if your
-                infrastructure needs to scale significantly, dedicated folders offer more flexibility and easier
-                management of cross-environment dependencies.</li>
-              <li><strong>Multi-Account Strategies:</strong> If you are employing a multi-account strategy (e.g.,
-                different AWS accounts for dev, staging, and production), dedicated folders align better with the need
-                for distinct environments that are isolated not just logically, but also physically across accounts.
-              </li>
-            </ol>
-          </div>
-        </article>
-      </main>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+    <img height="48" style="padding-bottom: 16px;" class="author-avatar" src="/images/logo.png" alt="Nicolas Delorme">
 
-    </div>
-    <footer>
-      <hr />
-
-      <p id="social">
-        Find me around the web:
-        <br />
+    <div class="footer_social-icons">
+<a href="https://github.com/cyber-nic" target="_blank" rel="noopener noreferrer me"
+    title="GitHub">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://www.linkedin.com/in/nicolas-delorme-588ba619/" target="_blank" rel="noopener noreferrer me"
+    title="LinkedIn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        © 2025 Nicolas Delorme.
+        
+    </small>
+</footer>
 
 
-        <a href="https://github.com/cyber-nic">GitHub</a>
 
-        |
-        <a href="https://www.linkedin.com/in/nicolas-delorme-588ba619/">LinkedIn</a>
 
-      </p>
 
-      <p class="copyright">
-        Copyright © 2024
-        <a href="https://ndelor.me/"><strong>Nicolas Delorme</strong></a>.
-        This work is licensed under the
-        <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
-      </p>
-      <p class="builtWith">
-        Built with
-        <a href="http://www.gohugo.io/">Hugo</a>,
-        using the theme
-        <a href="https://gitlab.com/ian-s-mcb/smigle-hugo-theme">smigle</a>,
-        which was influenced by the theme
-        <a href="https://github.com/sumnerevans/smol">smol</a>.
-      </p>
-    </footer>
 
-  </div>
+
+    
+    <script src="https://ndelor.me/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
 </body>
-
 </html>

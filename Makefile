@@ -1,4 +1,4 @@
-run:
+dev:
 	hugo server -w -D
 
 build:
