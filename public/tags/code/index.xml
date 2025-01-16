@@ -14,8 +14,8 @@
       
       <guid>https://ndelor.me/posts/mitmproxy-node/</guid>
       
-      <description>Recently I wanted to reverse engineer an application that uses websockets to communicate with with its server. I wanted to see the data that was being sent and received. I used mitmproxy to intercept the traffic and view it in plain text.
-WebSocket traffic operates over TCP, initially using HTTP for handshake (usually port 80 for unencrypted or 443 for encrypted connections). After the handshake, it establishes a persistent, full-duplex communication channel over the same TCP connection.</description>
+      <description>&lt;p&gt;Recently I wanted to reverse engineer an application that uses websockets to communicate with with its server. I wanted to see the data that was being sent and received. I used mitmproxy to intercept the traffic and view it in plain text.&lt;/p&gt;
+&lt;p&gt;WebSocket traffic operates over TCP, initially using HTTP for handshake (usually port 80 for unencrypted or 443 for encrypted connections). After the handshake, it establishes a persistent, full-duplex communication channel over the same TCP connection.&lt;/p&gt;</description>
       
     </item>
     
@@ -26,7 +26,32 @@ WebSocket traffic operates over TCP, initially using HTTP for handshake (usually
       
       <guid>https://ndelor.me/posts/terraform-project-structures/</guid>
       
-      <description>Table of Contents Managing Security and Cost: Accounts as Environments Managing Performance and Risk: Layers and Overlays Managing Code: Repos. Folders, and Pipelines Dedicated Repo for Account and IaC Service Account Setup Application Specific Service Accounts Managing Releases: Applications as Modules Integrated Deployment Structure Dedicated Deployment Structure Isolated Deployment Structure Managing Environments: Using Terraform Workspaces vs Dedicated Folders Terraform Workspaces Dedicated Folders Summary This article delves into the complexities and best practices of structuring Terraform projects, focusing on optimizing infrastructure as code for security, cost management, and performance.</description>
+      <description>&lt;h1 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;Managing Security and Cost: Accounts as Environments&lt;/li&gt;
+&lt;li&gt;Managing Performance and Risk: Layers and Overlays&lt;/li&gt;
+&lt;li&gt;Managing Code: Repos. Folders, and Pipelines
+&lt;ol&gt;
+&lt;li&gt;Dedicated Repo for Account and IaC Service Account Setup&lt;/li&gt;
+&lt;li&gt;Application Specific Service Accounts&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Managing Releases: Applications as Modules
+&lt;ol&gt;
+&lt;li&gt;Integrated Deployment Structure&lt;/li&gt;
+&lt;li&gt;Dedicated Deployment Structure&lt;/li&gt;
+&lt;li&gt;Isolated Deployment Structure&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Managing Environments: Using Terraform Workspaces vs Dedicated Folders
+&lt;ol&gt;
+&lt;li&gt;Terraform Workspaces&lt;/li&gt;
+&lt;li&gt;Dedicated Folders&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+&lt;p&gt;This article delves into the complexities and best practices of structuring Terraform projects, focusing on optimizing infrastructure as code for security, cost management, and performance. It discusses the benefits of using separate AWS accounts for each environment to enhance security and manage costs, and explores different strategies for managing code and deployments through layers and overlays. The article compares the use of Terraform workspaces versus dedicated folders, providing guidance on when each method is most effective based on the size and complexity of the project. Ultimately, it offers practical recommendations on setting up and maintaining scalable, secure, and efficient Terraform infrastructure, making it a valuable resource for developers and teams working with infrastructure as code.&lt;/p&gt;</description>
       
     </item>
     

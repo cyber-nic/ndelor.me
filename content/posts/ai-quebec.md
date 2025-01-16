@@ -133,7 +133,11 @@ The heart of the project involved converting sheet music to a usable digital for
 
 Setting up CUDA and _homr_ was a bit challenging, but I appreciated _homr_’s use of Python’s Poetry dependency manager, which streamlined the installation. Once configured, processing the sheet music was straightforward. I wrote a simple bash script to process images which completed in a few hours. A nice bonus: _homr_ generates a `_teaser.png` for each successful detection, overlaying the original image with color-highlighted staff lines.
 
+1. [ormer - Old scans give two staff groups instead of three](https://github.com/BreezeWhite/oemer/issues/51)
+1. [homr - Support more than one instrument](https://github.com/liebharc/homr/issues/7)
+
 ```bash
+# run homr
 poetry run homr "$image_path" > "$output_file"
 
 if [ $? -eq 0 ]; then

@@ -14,7 +14,8 @@
       
       <guid>https://ndelor.me/posts/cockroachdb-local/</guid>
       
-      <description>update 2024-01-11 While not central to this article the use of the CRC32 hash in the code below is noticeable. Since writing this article I learned that the CRC32, particularly the CRC32C variant used by Google Cloud Storage (GCS), is optimized for error detection, not as a unique identifier for data. It has a higher probability of collisions (1 in 4.3 billion) compared to more robust algorithms. To overcome these limitations, SHA-256, a more robust hashing algorithm, is recommended.</description>
+      <description>&lt;h2 id=&#34;update-2024-01-11&#34;&gt;update 2024-01-11&lt;/h2&gt;
+&lt;p&gt;While not central to this article the use of the CRC32 hash in the code below is noticeable. Since writing this article I learned that the CRC32, particularly the CRC32C variant used by Google Cloud Storage (GCS), is optimized for error detection, not as a unique identifier for data. It has a higher probability of collisions (1 in 4.3 billion) compared to more robust algorithms. To overcome these limitations, SHA-256, a more robust hashing algorithm, is recommended. SHA-256 significantly reduces the likelihood of hash collisions, ensuring better uniqueness for data identification.&lt;/p&gt;</description>
       
     </item>
     

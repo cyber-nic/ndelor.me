@@ -14,8 +14,8 @@
       
       <guid>https://ndelor.me/posts/dev-k8s-options/</guid>
       
-      <description>Minikube, KinD (Kubernetes in Docker), and k3d (K3s in Docker) are all tools for running Kubernetes clusters locally, primarily for development purposes. My personal experience with all 3 has been very positive.
-For the last couple of years I&amp;rsquo;ve been operating on Fedora linux and have been keeping up with the latest releases. Originally I used minikube, but switched over to k3d whe DNS issues prevented it from reaching docker hub.</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://minikube.sigs.k8s.io/docs/start/&#34;&gt;Minikube&lt;/a&gt;, &lt;a href=&#34;https://kind.sigs.k8s.io/&#34;&gt;KinD&lt;/a&gt; (Kubernetes in Docker), and &lt;a href=&#34;https://k3d.io/&#34;&gt;k3d&lt;/a&gt; (K3s in Docker) are all tools for running Kubernetes clusters locally, primarily for development purposes. My personal experience with all 3 has been very positive.&lt;/p&gt;
+&lt;p&gt;For the last couple of years I&amp;rsquo;ve been operating on Fedora linux and have been keeping up with the latest releases. Originally I used minikube, but switched over to k3d whe DNS issues prevented it from reaching docker hub. A few months back I switched over to KinD out of simple curiosity. All 3 options drain my laptop&amp;rsquo;s battery, so there isn&amp;rsquo;t a clear winner there.&lt;/p&gt;</description>
       
     </item>
     

@@ -68,23 +68,28 @@
     </script>
 
 
-<meta name="generator" content="Hugo 0.123.7">
+<meta name="generator" content="Hugo 0.140.2">
 
     
-    <meta property="og:title" content="Gorm UUID Many to Many" />
-<meta property="og:description" content="Hasham Ali&rsquo;s How to Use UUID Key Type with Gorm article was terrific for suggesting how to handle using UUID as the ID in gorm. It took a little more fiddling to be able to use the keys in a many-to-many relationship. In the end, it worked by having to explicitly define the join table and the foreign key constraints. Sample code is below.
-import ( &#34;time&#34; &#34;github.com/google/uuid&#34; &#34;gorm.io/gorm&#34; ) // BaseAttributes contains common columns for all tables." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://ndelor.me/posts/gorm-uuid-many-to-many/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-10-05T13:45:40+01:00" />
-<meta property="article:modified_time" content="2023-10-16T13:25:51+01:00" />
-
+    <meta property="og:url" content="https://ndelor.me/posts/gorm-uuid-many-to-many/">
+  <meta property="og:site_name" content="ndelor.me">
+  <meta property="og:title" content="Gorm UUID Many to Many">
+  <meta property="og:description" content="Hasham Ali’s How to Use UUID Key Type with Gorm article was terrific for suggesting how to handle using UUID as the ID in gorm. It took a little more fiddling to be able to use the keys in a many-to-many relationship. In the end, it worked by having to explicitly define the join table and the foreign key constraints. Sample code is below.
+import ( &#34;time&#34; &#34;github.com/google/uuid&#34; &#34;gorm.io/gorm&#34; ) // BaseAttributes contains common columns for all tables. // This will replace the default gorm.Model : https://pkg.go.dev/gorm.io/gorm@v1.25.4#Model // and in this specific case will replace the uint id type with uuid. type BaseAttributes struct { ID uuid.UUID `json:&#34;id&#34; gorm:&#34;type:uuid;primary_key;&#34;` CreatedAt time.Time UpdatedAt time.Time DeletedAt *time.Time `sql:&#34;index&#34;` } // BeforeCreate is a gorm hook to auto-set a UUID at objection creation time. // https://gorm.io/docs/hooks.html func (base *BaseGormUUID) BeforeCreate(tx *gorm.DB) error { tx.Statement.SetColumn(&#34;ID&#34;, uuid.New()) return nil } type User struct { BaseAttributes Email string `json:&#34;email&#34;` Username string `json:&#34;username&#34;` } // Organization is the representation of an organization model. It type Organization struct { BaseAttributes Name string `json:&#34;name&#34;` CreatedBy uuid.UUID `json:&#34;createdBy&#34;` Users []User `json:&#34;users&#34; gorm:&#34;many2many:organization_users&#34;` } // OrganizationUsers is a many-to-many join table between Organization and User. It is created explicitely so as to // help define the foreign key constraints. type OrganizationUsers struct { BaseAttributes Organization Organization OrganizationID uuid.UUID `gorm:&#34;primaryKey&#34;` User User UserID uuid.UUID `gorm:&#34;primaryKey&#34;` }">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-10-05T13:45:40+01:00">
+    <meta property="article:modified_time" content="2023-10-16T13:25:51+01:00">
+    <meta property="article:tag" content="Go">
 
 
     
-    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Gorm UUID Many to Many"/>
-<meta name="twitter:description" content="Hasham Ali&rsquo;s How to Use UUID Key Type with Gorm article was terrific for suggesting how to handle using UUID as the ID in gorm. It took a little more fiddling to be able to use the keys in a many-to-many relationship. In the end, it worked by having to explicitly define the join table and the foreign key constraints. Sample code is below.
-import ( &#34;time&#34; &#34;github.com/google/uuid&#34; &#34;gorm.io/gorm&#34; ) // BaseAttributes contains common columns for all tables."/>
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Gorm UUID Many to Many">
+  <meta name="twitter:description" content="Hasham Ali’s How to Use UUID Key Type with Gorm article was terrific for suggesting how to handle using UUID as the ID in gorm. It took a little more fiddling to be able to use the keys in a many-to-many relationship. In the end, it worked by having to explicitly define the join table and the foreign key constraints. Sample code is below.
+import ( &#34;time&#34; &#34;github.com/google/uuid&#34; &#34;gorm.io/gorm&#34; ) // BaseAttributes contains common columns for all tables. // This will replace the default gorm.Model : https://pkg.go.dev/gorm.io/gorm@v1.25.4#Model // and in this specific case will replace the uint id type with uuid. type BaseAttributes struct { ID uuid.UUID `json:&#34;id&#34; gorm:&#34;type:uuid;primary_key;&#34;` CreatedAt time.Time UpdatedAt time.Time DeletedAt *time.Time `sql:&#34;index&#34;` } // BeforeCreate is a gorm hook to auto-set a UUID at objection creation time. // https://gorm.io/docs/hooks.html func (base *BaseGormUUID) BeforeCreate(tx *gorm.DB) error { tx.Statement.SetColumn(&#34;ID&#34;, uuid.New()) return nil } type User struct { BaseAttributes Email string `json:&#34;email&#34;` Username string `json:&#34;username&#34;` } // Organization is the representation of an organization model. It type Organization struct { BaseAttributes Name string `json:&#34;name&#34;` CreatedBy uuid.UUID `json:&#34;createdBy&#34;` Users []User `json:&#34;users&#34; gorm:&#34;many2many:organization_users&#34;` } // OrganizationUsers is a many-to-many join table between Organization and User. It is created explicitely so as to // help define the foreign key constraints. type OrganizationUsers struct { BaseAttributes Organization Organization OrganizationID uuid.UUID `gorm:&#34;primaryKey&#34;` User User UserID uuid.UUID `gorm:&#34;primaryKey&#34;` }">
 
 
     

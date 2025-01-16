@@ -14,8 +14,12 @@
       
       <guid>https://ndelor.me/posts/ai-quebec/</guid>
       
-      <description>Breathing New Life into Traditional Quebecois Songs with AI In late 2024, I stumbled upon a delightful book titled Chansons du Vieux Québec at the Last Bookshop Jericho in Oxford. Published in 1946, this book is a treasure trove of traditional Quebecois songs, complete with music scores. The idea of using AI to revive these songs struck me as a fascinating project.
-The complete outcome of this project can be found ndelor.</description>
+      <description>&lt;div style=&#34;display: flex; justify-content: center;&#34;&gt;
+  &lt;img src=&#34;https://ndelor.me/images/je-me-souviens.png&#34; alt=&#34;je me souviens&#34; 
+       style=&#34;max-width: 50%; height: auto; border-radius: 50%; border: 0px;&#34;&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;breathing-new-life-into-traditional-quebecois-songs-with-ai&#34;&gt;Breathing New Life into Traditional Quebecois Songs with AI&lt;/h3&gt;
+&lt;p&gt;In late 2024, I stumbled upon a delightful book titled &lt;em&gt;Chansons du Vieux Québec&lt;/em&gt; at the Last Bookshop Jericho in Oxford. Published in 1946, this book is a treasure trove of traditional Quebecois songs, complete with music scores. The idea of using AI to revive these songs struck me as a fascinating project.&lt;/p&gt;</description>
       
     </item>
     
@@ -26,8 +30,8 @@ The complete outcome of this project can be found ndelor.</description>
       
       <guid>https://ndelor.me/posts/mitmproxy-node/</guid>
       
-      <description>Recently I wanted to reverse engineer an application that uses websockets to communicate with with its server. I wanted to see the data that was being sent and received. I used mitmproxy to intercept the traffic and view it in plain text.
-WebSocket traffic operates over TCP, initially using HTTP for handshake (usually port 80 for unencrypted or 443 for encrypted connections). After the handshake, it establishes a persistent, full-duplex communication channel over the same TCP connection.</description>
+      <description>&lt;p&gt;Recently I wanted to reverse engineer an application that uses websockets to communicate with with its server. I wanted to see the data that was being sent and received. I used mitmproxy to intercept the traffic and view it in plain text.&lt;/p&gt;
+&lt;p&gt;WebSocket traffic operates over TCP, initially using HTTP for handshake (usually port 80 for unencrypted or 443 for encrypted connections). After the handshake, it establishes a persistent, full-duplex communication channel over the same TCP connection.&lt;/p&gt;</description>
       
     </item>
     
@@ -38,7 +42,32 @@ WebSocket traffic operates over TCP, initially using HTTP for handshake (usually
       
       <guid>https://ndelor.me/posts/terraform-project-structures/</guid>
       
-      <description>Table of Contents Managing Security and Cost: Accounts as Environments Managing Performance and Risk: Layers and Overlays Managing Code: Repos. Folders, and Pipelines Dedicated Repo for Account and IaC Service Account Setup Application Specific Service Accounts Managing Releases: Applications as Modules Integrated Deployment Structure Dedicated Deployment Structure Isolated Deployment Structure Managing Environments: Using Terraform Workspaces vs Dedicated Folders Terraform Workspaces Dedicated Folders Summary This article delves into the complexities and best practices of structuring Terraform projects, focusing on optimizing infrastructure as code for security, cost management, and performance.</description>
+      <description>&lt;h1 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;Managing Security and Cost: Accounts as Environments&lt;/li&gt;
+&lt;li&gt;Managing Performance and Risk: Layers and Overlays&lt;/li&gt;
+&lt;li&gt;Managing Code: Repos. Folders, and Pipelines
+&lt;ol&gt;
+&lt;li&gt;Dedicated Repo for Account and IaC Service Account Setup&lt;/li&gt;
+&lt;li&gt;Application Specific Service Accounts&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Managing Releases: Applications as Modules
+&lt;ol&gt;
+&lt;li&gt;Integrated Deployment Structure&lt;/li&gt;
+&lt;li&gt;Dedicated Deployment Structure&lt;/li&gt;
+&lt;li&gt;Isolated Deployment Structure&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Managing Environments: Using Terraform Workspaces vs Dedicated Folders
+&lt;ol&gt;
+&lt;li&gt;Terraform Workspaces&lt;/li&gt;
+&lt;li&gt;Dedicated Folders&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+&lt;p&gt;This article delves into the complexities and best practices of structuring Terraform projects, focusing on optimizing infrastructure as code for security, cost management, and performance. It discusses the benefits of using separate AWS accounts for each environment to enhance security and manage costs, and explores different strategies for managing code and deployments through layers and overlays. The article compares the use of Terraform workspaces versus dedicated folders, providing guidance on when each method is most effective based on the size and complexity of the project. Ultimately, it offers practical recommendations on setting up and maintaining scalable, secure, and efficient Terraform infrastructure, making it a valuable resource for developers and teams working with infrastructure as code.&lt;/p&gt;</description>
       
     </item>
     
@@ -49,8 +78,10 @@ WebSocket traffic operates over TCP, initially using HTTP for handshake (usually
       
       <guid>https://ndelor.me/posts/gcp-gpu-instance/</guid>
       
-      <description>Context Many interesting projects now require a modern GPU (or M1, but I&amp;rsquo;m not desperate enough to downgrade from Linux to OSX). Below are notes on how to spin up a VM instance with GPU in GCP and run a basic PyTorch workload. I chose Watermark-Removal-Pytorch.
-Cost/Performance After studying the available GPU configurations as well as [VM instance pricing][https://cloud.google.com/compute/vm-instance-pricing] I determined that the most affordable Accelerator optimized configuration (~$250/month) is the N1 + nvidia-tesla-t4 (I operated in the europe-west1 region).</description>
+      <description>&lt;h1 id=&#34;context&#34;&gt;Context&lt;/h1&gt;
+&lt;p&gt;Many interesting projects now require a modern GPU (or M1, but I&amp;rsquo;m not desperate enough to downgrade from Linux to OSX). Below are notes on how to spin up a VM instance with GPU in GCP and run a basic PyTorch workload. I chose &lt;a href=&#34;https://github.com/braindotai/Watermark-Removal-Pytorch&#34;&gt;Watermark-Removal-Pytorch&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;costperformance&#34;&gt;Cost/Performance&lt;/h1&gt;
+&lt;p&gt;After studying the available &lt;a href=&#34;https://cloud.google.com/compute/docs/gpus&#34;&gt;GPU configurations&lt;/a&gt; as well as [VM instance pricing][https://cloud.google.com/compute/vm-instance-pricing] I determined that the most affordable Accelerator optimized configuration (~$250/month) is the &lt;code&gt;N1 + nvidia-tesla-t4&lt;/code&gt; (I operated in the europe-west1 region). This was plenty computing-power for my modest needs. This exercice set me back $0.83 USD.&lt;/p&gt;</description>
       
     </item>
     
@@ -61,8 +92,8 @@ Cost/Performance After studying the available GPU configurations as well as [VM 
       
       <guid>https://ndelor.me/posts/next-thoughts/</guid>
       
-      <description>In 2022, I launched www.4ks.io, a recipe editing and forking website. I used React and ViteJS v2 for the front-end and was really impressed with its performance, particularly its quick Time to Interactive (TTI) metrics.
-Recently, I began exploring NextJS, initially with version 13 and then upgrading to Next 14, to integrate server-side rendering (SSR) for better SEO and providing better i18n tooling. The performance with NextJS was on par with ViteJS, but I ran into some challenges, such as duplicate API calls during SSR.</description>
+      <description>&lt;p&gt;In 2022, I launched &lt;a href=&#34;https://www.4ks.io&#34;&gt;www.4ks.io&lt;/a&gt;, a recipe editing and forking website. I used React and ViteJS v2 for the front-end and was really impressed with its performance, particularly its quick Time to Interactive (TTI) metrics.&lt;/p&gt;
+&lt;p&gt;Recently, I began exploring NextJS, initially with version 13 and then upgrading to Next 14, to integrate server-side rendering (SSR) for better SEO and providing better i18n tooling. The performance with NextJS was on par with ViteJS, but I ran into some challenges, such as duplicate API calls during SSR. I utilized openapi-typescript-codegen for API swagger definition and highly recommended tRPC based a very positive experience.&lt;/p&gt;</description>
       
     </item>
     
@@ -73,8 +104,8 @@ Recently, I began exploring NextJS, initially with version 13 and then upgrading
       
       <guid>https://ndelor.me/posts/dev-k8s-options/</guid>
       
-      <description>Minikube, KinD (Kubernetes in Docker), and k3d (K3s in Docker) are all tools for running Kubernetes clusters locally, primarily for development purposes. My personal experience with all 3 has been very positive.
-For the last couple of years I&amp;rsquo;ve been operating on Fedora linux and have been keeping up with the latest releases. Originally I used minikube, but switched over to k3d whe DNS issues prevented it from reaching docker hub.</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://minikube.sigs.k8s.io/docs/start/&#34;&gt;Minikube&lt;/a&gt;, &lt;a href=&#34;https://kind.sigs.k8s.io/&#34;&gt;KinD&lt;/a&gt; (Kubernetes in Docker), and &lt;a href=&#34;https://k3d.io/&#34;&gt;k3d&lt;/a&gt; (K3s in Docker) are all tools for running Kubernetes clusters locally, primarily for development purposes. My personal experience with all 3 has been very positive.&lt;/p&gt;
+&lt;p&gt;For the last couple of years I&amp;rsquo;ve been operating on Fedora linux and have been keeping up with the latest releases. Originally I used minikube, but switched over to k3d whe DNS issues prevented it from reaching docker hub. A few months back I switched over to KinD out of simple curiosity. All 3 options drain my laptop&amp;rsquo;s battery, so there isn&amp;rsquo;t a clear winner there.&lt;/p&gt;</description>
       
     </item>
     
@@ -85,8 +116,9 @@ For the last couple of years I&amp;rsquo;ve been operating on Fedora linux and h
       
       <guid>https://ndelor.me/posts/cloud-lb-cost-savings/</guid>
       
-      <description>Context In an effort to learn more about the Google Cloud Platform, I built and deployed a website using Cloud Run functions, hosted behind a GCP Load Balancer. The performance was great. Even without conducting any performance or benchmark tests, I observed that the website was very responsive globally, as relayed by a family member in Singapore.
-Unfortunately, the costs were not as favorable. The cost of running a single load balancer was about ~$25 per month.</description>
+      <description>&lt;h3 id=&#34;context&#34;&gt;Context&lt;/h3&gt;
+&lt;p&gt;In an effort to learn more about the Google Cloud Platform, I built and deployed a website using Cloud Run functions, hosted behind a GCP Load Balancer. The performance was great. Even without conducting any performance or benchmark tests, I observed that the website was very responsive globally, as relayed by a family member in Singapore.&lt;/p&gt;
+&lt;p&gt;Unfortunately, the costs were not as favorable. The cost of running a single load balancer was about ~$25 per month. It is simply too much for a personal project that is not generating any revenue.&lt;/p&gt;</description>
       
     </item>
     
@@ -97,8 +129,55 @@ Unfortunately, the costs were not as favorable. The cost of running a single loa
       
       <guid>https://ndelor.me/posts/gorm-uuid-many-to-many/</guid>
       
-      <description>Hasham Ali&amp;rsquo;s How to Use UUID Key Type with Gorm article was terrific for suggesting how to handle using UUID as the ID in gorm. It took a little more fiddling to be able to use the keys in a many-to-many relationship. In the end, it worked by having to explicitly define the join table and the foreign key constraints. Sample code is below.
-import ( &amp;#34;time&amp;#34; &amp;#34;github.com/google/uuid&amp;#34; &amp;#34;gorm.io/gorm&amp;#34; ) // BaseAttributes contains common columns for all tables.</description>
+      <description>&lt;p&gt;Hasham Ali&amp;rsquo;s &lt;a href=&#34;https://medium.com/@the.hasham.ali/how-to-use-uuid-key-type-with-gorm-cc00d4ec7100&#34;&gt;How to Use UUID Key Type with Gorm&lt;/a&gt; article was terrific for suggesting how to handle using UUID as the ID in gorm. It took a little more fiddling to be able to use the keys in a many-to-many
+relationship. In the end, it worked by having to explicitly define the join table and the foreign key constraints. Sample code is below.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;github.com/google/uuid&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;gorm.io/gorm&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// BaseAttributes contains common columns for all tables.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// This will replace the default gorm.Model : https://pkg.go.dev/gorm.io/gorm@v1.25.4#Model
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// and in this specific case will replace the uint id type with uuid.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;BaseAttributes&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;ID&lt;/span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;uuid&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;UUID&lt;/span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;`json:&amp;#34;id&amp;#34; gorm:&amp;#34;type:uuid;primary_key;&amp;#34;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;CreatedAt&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;time&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Time&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;UpdatedAt&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;time&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Time&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;DeletedAt&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;time&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Time&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;`sql:&amp;#34;index&amp;#34;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// BeforeCreate is a gorm hook to auto-set a UUID at objection creation time.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// https://gorm.io/docs/hooks.html
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;base&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;BaseGormUUID&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;BeforeCreate&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;tx&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;gorm&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;DB&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;error&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;tx&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Statement&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;SetColumn&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ID&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;uuid&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;New&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;User&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;BaseAttributes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;Email&lt;/span&gt;      &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;`json:&amp;#34;email&amp;#34;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;Username&lt;/span&gt;   &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;`json:&amp;#34;username&amp;#34;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Organization is the representation of an organization model. It
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Organization&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;BaseAttributes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;Name&lt;/span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;    &lt;span style=&#34;color:#e6db74&#34;&gt;`json:&amp;#34;name&amp;#34;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;CreatedBy&lt;/span&gt;   &lt;span style=&#34;color:#a6e22e&#34;&gt;uuid&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;UUID&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;`json:&amp;#34;createdBy&amp;#34;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;Users&lt;/span&gt;       []&lt;span style=&#34;color:#a6e22e&#34;&gt;User&lt;/span&gt;    &lt;span style=&#34;color:#e6db74&#34;&gt;`json:&amp;#34;users&amp;#34;    gorm:&amp;#34;many2many:organization_users&amp;#34;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// OrganizationUsers is a many-to-many join table between Organization and User. It is created explicitely so as to
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// help define the foreign key constraints.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;OrganizationUsers&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;BaseAttributes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;Organization&lt;/span&gt;   &lt;span style=&#34;color:#a6e22e&#34;&gt;Organization&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;OrganizationID&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;uuid&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;UUID&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;`gorm:&amp;#34;primaryKey&amp;#34;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;User&lt;/span&gt;           &lt;span style=&#34;color:#a6e22e&#34;&gt;User&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;UserID&lt;/span&gt;         &lt;span style=&#34;color:#a6e22e&#34;&gt;uuid&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;UUID&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;`gorm:&amp;#34;primaryKey&amp;#34;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
       
     </item>
     
@@ -109,9 +188,16 @@ import ( &amp;#34;time&amp;#34; &amp;#34;github.com/google/uuid&amp;#34; &amp;#3
       
       <guid>https://ndelor.me/posts/go-runtime-frame/</guid>
       
-      <description>Both the go-kit/log and rs/zerolog loggers provide a Caller method that returns the caller of the function that called it. This is useful for logging the function name in the log output. This functionality is immensly useful and roused my curiosity as to how it is implemented.
-zerolog logger caller example
-import &amp;#34;github.com/rs/zerolog&amp;#34; import &amp;#34;github.com/rs/zerolog/log&amp;#34; func main() { log.Logger = log.With().Caller().Logger() // &amp;lt;-- log.Debug().Str(&amp;#34;foo&amp;#34;, &amp;#34;bar&amp;#34;).Msg(&amp;#34;This will be logged with a caller&amp;#34;) } go-kit logger caller example</description>
+      <description>&lt;p&gt;Both the &lt;code&gt;go-kit/log&lt;/code&gt; and &lt;code&gt;rs/zerolog&lt;/code&gt; loggers provide a &lt;code&gt;Caller&lt;/code&gt; method that returns the caller of the function that called it. This is useful for logging the function name in the log output. This functionality is immensly useful and roused my curiosity as to how it is implemented.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/rs/zerolog#add-file-and-line-number-to-log&#34;&gt;zerolog logger caller&lt;/a&gt; example&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;github.com/rs/zerolog&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;github.com/rs/zerolog/log&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Logger&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;With&lt;/span&gt;().&lt;span style=&#34;color:#a6e22e&#34;&gt;Caller&lt;/span&gt;().&lt;span style=&#34;color:#a6e22e&#34;&gt;Logger&lt;/span&gt;() &lt;span style=&#34;color:#75715e&#34;&gt;// &amp;lt;--
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Debug&lt;/span&gt;().&lt;span style=&#34;color:#a6e22e&#34;&gt;Str&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;foo&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;bar&amp;#34;&lt;/span&gt;).&lt;span style=&#34;color:#a6e22e&#34;&gt;Msg&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;This will be logged with a caller&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/go-kit/log#timestamps-and-callers&#34;&gt;go-kit logger caller&lt;/a&gt; example&lt;/p&gt;</description>
       
     </item>
     
@@ -122,8 +208,95 @@ import &amp;#34;github.com/rs/zerolog&amp;#34; import &amp;#34;github.com/rs/zer
       
       <guid>https://ndelor.me/posts/hai-img-distribution/</guid>
       
-      <description>Scraping Results This table shows some metadata about the images scraped.
-Prefix Size (GB) Images Distinct Images Duplicate Images Duplicate Images % A 12 71077 48126 22951 32.3% B 456 1672477 1667500 4977 0.3% C 48 290248 278891 11357 3.9% D 29 122001 121977 24 0.0% E 29 212701 209391 3310 1.6% F 5 40301 40301 0 0.0% G 0.04 216 215 1 0.5% &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;- &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;- &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash; &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;- Total 579 2409021 2366401 42620 0 The scraping process resulted in 2.</description>
+      <description>&lt;h1 id=&#34;scraping-results&#34;&gt;Scraping Results&lt;/h1&gt;
+&lt;p&gt;This table shows some metadata about the images scraped.&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Prefix  &lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Size (GB)  &lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Images  &lt;/th&gt;
+          &lt;th&gt;Distinct Images  &lt;/th&gt;
+          &lt;th&gt;Duplicate Images  &lt;/th&gt;
+          &lt;th&gt;Duplicate Images %  &lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;A&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;12&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;71077&lt;/td&gt;
+          &lt;td&gt;48126&lt;/td&gt;
+          &lt;td&gt;22951&lt;/td&gt;
+          &lt;td&gt;32.3%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;B&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;456&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;1672477&lt;/td&gt;
+          &lt;td&gt;1667500&lt;/td&gt;
+          &lt;td&gt;4977&lt;/td&gt;
+          &lt;td&gt;0.3%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;C&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;48&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;290248&lt;/td&gt;
+          &lt;td&gt;278891&lt;/td&gt;
+          &lt;td&gt;11357&lt;/td&gt;
+          &lt;td&gt;3.9%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;D&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;29&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;122001&lt;/td&gt;
+          &lt;td&gt;121977&lt;/td&gt;
+          &lt;td&gt;24&lt;/td&gt;
+          &lt;td&gt;0.0%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;E&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;29&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;212701&lt;/td&gt;
+          &lt;td&gt;209391&lt;/td&gt;
+          &lt;td&gt;3310&lt;/td&gt;
+          &lt;td&gt;1.6%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;F&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;5&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;40301&lt;/td&gt;
+          &lt;td&gt;40301&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;0.0%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;G&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;0.04&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;216&lt;/td&gt;
+          &lt;td&gt;215&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;0.5%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-&lt;/td&gt;
+          &lt;td&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-&lt;/td&gt;
+          &lt;td&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&lt;/td&gt;
+          &lt;td&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Total&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;579&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;2409021&lt;/td&gt;
+          &lt;td&gt;2366401&lt;/td&gt;
+          &lt;td&gt;42620&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The scraping process resulted in 2.4M images. Current cost is $0.374/day in storage for 543.35GB. From the looks of it, GCP buckets are smart enough to save on storage by not duplicating images that are identical. This size discrepancy was also a hint that lead to the duplicate analysis.&lt;/p&gt;</description>
       
     </item>
     
@@ -134,7 +307,8 @@ Prefix Size (GB) Images Distinct Images Duplicate Images Duplicate Images % A 12
       
       <guid>https://ndelor.me/posts/cockroachdb-local/</guid>
       
-      <description>update 2024-01-11 While not central to this article the use of the CRC32 hash in the code below is noticeable. Since writing this article I learned that the CRC32, particularly the CRC32C variant used by Google Cloud Storage (GCS), is optimized for error detection, not as a unique identifier for data. It has a higher probability of collisions (1 in 4.3 billion) compared to more robust algorithms. To overcome these limitations, SHA-256, a more robust hashing algorithm, is recommended.</description>
+      <description>&lt;h2 id=&#34;update-2024-01-11&#34;&gt;update 2024-01-11&lt;/h2&gt;
+&lt;p&gt;While not central to this article the use of the CRC32 hash in the code below is noticeable. Since writing this article I learned that the CRC32, particularly the CRC32C variant used by Google Cloud Storage (GCS), is optimized for error detection, not as a unique identifier for data. It has a higher probability of collisions (1 in 4.3 billion) compared to more robust algorithms. To overcome these limitations, SHA-256, a more robust hashing algorithm, is recommended. SHA-256 significantly reduces the likelihood of hash collisions, ensuring better uniqueness for data identification.&lt;/p&gt;</description>
       
     </item>
     
@@ -145,8 +319,9 @@ Prefix Size (GB) Images Distinct Images Duplicate Images Duplicate Images % A 12
       
       <guid>https://ndelor.me/posts/hai-computer-vision/</guid>
       
-      <description>I have 2,000,000 images which all containt a watermark pattern. This post will explore options for removing the watermarks in order to improve the quality of the OCR operations to follow.
-1) Skipping Watermark Removal The cheapest option in terms of time and resources is to skip watermark removal altogether. This can be done by filtering out the known watermark text from the OCR results. This is the best short-term solution, as it is relatively easy to implement and does not require any additional software.</description>
+      <description>&lt;p&gt;I have 2,000,000 images which all containt a watermark pattern. This post will explore options for removing the watermarks in order to improve the quality of the OCR operations to follow.&lt;/p&gt;
+&lt;h1 id=&#34;1-skipping-watermark-removal&#34;&gt;1) Skipping Watermark Removal&lt;/h1&gt;
+&lt;p&gt;The cheapest option in terms of time and resources is to skip watermark removal altogether. This can be done by filtering out the known watermark text from the OCR results. This is the best short-term solution, as it is relatively easy to implement and does not require any additional software.&lt;/p&gt;</description>
       
     </item>
     
@@ -157,8 +332,10 @@ Prefix Size (GB) Images Distinct Images Duplicate Images Duplicate Images % A 12
       
       <guid>https://ndelor.me/posts/hai-scraping/</guid>
       
-      <description>Target The target site is completely free and public. While the site&amp;rsquo;s performance is sufficient it unfortunately isn&amp;rsquo;t well maintained: SSL cert is expired. Luckily the sought after information is available directly via REST calls. No html parsing necessary.
-Process The scraping process was performed on a Cloud Compute, Regular Performance, $5/month VM on Vultr.com. The attached 120GB block storage was quickly expanded to 500GB, which increased the cost from $3.</description>
+      <description>&lt;h1 id=&#34;target&#34;&gt;Target&lt;/h1&gt;
+&lt;p&gt;The target site is completely free and public. While the site&amp;rsquo;s performance is sufficient it unfortunately isn&amp;rsquo;t well maintained: SSL cert is expired. Luckily the sought after information is available directly via REST calls. No html parsing necessary.&lt;/p&gt;
+&lt;h1 id=&#34;process&#34;&gt;Process&lt;/h1&gt;
+&lt;p&gt;The scraping process was performed on a Cloud Compute, Regular Performance, $5/month VM on Vultr.com. The attached 120GB block storage was quickly expanded to 500GB, which increased the cost from $3.00/month to $12.50/month. The scraping operation completed in approximately 1 month using tmux.&lt;/p&gt;</description>
       
     </item>
     
@@ -169,8 +346,8 @@ Process The scraping process was performed on a Cloud Compute, Regular Performan
       
       <guid>https://ndelor.me/posts/ai-making-history/</guid>
       
-      <description>In the summer of 2023, I embarked on an ambitious journey to collect an extensive archive of historical images, totaling close to 2 million, from a public online repository. These captivating images capture typed or handwritten accounts of war experiences, predominantly in a single non-English language, although they encompass various other languages as well.
-While I won&amp;rsquo;t disclose the name of the archive or share any documents here, I may provide some information in the future.</description>
+      <description>&lt;p&gt;In the summer of 2023, I embarked on an ambitious journey to collect an extensive archive of historical images, totaling close to 2 million, from a public online repository. These captivating images capture typed or handwritten accounts of war experiences, predominantly in a single non-English language, although they encompass various other languages as well.&lt;/p&gt;
+&lt;p&gt;While I won&amp;rsquo;t disclose the name of the archive or share any documents here, I may provide some information in the future. My primary objective is to leverage modern image, text, and data mining technologies to extract valuable insights from these documents. By employing AI, I aim to identify individuals, events, locations, and precise date/time references mentioned in the accounts. Moreover, I strive to uncover meaningful patterns such as relationships and other human interactions within the dataset.&lt;/p&gt;</description>
       
     </item>
     
@@ -181,7 +358,16 @@ While I won&amp;rsquo;t disclose the name of the archive or share any documents 
       
       <guid>https://ndelor.me/posts/hai-system-breakdown/</guid>
       
-      <description>Assumptions / Constraints We will operate on a dataset of ~2,000,000 jpeg images / ~500GB The initial budget is $1000. It is expected that this will increase, but the goal is to re-evaluate the budget prior to spending. We will operate using the Google Cloud Platform (GCP) but might explore other cloud offerings when performance or cost become a concern System Design Scraping I&amp;rsquo;ve implemented scrapers using various languages including PowerShell, Node.</description>
+      <description>&lt;h1 id=&#34;assumptions--constraints&#34;&gt;Assumptions / Constraints&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;We will operate on a dataset of ~2,000,000 jpeg images / ~500GB&lt;/li&gt;
+&lt;li&gt;The initial budget is $1000. It is expected that this will increase, but the goal is to re-evaluate the budget prior to spending.&lt;/li&gt;
+&lt;li&gt;We will operate using the Google Cloud Platform (GCP) but might explore other cloud offerings when performance or cost become a concern&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;system-design&#34;&gt;System Design&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://ndelor.me/images/hai-system-breakdown.svg&#34; alt=&#34;breakdown&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;scraping&#34;&gt;Scraping&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ve implemented scrapers using various languages including PowerShell, Node.js, Python, and Go. This scraper will also be implemented using Go. At a very high level, the scraping service outputs jpeg images in a folder structure specific to the site being scraped.&lt;/p&gt;</description>
       
     </item>
     
