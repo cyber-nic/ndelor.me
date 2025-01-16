@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Code on ndelor.me</title>
-    <link>http://localhost:1313/tags/code/</link>
+    <link>https://ndelor.me/tags/code/</link>
     <description>Recent content in Code on ndelor.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Dec 2024 20:13:21 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/code/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Dec 2024 20:13:21 +0000</lastBuildDate><atom:link href="https://ndelor.me/tags/code/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Capturing WebSocket Traffic with Mitmproxy</title>
-      <link>http://localhost:1313/posts/mitmproxy-node/</link>
+      <link>https://ndelor.me/posts/mitmproxy-node/</link>
       <pubDate>Wed, 18 Dec 2024 20:13:21 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/mitmproxy-node/</guid>
+      <guid>https://ndelor.me/posts/mitmproxy-node/</guid>
       
       <description>Recently I wanted to reverse engineer an application that uses websockets to communicate with with its server. I wanted to see the data that was being sent and received. I used mitmproxy to intercept the traffic and view it in plain text.
 WebSocket traffic operates over TCP, initially using HTTP for handshake (usually port 80 for unencrypted or 443 for encrypted connections). After the handshake, it establishes a persistent, full-duplex communication channel over the same TCP connection.</description>
@@ -21,10 +21,10 @@ WebSocket traffic operates over TCP, initially using HTTP for handshake (usually
     
     <item>
       <title>Terraform Project Structures: Organizing Infrastructure as Code</title>
-      <link>http://localhost:1313/posts/terraform-project-structures/</link>
+      <link>https://ndelor.me/posts/terraform-project-structures/</link>
       <pubDate>Wed, 07 Aug 2024 10:22:09 +0100</pubDate>
       
-      <guid>http://localhost:1313/posts/terraform-project-structures/</guid>
+      <guid>https://ndelor.me/posts/terraform-project-structures/</guid>
       
       <description>Table of Contents Managing Security and Cost: Accounts as Environments Managing Performance and Risk: Layers and Overlays Managing Code: Repos. Folders, and Pipelines Dedicated Repo for Account and IaC Service Account Setup Application Specific Service Accounts Managing Releases: Applications as Modules Integrated Deployment Structure Dedicated Deployment Structure Isolated Deployment Structure Managing Environments: Using Terraform Workspaces vs Dedicated Folders Terraform Workspaces Dedicated Folders Summary This article delves into the complexities and best practices of structuring Terraform projects, focusing on optimizing infrastructure as code for security, cost management, and performance.</description>
       

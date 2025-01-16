@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Music on ndelor.me</title>
-    <link>http://localhost:1313/tags/music/</link>
+    <link>https://ndelor.me/tags/music/</link>
     <description>Recent content in Music on ndelor.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Jan 2025 09:46:58 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/music/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 16 Jan 2025 09:46:58 +0000</lastBuildDate><atom:link href="https://ndelor.me/tags/music/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Chansons du Vieux Québec</title>
-      <link>http://localhost:1313/posts/ai-quebec/</link>
+      <link>https://ndelor.me/posts/ai-quebec/</link>
       <pubDate>Thu, 16 Jan 2025 09:46:58 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/ai-quebec/</guid>
+      <guid>https://ndelor.me/posts/ai-quebec/</guid>
       
       <description>Breathing New Life into Traditional Quebecois Songs with AI In late 2024, I stumbled upon a delightful book titled Chansons du Vieux Québec at the Last Bookshop Jericho in Oxford. Published in 1946, this book is a treasure trove of traditional Quebecois songs, complete with music scores. The idea of using AI to revive these songs struck me as a fascinating project.
-We&#39;ll use page 10 as an example as we progress through the process.</description>
+The complete outcome of this project can be found ndelor.</description>
       
     </item>
     

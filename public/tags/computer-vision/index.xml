@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Computer Vision on ndelor.me</title>
-    <link>http://localhost:1313/tags/computer-vision/</link>
+    <link>https://ndelor.me/tags/computer-vision/</link>
     <description>Recent content in Computer Vision on ndelor.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 Jul 2023 17:33:59 -0400</lastBuildDate><atom:link href="http://localhost:1313/tags/computer-vision/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 Jul 2023 17:33:59 -0400</lastBuildDate><atom:link href="https://ndelor.me/tags/computer-vision/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>History AI - Part IV: Computer Vision</title>
-      <link>http://localhost:1313/posts/hai-computer-vision/</link>
+      <link>https://ndelor.me/posts/hai-computer-vision/</link>
       <pubDate>Tue, 11 Jul 2023 17:33:59 -0400</pubDate>
       
-      <guid>http://localhost:1313/posts/hai-computer-vision/</guid>
+      <guid>https://ndelor.me/posts/hai-computer-vision/</guid>
       
       <description>I have 2,000,000 images which all containt a watermark pattern. This post will explore options for removing the watermarks in order to improve the quality of the OCR operations to follow.
 1) Skipping Watermark Removal The cheapest option in terms of time and resources is to skip watermark removal altogether. This can be done by filtering out the known watermark text from the OCR results. This is the best short-term solution, as it is relatively easy to implement and does not require any additional software.</description>

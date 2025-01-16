@@ -14,11 +14,13 @@ draft: false
 
 In late 2024, I stumbled upon a delightful book titled _Chansons du Vieux Québec_ at the Last Bookshop Jericho in Oxford. Published in 1946, this book is a treasure trove of traditional Quebecois songs, complete with music scores. The idea of using AI to revive these songs struck me as a fascinating project.
 
-<div style="display: flex; justify-content: center;">
+The complete outcome of this project can be found [ndelor.me/projects/quebec](https://ndelor.me/projects/quebec)
+
+<div style="display: flex; justify-content: center; margin-top: 36px;">
 <img src="/projects/quebec/data/132655.jpg" alt="erable-page-10" style="max-width:50%; height:auto;">
 </div>
 <div style="display: flex; justify-content: center;">
-We'll use page 10 as an example as we progress through the process.
+Page 10 will be used as an example as we progress through the post to illustrate the process and results.
 </div>
 
 #### Step 1: Digitizing the Book

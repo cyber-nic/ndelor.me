@@ -1,7 +1,7 @@
 {
     "name": "ndelor.me",
     "short_name": "ndelor.me",
-    "start_url": "http://localhost:1313/",
+    "start_url": "https://ndelor.me/",
     "theme_color": "#434648",
     "background_color": "#ffffff",
     "display": "standalone",

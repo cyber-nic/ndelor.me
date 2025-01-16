@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CockroachDB on ndelor.me</title>
-    <link>http://localhost:1313/tags/cockroachdb/</link>
+    <link>https://ndelor.me/tags/cockroachdb/</link>
     <description>Recent content in CockroachDB on ndelor.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Sep 2023 07:12:05 +0100</lastBuildDate><atom:link href="http://localhost:1313/tags/cockroachdb/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 03 Sep 2023 07:12:05 +0100</lastBuildDate><atom:link href="https://ndelor.me/tags/cockroachdb/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CockroachDB Local</title>
-      <link>http://localhost:1313/posts/cockroachdb-local/</link>
+      <link>https://ndelor.me/posts/cockroachdb-local/</link>
       <pubDate>Sun, 03 Sep 2023 07:12:05 +0100</pubDate>
       
-      <guid>http://localhost:1313/posts/cockroachdb-local/</guid>
+      <guid>https://ndelor.me/posts/cockroachdb-local/</guid>
       
       <description>update 2024-01-11 While not central to this article the use of the CRC32 hash in the code below is noticeable. Since writing this article I learned that the CRC32, particularly the CRC32C variant used by Google Cloud Storage (GCS), is optimized for error detection, not as a unique identifier for data. It has a higher probability of collisions (1 in 4.3 billion) compared to more robust algorithms. To overcome these limitations, SHA-256, a more robust hashing algorithm, is recommended.</description>
       

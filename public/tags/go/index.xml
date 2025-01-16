@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Go on ndelor.me</title>
-    <link>http://localhost:1313/tags/go/</link>
+    <link>https://ndelor.me/tags/go/</link>
     <description>Recent content in Go on ndelor.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 05 Oct 2023 13:45:40 +0100</lastBuildDate><atom:link href="http://localhost:1313/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 Oct 2023 13:45:40 +0100</lastBuildDate><atom:link href="https://ndelor.me/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Gorm UUID Many to Many</title>
-      <link>http://localhost:1313/posts/gorm-uuid-many-to-many/</link>
+      <link>https://ndelor.me/posts/gorm-uuid-many-to-many/</link>
       <pubDate>Thu, 05 Oct 2023 13:45:40 +0100</pubDate>
       
-      <guid>http://localhost:1313/posts/gorm-uuid-many-to-many/</guid>
+      <guid>https://ndelor.me/posts/gorm-uuid-many-to-many/</guid>
       
       <description>Hasham Ali&amp;rsquo;s How to Use UUID Key Type with Gorm article was terrific for suggesting how to handle using UUID as the ID in gorm. It took a little more fiddling to be able to use the keys in a many-to-many relationship. In the end, it worked by having to explicitly define the join table and the foreign key constraints. Sample code is below.
 import ( &amp;#34;time&amp;#34; &amp;#34;github.com/google/uuid&amp;#34; &amp;#34;gorm.io/gorm&amp;#34; ) // BaseAttributes contains common columns for all tables.</description>
@@ -21,10 +21,10 @@ import ( &amp;#34;time&amp;#34; &amp;#34;github.com/google/uuid&amp;#34; &amp;#3
     
     <item>
       <title>Go Runtime Frames</title>
-      <link>http://localhost:1313/posts/go-runtime-frame/</link>
+      <link>https://ndelor.me/posts/go-runtime-frame/</link>
       <pubDate>Sat, 16 Sep 2023 09:25:51 +0100</pubDate>
       
-      <guid>http://localhost:1313/posts/go-runtime-frame/</guid>
+      <guid>https://ndelor.me/posts/go-runtime-frame/</guid>
       
       <description>Both the go-kit/log and rs/zerolog loggers provide a Caller method that returns the caller of the function that called it. This is useful for logging the function name in the log output. This functionality is immensly useful and roused my curiosity as to how it is implemented.
 zerolog logger caller example
@@ -34,10 +34,10 @@ import &amp;#34;github.com/rs/zerolog&amp;#34; import &amp;#34;github.com/rs/zer
     
     <item>
       <title>CockroachDB Local</title>
-      <link>http://localhost:1313/posts/cockroachdb-local/</link>
+      <link>https://ndelor.me/posts/cockroachdb-local/</link>
       <pubDate>Sun, 03 Sep 2023 07:12:05 +0100</pubDate>
       
-      <guid>http://localhost:1313/posts/cockroachdb-local/</guid>
+      <guid>https://ndelor.me/posts/cockroachdb-local/</guid>
       
       <description>update 2024-01-11 While not central to this article the use of the CRC32 hash in the code below is noticeable. Since writing this article I learned that the CRC32, particularly the CRC32C variant used by Google Cloud Storage (GCS), is optimized for error detection, not as a unique identifier for data. It has a higher probability of collisions (1 in 4.3 billion) compared to more robust algorithms. To overcome these limitations, SHA-256, a more robust hashing algorithm, is recommended.</description>
       
@@ -45,10 +45,10 @@ import &amp;#34;github.com/rs/zerolog&amp;#34; import &amp;#34;github.com/rs/zer
     
     <item>
       <title>History AI - Part III: Scraping</title>
-      <link>http://localhost:1313/posts/hai-scraping/</link>
+      <link>https://ndelor.me/posts/hai-scraping/</link>
       <pubDate>Mon, 10 Jul 2023 22:09:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/hai-scraping/</guid>
+      <guid>https://ndelor.me/posts/hai-scraping/</guid>
       
       <description>Target The target site is completely free and public. While the site&amp;rsquo;s performance is sufficient it unfortunately isn&amp;rsquo;t well maintained: SSL cert is expired. Luckily the sought after information is available directly via REST calls. No html parsing necessary.
 Process The scraping process was performed on a Cloud Compute, Regular Performance, $5/month VM on Vultr.com. The attached 120GB block storage was quickly expanded to 500GB, which increased the cost from $3.</description>
