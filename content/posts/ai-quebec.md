@@ -1,21 +1,127 @@
 ---
-title: "AI - Chansons du Vieux Québec"
+title: "Chansons du Vieux Québec"
 date: 2025-01-16T09:46:58Z
 tags: ["music", "ai", "projects"]
-draft: true
+draft: false
 ---
+
+<div style="display: flex; justify-content: center;">
+  <img src="/images/je-me-souviens.png" alt="je me souviens" 
+       style="max-width: 50%; height: auto; border-radius: 50%; border: 0px;">
+</div>
 
 ### Breathing New Life into Traditional Quebecois Songs with AI
 
 In late 2024, I stumbled upon a delightful book titled _Chansons du Vieux Québec_ at the Last Bookshop Jericho in Oxford. Published in 1946, this book is a treasure trove of traditional Quebecois songs, complete with music scores. The idea of using AI to revive these songs struck me as a fascinating project.
 
+<div style="display: flex; justify-content: center;">
+<img src="/projects/quebec/data/132655.jpg" alt="erable-page-10" style="max-width:50%; height:auto;">
+</div>
+<div style="display: flex; justify-content: center;">
+We'll use page 10 as an example as we progress through the process.
+</div>
+
 #### Step 1: Digitizing the Book
 
 The first step was to photograph all 250 pages of the book. Armed with my Android phone, I captured each page, and thanks to auto-sync with Google Photos, I quickly transferred the images to my computer. The photos were in HEIC format, Android’s default for saving space, so I converted them to JPEG. Some images needed rotation corrections, which I accomplished using the `convert` command from the ImageMagick library.
 
+```bash
+## Convert from HEIC to JPEG
+
+# Directory containing the HEIC files (default to the current directory)
+input_dir="./images"
+
+# Loop through all HEIC files in the directory
+for file in "$input_dir"/*.heic; do
+    # Check if the file exists (handles the case where no HEIC files are present)
+    if [ -e "$file" ]; then
+        # Output file name with .jpg extension
+        output_file="${file%.heic}.jpg"
+
+        # Convert HEIC to JPEG using imagemagick's convert command
+        convert "$file" "$output_file"
+
+        # Check if the conversion was successful
+        if [ $? -eq 0 ]; then
+            echo "Converted $file to $output_file"
+        else
+            echo "Failed to convert $file"
+        fi
+    else
+        echo "No HEIC files found in $input_dir"
+        break
+    fi
+done
+```
+
+```bash
+## The script to rotate an image is simply a variation of the code above.
+
+# Perform the rotation
+convert "$file" -rotate -90 "$file"
+```
+
 #### Step 2: Extracting Text and Lyrics
 
-To extract text and song lyrics, I turned to Google Cloud’s Vision API. Using a simple Go script, I iterated over the images, requested OCR responses in JSON format, and saved the results to disk. This process efficiently converted the photographed text into a machine-readable format.
+To extract text and song lyrics, I turned to Google Cloud’s Vision API. Using a simple bash script, I iterated over the images, requested OCR responses in JSON format, and saved the results to disk. This process efficiently converted the photographed text into a machine-readable format.
+
+```bash
+# Function to submit the image to the Vision API using gcloud CLI
+submit_to_vision_api() {
+    local image_path="$1"
+    local output_file="$2"
+
+    if [ ! -f "$image_path" ]; then
+        return 1
+    fi
+
+    if [ -z "$output_file" ]; then
+        return 1
+    fi
+
+    gcloud ml vision detect-text "$image_path" --format=json > "$output_file"
+
+    if [ $? -eq 0 ]; then
+        echo "OCR results saved to $output_file"
+    else
+        return 1
+    fi
+}
+```
+
+Here's the output for page 10. It's not perfect by any means, but it gives us something to work with. The JSON output of the OCR process provides information such as the x-y coordinates of each word and character. This can be used to output a much cleaner text.
+
+```
+110
+CHANT
+CHANSONS DU VIEUX QUÉBEC
+La chanson de l'érable
+Paroles:
+Jean Laramée, S.J.
+# P
+6
+8
+Harmonisation:
+Eudore Piché.
+%8
+vous sa-voir pourquoi, Pourquoinowa
+aimons l'e
+2.
+Vou-lez-vo
+2.
+3.
+6
+8
+P
+PIANO
+%8
+J.
+6
+8
+ble? Son bois est dur, Son coeur est franc, Droit dans l'a
+Lorsque l'hiver Au loin se perd; Quand le prin
+Lorsque le fer du bû-cheron Tombe et se
+```
 
 #### Step 3: Setting Up AI for Sheet Music Recognition
 
@@ -23,11 +129,93 @@ The heart of the project involved converting sheet music to a usable digital for
 
 #### Step 4: Converting Sheet Music with AI
 
-Setting up CUDA and _homr_ was a bit challenging, but I appreciated _homr_’s use of Python’s Poetry dependency manager, which streamlined the installation. Once configured, processing the sheet music was straightforward. I wrote a simple bash script to process images asynchronously, which completed in a few hours. A nice bonus: _homr_ generates a `_teaser.png` for each successful detection, overlaying the original image with color-highlighted staff lines.
+Setting up CUDA and _homr_ was a bit challenging, but I appreciated _homr_’s use of Python’s Poetry dependency manager, which streamlined the installation. Once configured, processing the sheet music was straightforward. I wrote a simple bash script to process images which completed in a few hours. A nice bonus: _homr_ generates a `_teaser.png` for each successful detection, overlaying the original image with color-highlighted staff lines.
+
+```bash
+poetry run homr "$image_path" > "$output_file"
+
+if [ $? -eq 0 ]; then
+    echo "Processed $image_path with homr and saved to $output_file"
+else
+    return 1
+fi
+```
+
+<div style="display: flex; justify-content: center;">
+<img src="/projects/quebec/data/132655_teaser.png" alt="erable-page-10" style="max-width:50%; height:auto">
+</div>
+
+<div style="display: flex; justify-content: center;">
+homr's teaser page showing the staff lines
+</div>
 
 #### Step 5: Creating Audio and Visual Outputs
 
 With the MusicXML files ready, I needed to generate audio (MP3) and visual (PNG/PDF) outputs. Enter [MuseScore](https://musescore.org), a free and open-source tool perfect for this task. Another bash script handled the batch conversion efficiently.
+
+```bash
+# Function to process each image with homr and mscore
+process_files() {
+    local image_path="$1"
+
+    if [ ! -f "$image_path" ]; then
+        return 1
+    fi
+
+    local base_name=$(basename "$image_path" .jpg)
+    local dir_name=$(dirname "$image_path")
+    local musicxml_file="$dir_name/$base_name.musicxml"
+    local pdf_file="$dir_name/$base_name.pdf"
+    local mp3_file="$dir_name/$base_name.mp3"
+
+    echo "Processing $image_path..."
+
+    # Run homr to generate .musicxml
+    poetry run homr "$image_path"
+#    if [ $? -ne 0 ]; then
+#        echo "Failed to process $image_path with homr"
+#        return 1
+#    fi
+
+    # Convert .musicxml to .pdf using mscore
+    mscore -o "$pdf_file" "$musicxml_file"
+    if [ $? -ne 0 ]; then
+        echo "Failed to generate $pdf_file"
+        return 1
+    fi
+
+    # Convert .musicxml to .mp3 using mscore
+    mscore -o "$mp3_file" -b 256 "$musicxml_file"
+    if [ $? -ne 0 ]; then
+        echo "Failed to generate $mp3_file"
+        return 1
+    fi
+
+    echo "Successfully processed $image_path to $pdf_file and $mp3_file"
+}
+```
+
+<div style="display: flex; justify-content: center;">
+An mp3 audio file of page 10
+</div>
+
+<div style="display: flex; justify-content: center;">
+ <audio controls className="mt-4">
+    <source
+      src="/projects/quebec/data/132655.mp3"
+      type="audio/mpeg"
+    />
+    Your browser does not support the audio tag.
+  </audio>
+</div>
+
+<div style="display: flex; justify-content: center;">
+A png representation of page 10
+</div>
+
+<div style="display: flex; justify-content: center;">
+<img src="/projects/quebec/data/132655_music.png" alt="erable-page-10" style="background: white; max-width:50%; height:auto;">
+</div>
 
 #### Building the Web Experience
 

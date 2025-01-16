@@ -3,11 +3,11 @@
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title itemprop="name">AI - Chansons du Vieux Québec | ndelor.me</title>
-<meta property="og:title" content="AI - Chansons du Vieux Québec | ndelor.me" />
-<meta name="twitter:title" content="AI - Chansons du Vieux Québec | ndelor.me" />
-<meta itemprop="name" content="AI - Chansons du Vieux Québec | ndelor.me" />
-<meta name="application-name" content="AI - Chansons du Vieux Québec | ndelor.me" />
+<title itemprop="name">Chansons du Vieux Québec | ndelor.me</title>
+<meta property="og:title" content="Chansons du Vieux Québec | ndelor.me" />
+<meta name="twitter:title" content="Chansons du Vieux Québec | ndelor.me" />
+<meta itemprop="name" content="Chansons du Vieux Québec | ndelor.me" />
+<meta name="application-name" content="Chansons du Vieux Québec | ndelor.me" />
 <meta property="og:site_name" content="" />
 
 <meta name="description" content="">
@@ -46,14 +46,14 @@
     {
         "@context": "http://schema.org",
         "@type": "Article",
-        "headline": "AI - Chansons du Vieux Québec",
+        "headline": "Chansons du Vieux Québec",
         "author": {
         "@type": "Person",
         "name": ""
         },
         "datePublished": "2025-01-16",
         "description": "",
-        "wordCount":  1226 ,
+        "wordCount":  1742 ,
         "mainEntityOfPage": "True",
         "dateModified": "2025-01-16",
         "image": {
@@ -71,9 +71,9 @@
 <meta name="generator" content="Hugo 0.123.7">
 
     
-    <meta property="og:title" content="AI - Chansons du Vieux Québec" />
+    <meta property="og:title" content="Chansons du Vieux Québec" />
 <meta property="og:description" content="Breathing New Life into Traditional Quebecois Songs with AI In late 2024, I stumbled upon a delightful book titled Chansons du Vieux Québec at the Last Bookshop Jericho in Oxford. Published in 1946, this book is a treasure trove of traditional Quebecois songs, complete with music scores. The idea of using AI to revive these songs struck me as a fascinating project.
-Step 1: Digitizing the Book The first step was to photograph all 250 pages of the book." />
+We&#39;ll use page 10 as an example as we progress through the process." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://localhost:1313/posts/ai-quebec/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2025-01-16T09:46:58+00:00" />
@@ -82,9 +82,9 @@ Step 1: Digitizing the Book The first step was to photograph all 250 pages of th
 
 
     
-    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="AI - Chansons du Vieux Québec"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Chansons du Vieux Québec"/>
 <meta name="twitter:description" content="Breathing New Life into Traditional Quebecois Songs with AI In late 2024, I stumbled upon a delightful book titled Chansons du Vieux Québec at the Last Bookshop Jericho in Oxford. Published in 1946, this book is a treasure trove of traditional Quebecois songs, complete with music scores. The idea of using AI to revive these songs struck me as a fascinating project.
-Step 1: Digitizing the Book The first step was to photograph all 250 pages of the book."/>
+We&#39;ll use page 10 as an example as we progress through the process."/>
 
 
     
@@ -196,7 +196,7 @@ stroke-linejoin="round" class="feather feather-home">
     <main class="page-content" aria-label="Content">
         <article>
             <header class="header">
-                <h1 class="header-title">AI - Chansons du Vieux Québec</h1>
+                <h1 class="header-title">Chansons du Vieux Québec</h1>
                 
                 
                 
@@ -207,18 +207,179 @@ stroke-linejoin="round" class="feather feather-home">
             </header>
             
             <div class="page-content">
-                <h3 id="breathing-new-life-into-traditional-quebecois-songs-with-ai">Breathing New Life into Traditional Quebecois Songs with AI</h3>
+                <div style="display: flex; justify-content: center;">
+  <img src="/images/je-me-souviens.png" alt="je me souviens" 
+       style="max-width: 50%; height: auto; border-radius: 50%; border: 0px;">
+</div>
+<h3 id="breathing-new-life-into-traditional-quebecois-songs-with-ai">Breathing New Life into Traditional Quebecois Songs with AI</h3>
 <p>In late 2024, I stumbled upon a delightful book titled <em>Chansons du Vieux Québec</em> at the Last Bookshop Jericho in Oxford. Published in 1946, this book is a treasure trove of traditional Quebecois songs, complete with music scores. The idea of using AI to revive these songs struck me as a fascinating project.</p>
+<div style="display: flex; justify-content: center;">
+<img src="/projects/quebec/data/132655.jpg" alt="erable-page-10" style="max-width:50%; height:auto;">
+</div>
+<div style="display: flex; justify-content: center;">
+We'll use page 10 as an example as we progress through the process.
+</div>
 <h4 id="step-1-digitizing-the-book">Step 1: Digitizing the Book</h4>
 <p>The first step was to photograph all 250 pages of the book. Armed with my Android phone, I captured each page, and thanks to auto-sync with Google Photos, I quickly transferred the images to my computer. The photos were in HEIC format, Android’s default for saving space, so I converted them to JPEG. Some images needed rotation corrections, which I accomplished using the <code>convert</code> command from the ImageMagick library.</p>
-<h4 id="step-2-extracting-text-and-lyrics">Step 2: Extracting Text and Lyrics</h4>
-<p>To extract text and song lyrics, I turned to Google Cloud’s Vision API. Using a simple Go script, I iterated over the images, requested OCR responses in JSON format, and saved the results to disk. This process efficiently converted the photographed text into a machine-readable format.</p>
-<h4 id="step-3-setting-up-ai-for-sheet-music-recognition">Step 3: Setting Up AI for Sheet Music Recognition</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">## Convert from HEIC to JPEG</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Directory containing the HEIC files (default to the current directory)</span>
+</span></span><span style="display:flex;"><span>input_dir<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./images&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Loop through all HEIC files in the directory</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> file in <span style="color:#e6db74">&#34;</span>$input_dir<span style="color:#e6db74">&#34;</span>/*.heic; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Check if the file exists (handles the case where no HEIC files are present)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -e <span style="color:#e6db74">&#34;</span>$file<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Output file name with .jpg extension</span>
+</span></span><span style="display:flex;"><span>        output_file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>file%.heic<span style="color:#e6db74">}</span><span style="color:#e6db74">.jpg&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Convert HEIC to JPEG using imagemagick&#39;s convert command</span>
+</span></span><span style="display:flex;"><span>        convert <span style="color:#e6db74">&#34;</span>$file<span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">&#34;</span>$output_file<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Check if the conversion was successful</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $? -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>            echo <span style="color:#e6db74">&#34;Converted </span>$file<span style="color:#e6db74"> to </span>$output_file<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>            echo <span style="color:#e6db74">&#34;Failed to convert </span>$file<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        echo <span style="color:#e6db74">&#34;No HEIC files found in </span>$input_dir<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        break
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">## The script to rotate an image is simply a variation of the code above.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Perform the rotation</span>
+</span></span><span style="display:flex;"><span>convert <span style="color:#e6db74">&#34;</span>$file<span style="color:#e6db74">&#34;</span> -rotate -90 <span style="color:#e6db74">&#34;</span>$file<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><h4 id="step-2-extracting-text-and-lyrics">Step 2: Extracting Text and Lyrics</h4>
+<p>To extract text and song lyrics, I turned to Google Cloud’s Vision API. Using a simple bash script, I iterated over the images, requested OCR responses in JSON format, and saved the results to disk. This process efficiently converted the photographed text into a machine-readable format.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Function to submit the image to the Vision API using gcloud CLI</span>
+</span></span><span style="display:flex;"><span>submit_to_vision_api<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    local image_path<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    local output_file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$2<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> ! -f <span style="color:#e6db74">&#34;</span>$image_path<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -z <span style="color:#e6db74">&#34;</span>$output_file<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    gcloud ml vision detect-text <span style="color:#e6db74">&#34;</span>$image_path<span style="color:#e6db74">&#34;</span> --format<span style="color:#f92672">=</span>json &gt; <span style="color:#e6db74">&#34;</span>$output_file<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $? -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        echo <span style="color:#e6db74">&#34;OCR results saved to </span>$output_file<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Here&rsquo;s the output for page 10. It&rsquo;s not perfect by any means, but it gives us something to work with. The JSON output of the OCR process provides information such as the x-y coordinates of each word and character. This can be used to output a much cleaner text.</p>
+<pre tabindex="0"><code>110
+CHANT
+CHANSONS DU VIEUX QUÉBEC
+La chanson de l&#39;érable
+Paroles:
+Jean Laramée, S.J.
+# P
+6
+8
+Harmonisation:
+Eudore Piché.
+%8
+vous sa-voir pourquoi, Pourquoinowa
+aimons l&#39;e
+2.
+Vou-lez-vo
+2.
+3.
+6
+8
+P
+PIANO
+%8
+J.
+6
+8
+ble? Son bois est dur, Son coeur est franc, Droit dans l&#39;a
+Lorsque l&#39;hiver Au loin se perd; Quand le prin
+Lorsque le fer du bû-cheron Tombe et se
+</code></pre><h4 id="step-3-setting-up-ai-for-sheet-music-recognition">Step 3: Setting Up AI for Sheet Music Recognition</h4>
 <p>The heart of the project involved converting sheet music to a usable digital format. For this, I leveraged a modest yet capable 2016 NVIDIA GTX 1070 GPU with 8 GB of GDDR5 memory, running CUDA 16.6. After exploring GitHub, I found two promising tools: <a href="https://github.com/BreezeWhite/oemer">BreezeWhite/oemer</a> and <a href="https://github.com/liebharc/homr">liebharc/homr</a>. Both tools process sheet music images into MusicXML files, but <em>homr</em> emerged as the better fit because it supports scores with more than two staves per group—a common feature in <em>Chansons du Vieux Québec</em>.</p>
 <h4 id="step-4-converting-sheet-music-with-ai">Step 4: Converting Sheet Music with AI</h4>
-<p>Setting up CUDA and <em>homr</em> was a bit challenging, but I appreciated <em>homr</em>’s use of Python’s Poetry dependency manager, which streamlined the installation. Once configured, processing the sheet music was straightforward. I wrote a simple bash script to process images asynchronously, which completed in a few hours. A nice bonus: <em>homr</em> generates a <code>_teaser.png</code> for each successful detection, overlaying the original image with color-highlighted staff lines.</p>
+<p>Setting up CUDA and <em>homr</em> was a bit challenging, but I appreciated <em>homr</em>’s use of Python’s Poetry dependency manager, which streamlined the installation. Once configured, processing the sheet music was straightforward. I wrote a simple bash script to process images which completed in a few hours. A nice bonus: <em>homr</em> generates a <code>_teaser.png</code> for each successful detection, overlaying the original image with color-highlighted staff lines.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>poetry run homr <span style="color:#e6db74">&#34;</span>$image_path<span style="color:#e6db74">&#34;</span> &gt; <span style="color:#e6db74">&#34;</span>$output_file<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $? -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;Processed </span>$image_path<span style="color:#e6db74"> with homr and saved to </span>$output_file<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span></code></pre></div><div style="display: flex; justify-content: center;">
+<img src="/projects/quebec/data/132655_teaser.png" alt="erable-page-10" style="max-width:50%; height:auto">
+</div>
+<div style="display: flex; justify-content: center;">
+homr's teaser page showing the staff lines
+</div>
 <h4 id="step-5-creating-audio-and-visual-outputs">Step 5: Creating Audio and Visual Outputs</h4>
 <p>With the MusicXML files ready, I needed to generate audio (MP3) and visual (PNG/PDF) outputs. Enter <a href="https://musescore.org">MuseScore</a>, a free and open-source tool perfect for this task. Another bash script handled the batch conversion efficiently.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Function to process each image with homr and mscore</span>
+</span></span><span style="display:flex;"><span>process_files<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    local image_path<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> ! -f <span style="color:#e6db74">&#34;</span>$image_path<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    local base_name<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>basename <span style="color:#e6db74">&#34;</span>$image_path<span style="color:#e6db74">&#34;</span> .jpg<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>    local dir_name<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>dirname <span style="color:#e6db74">&#34;</span>$image_path<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>    local musicxml_file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$dir_name<span style="color:#e6db74">/</span>$base_name<span style="color:#e6db74">.musicxml&#34;</span>
+</span></span><span style="display:flex;"><span>    local pdf_file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$dir_name<span style="color:#e6db74">/</span>$base_name<span style="color:#e6db74">.pdf&#34;</span>
+</span></span><span style="display:flex;"><span>    local mp3_file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$dir_name<span style="color:#e6db74">/</span>$base_name<span style="color:#e6db74">.mp3&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;Processing </span>$image_path<span style="color:#e6db74">...&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Run homr to generate .musicxml</span>
+</span></span><span style="display:flex;"><span>    poetry run homr <span style="color:#e6db74">&#34;</span>$image_path<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    if [ $? -ne 0 ]; then</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#        echo &#34;Failed to process $image_path with homr&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#        return 1</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Convert .musicxml to .pdf using mscore</span>
+</span></span><span style="display:flex;"><span>    mscore -o <span style="color:#e6db74">&#34;</span>$pdf_file<span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">&#34;</span>$musicxml_file<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $? -ne <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        echo <span style="color:#e6db74">&#34;Failed to generate </span>$pdf_file<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Convert .musicxml to .mp3 using mscore</span>
+</span></span><span style="display:flex;"><span>    mscore -o <span style="color:#e6db74">&#34;</span>$mp3_file<span style="color:#e6db74">&#34;</span> -b <span style="color:#ae81ff">256</span> <span style="color:#e6db74">&#34;</span>$musicxml_file<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $? -ne <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        echo <span style="color:#e6db74">&#34;Failed to generate </span>$mp3_file<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;Successfully processed </span>$image_path<span style="color:#e6db74"> to </span>$pdf_file<span style="color:#e6db74"> and </span>$mp3_file<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div style="display: flex; justify-content: center;">
+An mp3 audio file of page 10
+</div>
+<div style="display: flex; justify-content: center;">
+ <audio controls className="mt-4">
+    <source
+      src="/projects/quebec/data/132655.mp3"
+      type="audio/mpeg"
+    />
+    Your browser does not support the audio tag.
+  </audio>
+</div>
+<div style="display: flex; justify-content: center;">
+A png representation of page 10
+</div>
+<div style="display: flex; justify-content: center;">
+<img src="/projects/quebec/data/132655_music.png" alt="erable-page-10" style="background: white; max-width:50%; height:auto;">
+</div>
 <h4 id="building-the-web-experience">Building the Web Experience</h4>
 <p>To present the results, I created a web app hosted on S3 using RemixJS and DaisyUI. A Go script traversed the generated files and produced a JSON representation baked into the app. The UI allows users to browse by chapter, theme, or song, view scanned pages, read extracted text, and listen to audio recordings.</p>
 <h4 id="future-directions">Future Directions</h4>
@@ -253,9 +414,9 @@ stroke-linejoin="round" class="feather feather-home">
 <footer class="footer">
     <span class="footer_item"> </span>
     &nbsp;
+    <img height="48" style="padding-bottom: 16px;" class="author-avatar" src="/images/logo.png" alt="Nicolas Delorme">
 
     <div class="footer_social-icons">
-        <img width="256" class="author-avatar" src="/images/logo.png" alt="Nicolas Delorme">
 <a href="https://github.com/cyber-nic" target="_blank" rel="noopener noreferrer me"
     title="GitHub">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"

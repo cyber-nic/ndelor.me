@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Aws on ndelor.me</title>
-    <link>https://ndelor.me/tags/aws/</link>
+    <link>http://localhost:1313/tags/aws/</link>
     <description>Recent content in Aws on ndelor.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Oct 2023 10:45:42 +0100</lastBuildDate><atom:link href="https://ndelor.me/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 20 Oct 2023 10:45:42 +0100</lastBuildDate><atom:link href="http://localhost:1313/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cloud Load Balancer Cost Savings</title>
-      <link>https://ndelor.me/posts/cloud-lb-cost-savings/</link>
+      <link>http://localhost:1313/posts/cloud-lb-cost-savings/</link>
       <pubDate>Fri, 20 Oct 2023 10:45:42 +0100</pubDate>
       
-      <guid>https://ndelor.me/posts/cloud-lb-cost-savings/</guid>
+      <guid>http://localhost:1313/posts/cloud-lb-cost-savings/</guid>
       
       <description>Context In an effort to learn more about the Google Cloud Platform, I built and deployed a website using Cloud Run functions, hosted behind a GCP Load Balancer. The performance was great. Even without conducting any performance or benchmark tests, I observed that the website was very responsive globally, as relayed by a family member in Singapore.
 Unfortunately, the costs were not as favorable. The cost of running a single load balancer was about ~$25 per month.</description>
