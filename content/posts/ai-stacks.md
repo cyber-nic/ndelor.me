@@ -1,5 +1,5 @@
 ---
-title: "AI Frameworks & Formats"
+title: "AI Stacks"
 date: 2026-01-13T05:39:01Z
 tags: ["ai"]
 draft: false
