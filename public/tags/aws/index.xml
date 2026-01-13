@@ -14,9 +14,8 @@
       
       <guid>https://ndelor.me/posts/cloud-lb-cost-savings/</guid>
       
-      <description>&lt;h3 id=&#34;context&#34;&gt;Context&lt;/h3&gt;
-&lt;p&gt;In an effort to learn more about the Google Cloud Platform, I built and deployed a website using Cloud Run functions, hosted behind a GCP Load Balancer. The performance was great. Even without conducting any performance or benchmark tests, I observed that the website was very responsive globally, as relayed by a family member in Singapore.&lt;/p&gt;
-&lt;p&gt;Unfortunately, the costs were not as favorable. The cost of running a single load balancer was about ~$25 per month. It is simply too much for a personal project that is not generating any revenue.&lt;/p&gt;</description>
+      <description>Context In an effort to learn more about the Google Cloud Platform, I built and deployed a website using Cloud Run functions, hosted behind a GCP Load Balancer. The performance was great. Even without conducting any performance or benchmark tests, I observed that the website was very responsive globally, as relayed by a family member in Singapore.
+Unfortunately, the costs were not as favorable. The cost of running a single load balancer was about ~$25 per month.</description>
       
     </item>
     

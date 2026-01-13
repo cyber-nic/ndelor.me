@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">AI Frameworks &amp; Formats | ndelor.me</title>
+<meta property="og:title" content="AI Frameworks &amp; Formats | ndelor.me" />
+<meta name="twitter:title" content="AI Frameworks &amp; Formats | ndelor.me" />
+<meta itemprop="name" content="AI Frameworks &amp; Formats | ndelor.me" />
+<meta name="application-name" content="AI Frameworks &amp; Formats | ndelor.me" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+  <link rel="alternate" hreflang="en" href="https://ndelor.me/posts/ai-stacks/" title="" />
+
+
+
+
+
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2026-01-13T05:39:01Z />
+    <meta property="article:published_time" content=2026-01-13T05:39:01Z />
+    <meta property="og:url" content="https://ndelor.me/posts/ai-stacks/" />
+
+    
+    <meta property="og:article:author" content="Nicolas Delorme" />
+    <meta property="article:author" content="Nicolas Delorme" />
+    <meta name="author" content="Nicolas Delorme" />
+    
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "AI Frameworks \u0026 Formats",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2026-01-13",
+        "description": "",
+        "wordCount":  1493 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2026-01-13",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "ndelor.me"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.123.7">
+
+    
+    <meta property="og:title" content="AI Frameworks &amp; Formats" />
+<meta property="og:description" content="Overview We often choose a specific model to solve a specific problem. Once that model is located, and without wanting to perform any conversion, we&rsquo;re at the mercy of its current format which might dictate the stack. Stacks aren&rsquo;t created equal: some focus on ease of use and portability, while others are all about performance and cost. Complexity matters in a world where speed is kind.
+A Concrete Example: Fara-7B Fara-7B is Microsoft&rsquo;s first production-grade small language model (SLM) designed specifically for computer use." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ndelor.me/posts/ai-stacks/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-01-13T05:39:01+00:00" />
+<meta property="article:modified_time" content="2026-01-13T05:39:01+00:00" />
+
+
+
+    
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="AI Frameworks &amp; Formats"/>
+<meta name="twitter:description" content="Overview We often choose a specific model to solve a specific problem. Once that model is located, and without wanting to perform any conversion, we&rsquo;re at the mercy of its current format which might dictate the stack. Stacks aren&rsquo;t created equal: some focus on ease of use and portability, while others are all about performance and cost. Complexity matters in a world where speed is kind.
+A Concrete Example: Fara-7B Fara-7B is Microsoft&rsquo;s first production-grade small language model (SLM) designed specifically for computer use."/>
+
+
+    
+
+    <link rel="canonical" href="https://ndelor.me/posts/ai-stacks/">
+    <link href="/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://ndelor.me/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+    
+</head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="https://ndelor.me/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title></title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/about/">
+                        About
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/projects/">
+                        Projects
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/tags/">
+                        Tags
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">AI Frameworks &amp; Formats</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2026-01-13T05:39:01&#43;00:00" itemprop="datePublished"> Jan 13, 2026 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <h2 id="overview">Overview</h2>
+<p>We often choose a specific model to solve a specific problem. Once that model is located, and without wanting to perform any conversion, we&rsquo;re at the mercy of its current format which might dictate the stack. Stacks aren&rsquo;t created equal: some focus on ease of use and portability, while others are all about performance and cost. Complexity matters in a world where speed is kind.</p>
+<h2 id="a-concrete-example-fara-7b">A Concrete Example: Fara-7B</h2>
+<p>Fara-7B is Microsoft&rsquo;s first production-grade small language model (SLM) designed specifically for computer use. With only 7 billion parameters, Fara-7B is an ultra-compact Computer Use Agent (CUA) that achieves state-of-the-art performance within its size class and is competitive with larger, more resource-intensive agentic systems.</p>
+<p>We&rsquo;ll use Fara-7B as a running example to discuss how formats, runtimes, and stacks show up in practice. There are four relevant sources:</p>
+<ul>
+<li><strong>Code repository</strong>: training/inference code, scripts, configs; uses vLLM for serving — <a href="https://github.com/microsoft/fara">microsoft/fara</a></li>
+<li><strong>Base weights</strong>: PyTorch <code>safetensors</code> shards + config + tokenizer — <a href="https://huggingface.com/microsoft/Fara-7B">microsoft/Fara-7B</a></li>
+<li><strong>GGUF</strong>: Quantized GGUF files for llama.cpp and similar runtimes — <a href="https://huggingface.com/gguf-org/fara-7b-gguf">gguf-org/fara-7b-gguf</a></li>
+<li><strong>ONNX</strong>: Exported ONNX model for ONNX Runtime and TensorRT conversion — <a href="https://huggingface.com/microsoft/Fara-7B-onnx">microsoft/Fara-7B-onnx</a></li>
+</ul>
+<p>Other artifacts you may need (and where they show up):</p>
+<ul>
+<li><strong>Tokenizer files</strong>: <code>tokenizer.json</code>, <code>vocab.json</code>, <code>merges.txt</code>, <code>special_tokens_map.json</code>, <code>added_tokens.json</code> define how text becomes tokens and must match the weights.</li>
+<li><strong>Model + generation config</strong>: <code>config.json</code>, <code>generation_config.json</code> declare architecture, sizes, and default decoding settings.</li>
+<li><strong>Chat template</strong>: <code>chat_template.jinja</code> standardizes system/user/assistant formatting for chat models.</li>
+<li><strong>Multimodal projector</strong>: <code>mmproj-*.gguf</code> contains the vision-to-language adapter required for image inputs.</li>
+<li><strong>Preprocessors</strong>: <code>preprocessor_config.json</code>, <code>video_preprocessor_config.json</code> specify image/video normalization and resizing steps.</li>
+</ul>
+<h2 id="model-formats-and-why-they-matter">Model Formats (and why they matter)</h2>
+<p>Local inference lives or dies on <strong>model format</strong> support, and formats are not standardized across the tooling landscape.</p>
+<p>Why this choice matters more than it seems:</p>
+<ul>
+<li><strong>Performance</strong> — formats and runtimes can differ by multiples on the same GPU</li>
+<li><strong>Portability</strong> — cross-platform compatibility decides where the model can run</li>
+<li><strong>Security</strong> — some formats (like pickle-based <code>.pt</code>) are unsafe from untrusted sources</li>
+<li><strong>Maintenance</strong> — operator compatibility and versioning can break deployments</li>
+<li><strong>Cost</strong> — efficient formats reduce compute and energy bills</li>
+</ul>
+<p>One more distinction helps: <strong>architecture vs weights/precision</strong>. The architecture is the model’s structure (layers, shapes, attention blocks). The weights are the learned numbers, and precision is how those numbers are stored (FP16, BF16, INT8, Q4, etc.). Two files can share the same architecture yet behave differently because their weights or precision differ.</p>
+<p>The most common formats today:</p>
+<ul>
+<li><strong>PyTorch (safetensors / .pt)</strong> — Native for most open-source models; broadest availability; works with PyTorch, vLLM, TGI, DeepSpeed. <code>safetensors</code> avoids pickle-code execution risks.</li>
+<li><strong>GGUF / GGML</strong> — Quantized, small, laptop-friendly; used by llama.cpp and tooling around it; great availability for popular LLMs.</li>
+<li><strong>ONNX</strong> — Graph format intended to be universal; strong for vision/audio; LLM support improving; fewer ready-made LLM exports; good path for TensorRT conversion.</li>
+<li><strong>TensorRT engines</strong> — Compiled binary engines optimized for NVIDIA GPUs; fastest throughput but not portable across GPU architectures; require conversion.</li>
+<li><strong>Others (MLC, Mojo, WebGPU, etc.)</strong> — Emerging formats for specialized runtimes.</li>
+</ul>
+<h3 id="performance-realities-and-why-results-vary">Performance Realities (and why results vary)</h3>
+<p>Different runtimes can produce <strong>wildly different memory footprints and load behavior</strong> for the same model.</p>
+<p>Example from testing:</p>
+<blockquote>
+<p>Fara-7B on a <strong>16GB NVIDIA Geforce RTX 5060</strong></p>
+<ul>
+<li><strong>vLLM</strong>: fails to load due to VRAM exhaustion</li>
+<li><strong>llama.cpp (GGUF)</strong>: loads successfully at ~80% VRAM usage</li>
+</ul>
+</blockquote>
+<p>This surprises until we understand three effects:</p>
+<ol>
+<li>
+<p><strong>Quantization changes the math</strong></p>
+<p>Quantization stores weights in fewer bits to trade some accuracy for memory and speed.</p>
+<ul>
+<li>GGUF commonly uses Q2–Q8 schemes</li>
+<li>vLLM historically assumed FP16/BF16; quant support now exists but conversions vary</li>
+<li>FP16 is 2×–4× the footprint of modern 4–8bit quants</li>
+</ul>
+</li>
+<li>
+<p><strong>Serving frameworks trade memory for throughput</strong></p>
+<ul>
+<li>vLLM allocates KV cache and batching structures up front</li>
+<li>Great for APIs, costly for desktops/laptops</li>
+<li>llama.cpp optimizes for single-device, interactive chat</li>
+</ul>
+</li>
+<li>
+<p><strong>Compiled/graph runtimes have precompute overhead</strong></p>
+<ul>
+<li>TensorRT, ORT-TRT, DeepSpeed may need temporary buffers</li>
+<li>These can push borderline GPUs over the edge</li>
+</ul>
+</li>
+</ol>
+<h2 id="stack-categories-by-use-case">Stack Categories (by use case)</h2>
+<p>If you want to run AI models locally on a CUDA GPU, you quickly hit a wall of names: Ollama, vLLM, ONNX, TensorRT, Triton, llama.cpp, and so on. With formats and constraints in mind, it helps to think in <strong>categories</strong> first, then pick a stack inside the category that matches your use case.</p>
+<p>Formats are files. Runtimes are engines that execute those files. A stack can be understood as the combination of format + runtime + hardware that ends up working for your use case.</p>
+<h3 id="1-core-dl-frameworks-and-kernel-toolchains">1. Core DL frameworks and kernel toolchains</h3>
+<p>The <strong>foundations</strong> that almost everything else is built on.</p>
+<p>Use this if you’re doing <strong>research, custom architectures, or deep performance tuning.</strong></p>
+<ul>
+<li><strong>PyTorch (with Flash-Attention / xFormers)</strong></li>
+<li><strong>Triton (compiler/DSL)</strong></li>
+<li><strong>CUDA (raw)</strong></li>
+</ul>
+<h3 id="2-general-purpose-inference-runtimes">2. General-purpose inference runtimes</h3>
+<p>Engines that load a <strong>frozen model graph</strong> (ONNX, etc.) and run it efficiently.</p>
+<p>Use this if you want <strong>one engine</strong> to run <strong>many model types</strong> across projects.</p>
+<ul>
+<li><strong>ONNX Runtime (CUDA / TensorRT EP)</strong></li>
+<li><strong>TensorRT</strong></li>
+<li><strong>MLC-LLM (TVM)</strong></li>
+<li><strong>TVM (core)</strong></li>
+<li><strong>OpenVINO</strong></li>
+</ul>
+<h3 id="3-high-throughput-llm-serving-frameworks">3. High-throughput LLM serving frameworks</h3>
+<p>Systems built for <strong>high QPS</strong> and <strong>multi-user APIs</strong>.</p>
+<ul>
+<li><strong>vLLM</strong></li>
+<li><strong>Hugging Face TGI</strong></li>
+<li><strong>NVIDIA TensorRT-LLM</strong></li>
+<li><strong>FasterTransformer</strong></li>
+<li><strong>DeepSpeed-Inference</strong></li>
+<li><strong>NVIDIA Triton Inference Server</strong></li>
+</ul>
+<h3 id="4-click-and-run-desktop-apps">4. Click-and-run desktop apps</h3>
+<p>Tools that turn LLMs into simple apps.</p>
+<ul>
+<li><strong>Ollama</strong></li>
+<li><strong>Text Generation WebUI / Kobold</strong></li>
+<li><strong>llama.cpp (as GUIs/wrappers)</strong></li>
+</ul>
+<h3 id="5-lightweight-quantized-llm-engines">5. Lightweight quantized LLM engines</h3>
+<p>Focused on quantized models for <strong>small GPUs or CPUs</strong>.</p>
+<ul>
+<li><strong>llama.cpp (GGUF)</strong></li>
+<li><strong>GGML/GGUF ecosystem</strong></li>
+<li><strong>KoboldCPP, others</strong></li>
+</ul>
+<h3 id="6-browser--hybrid-gpu-runners">6. Browser / hybrid GPU runners</h3>
+<p>Runtimes using <strong>WebGPU/WebNN</strong> in-browser.</p>
+<ul>
+<li><strong>Web LLM / WebGPU runners</strong></li>
+<li><strong>WASM + WebGPU toolchains</strong></li>
+</ul>
+<h2 id="the-trilemma-format--runtime--hardware">The Trilemma: Format × Runtime × Hardware</h2>
+<p>Choosing a stack ends up being a three-way trade:</p>
+<ul>
+<li><strong>Format defines size + quant</strong></li>
+<li><strong>Runtime defines scheduling + serving overhead</strong></li>
+<li><strong>Hardware defines ceiling</strong></li>
+</ul>
+<p>Rule of thumb:</p>
+<ul>
+<li>Consumer laptops push toward <strong>quant + lightweight engines</strong></li>
+<li>Servers push toward <strong>FP16/BF16 + batching engines</strong></li>
+</ul>
+<h2 id="looking-forward">Looking Forward</h2>
+<p>By 2027 we should be able to <strong>download a single <code>model.gguf</code> (or <code>.safetensors</code>), hand it to a runtime, and have the system automatically pick the best engine and kernel for the user’s device</strong>—without any manual format conversions or vendor-specific tuning. That convergence is already visible in the tooling today; the next few years will tighten the standards, squeeze out more performance, and finally make LLM inference a truly “plug-and-play” experience.</p>
+<p>I hope.</p>
+<h2 id="glossary-of-key-terms">Glossary of Key Terms</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Quick Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Engine</strong></td>
+<td>A low‑level, optimized runtime that executes a compiled model on specific hardware and manages the inference loop, memory, and device kernels.</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td>The file representation of a model’s architecture and weights (e.g., <code>.pt</code>, <code>safetensors</code>, ONNX, GGUF) that dictates compatibility and precision.</td>
+</tr>
+<tr>
+<td><strong>Runtime</strong></td>
+<td>Software that loads a format into an engine and exposes APIs for inference, such as <code>vLLM</code>, <code>llama.cpp</code>, <code>Ollama</code>, or <code>TensorRT‑LLM</code>.</td>
+</tr>
+<tr>
+<td><strong>Hardware</strong></td>
+<td>The physical device (GPU, CPU, accelerator) that runs the engine; VRAM, cores, and bandwidth limit viable format/runtime combinations.</td>
+</tr>
+<tr>
+<td><strong>KV Cache</strong></td>
+<td>Stored attention keys/values from prior tokens that enable efficient next‑token generation while heavily influencing memory usage.</td>
+</tr>
+<tr>
+<td><strong>Paged Attention</strong></td>
+<td>A KV cache layout that splits memory into pages so oversized models can swap portions between fast and slow memory.</td>
+</tr>
+<tr>
+<td><strong>Quantization</strong></td>
+<td>The practice of storing weights/activations at reduced precision (e.g., int8, Q4) to cut memory and boost speed with minimal accuracy loss.</td>
+</tr>
+<tr>
+<td><strong>GGUF</strong></td>
+<td>A “General GPU‑Friendly Unified Format” binary that packages weights, architecture, and quant metadata for direct loading by GGML runtimes.</td>
+</tr>
+<tr>
+<td><strong>GGML</strong></td>
+<td>The lightweight tensor library underpinning <code>llama.cpp</code>; GGUF is the file format it reads for CPU/GPU‑friendly inference.</td>
+</tr>
+<tr>
+<td><strong>safetensors</strong></td>
+<td>A secure tensor storage format without arbitrary Python code, commonly used for PyTorch models from untrusted sources.</td>
+</tr>
+<tr>
+<td><strong>.pt/.pth</strong></td>
+<td>Native PyTorch files that may include executable Python objects, creating potential security risks when loading unknown models.</td>
+</tr>
+<tr>
+<td><strong>ONNX</strong></td>
+<td>The Open Neural Network Exchange intermediate format that enables cross‑framework portability across ONNX Runtime, TensorRT, PyTorch, and more.</td>
+</tr>
+<tr>
+<td><strong>TensorRT</strong></td>
+<td>NVIDIA’s compiler/engine that turns ONNX or PyTorch models into highly optimized GPU kernels for production inference.</td>
+</tr>
+<tr>
+<td><strong>vLLM</strong></td>
+<td>An open‑source high‑throughput LLM runtime using paged attention, smart batching, and optional TensorRT engines for GPU efficiency.</td>
+</tr>
+<tr>
+<td><strong>llama.cpp</strong></td>
+<td>A minimal C++ inference library for GGML/GGUF models that supports CPU execution with optional CUDA offload and many quantizations.</td>
+</tr>
+<tr>
+<td><strong>Ollama</strong></td>
+<td>A desktop‑friendly platform bundling llama.cpp and other runtimes into a simple CLI/API for downloading, quantizing, and serving models locally.</td>
+</tr>
+<tr>
+<td><strong>Triton Inference Server</strong></td>
+<td>NVIDIA’s multi‑model serving platform that hosts ONNX, TensorRT, PyTorch, or TensorFlow models with dynamic batching and observability.</td>
+</tr>
+<tr>
+<td><strong>WebGPU / WebNN</strong></td>
+<td>Browser APIs that let runtimes execute models via WebAssembly + WebGPU/WebNN for install‑free demos and privacy‑preserving inference.</td>
+</tr>
+<tr>
+<td><strong>Browser/Hybrid GPU</strong></td>
+<td>Workloads split between CPU and WebGPU/WebNN inside a browser, enabling modest LLMs to run without native installs.</td>
+</tr>
+<tr>
+<td><strong>Throughput</strong></td>
+<td>Tokens processed per second, the key metric for multi‑user or batched inference workloads.</td>
+</tr>
+<tr>
+<td><strong>Latency</strong></td>
+<td>Time per response or token, critical for interactive chat and real‑time systems.</td>
+</tr>
+<tr>
+<td><strong>Batching</strong></td>
+<td>Combining multiple requests into one GPU launch to increase utilization; most runtimes expose batch size controls.</td>
+</tr>
+<tr>
+<td><strong>Prompt</strong></td>
+<td>The input text that conditions model generation.</td>
+</tr>
+<tr>
+<td><strong>Token</strong></td>
+<td>A subword unit processed by the model; token counts dominate memory and runtime.</td>
+</tr>
+<tr>
+<td><strong>Tokenizer</strong></td>
+<td>The rules and vocabulary that split text into tokens; mismatches can break prompting or degrade quality.</td>
+</tr>
+<tr>
+<td><strong>Perplexity</strong></td>
+<td>A measurement of how well a model predicts samples; lower values mean better language modeling, while quantization can raise it slightly.</td>
+</tr>
+</tbody>
+</table>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+    <img height="48" style="padding-bottom: 16px;" class="author-avatar" src="/images/logo.png" alt="Nicolas Delorme">
+
+    <div class="footer_social-icons">
+<a href="https://github.com/cyber-nic" target="_blank" rel="noopener noreferrer me"
+    title="GitHub">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://www.linkedin.com/in/nicolas-delorme-588ba619/" target="_blank" rel="noopener noreferrer me"
+    title="LinkedIn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        © 2026 Nicolas Delorme.
+        
+    </small>
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="https://ndelor.me/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>

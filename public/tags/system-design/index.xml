@@ -14,16 +14,7 @@
       
       <guid>https://ndelor.me/posts/hai-system-breakdown/</guid>
       
-      <description>&lt;h1 id=&#34;assumptions--constraints&#34;&gt;Assumptions / Constraints&lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;We will operate on a dataset of ~2,000,000 jpeg images / ~500GB&lt;/li&gt;
-&lt;li&gt;The initial budget is $1000. It is expected that this will increase, but the goal is to re-evaluate the budget prior to spending.&lt;/li&gt;
-&lt;li&gt;We will operate using the Google Cloud Platform (GCP) but might explore other cloud offerings when performance or cost become a concern&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&#34;system-design&#34;&gt;System Design&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;https://ndelor.me/images/hai-system-breakdown.svg&#34; alt=&#34;breakdown&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;scraping&#34;&gt;Scraping&lt;/h2&gt;
-&lt;p&gt;I&amp;rsquo;ve implemented scrapers using various languages including PowerShell, Node.js, Python, and Go. This scraper will also be implemented using Go. At a very high level, the scraping service outputs jpeg images in a folder structure specific to the site being scraped.&lt;/p&gt;</description>
+      <description>Assumptions / Constraints We will operate on a dataset of ~2,000,000 jpeg images / ~500GB The initial budget is $1000. It is expected that this will increase, but the goal is to re-evaluate the budget prior to spending. We will operate using the Google Cloud Platform (GCP) but might explore other cloud offerings when performance or cost become a concern System Design Scraping I&amp;rsquo;ve implemented scrapers using various languages including PowerShell, Node.</description>
       
     </item>
     

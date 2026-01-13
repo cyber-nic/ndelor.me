@@ -68,28 +68,23 @@
     </script>
 
 
-<meta name="generator" content="Hugo 0.140.2">
+<meta name="generator" content="Hugo 0.123.7">
 
     
-    <meta property="og:url" content="https://ndelor.me/posts/mitmproxy-node/">
-  <meta property="og:site_name" content="ndelor.me">
-  <meta property="og:title" content="Capturing WebSocket Traffic with Mitmproxy">
-  <meta property="og:description" content="Recently I wanted to reverse engineer an application that uses websockets to communicate with with its server. I wanted to see the data that was being sent and received. I used mitmproxy to intercept the traffic and view it in plain text.
-WebSocket traffic operates over TCP, initially using HTTP for handshake (usually port 80 for unencrypted or 443 for encrypted connections). After the handshake, it establishes a persistent, full-duplex communication channel over the same TCP connection.">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-12-18T20:13:21+00:00">
-    <meta property="article:modified_time" content="2024-12-18T20:13:21+00:00">
-    <meta property="article:tag" content="Code">
+    <meta property="og:title" content="Capturing WebSocket Traffic with Mitmproxy" />
+<meta property="og:description" content="Recently I wanted to reverse engineer an application that uses websockets to communicate with with its server. I wanted to see the data that was being sent and received. I used mitmproxy to intercept the traffic and view it in plain text.
+WebSocket traffic operates over TCP, initially using HTTP for handshake (usually port 80 for unencrypted or 443 for encrypted connections). After the handshake, it establishes a persistent, full-duplex communication channel over the same TCP connection." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ndelor.me/posts/mitmproxy-node/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-12-18T20:13:21+00:00" />
+<meta property="article:modified_time" content="2024-12-18T20:13:21+00:00" />
+
 
 
     
-    
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Capturing WebSocket Traffic with Mitmproxy">
-  <meta name="twitter:description" content="Recently I wanted to reverse engineer an application that uses websockets to communicate with with its server. I wanted to see the data that was being sent and received. I used mitmproxy to intercept the traffic and view it in plain text.
-WebSocket traffic operates over TCP, initially using HTTP for handshake (usually port 80 for unencrypted or 443 for encrypted connections). After the handshake, it establishes a persistent, full-duplex communication channel over the same TCP connection.">
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Capturing WebSocket Traffic with Mitmproxy"/>
+<meta name="twitter:description" content="Recently I wanted to reverse engineer an application that uses websockets to communicate with with its server. I wanted to see the data that was being sent and received. I used mitmproxy to intercept the traffic and view it in plain text.
+WebSocket traffic operates over TCP, initially using HTTP for handshake (usually port 80 for unencrypted or 443 for encrypted connections). After the handshake, it establishes a persistent, full-duplex communication channel over the same TCP connection."/>
 
 
     
@@ -231,58 +226,58 @@ stroke-linejoin="round" class="feather feather-home">
 <p>Local Proxy are interactive, SSL/TLS-capable intercepting applications. They allow to intercept, inspect, modify, and replay web traffic. It is commonly used for debugging, testing, privacy measurements, and penetration testing. Mitmproxy can handle HTTP, HTTPS, and WebSocket traffic, making it a versatile tool for analyzing and manipulating network communications.</p>
 <p>Over the years I&rsquo;ve used several lightweight local proxies. While this post will use mitmproxy, the steps should be similar with other tools (that support websockets).</p>
 <table>
-  <thead>
-      <tr>
-          <th>Feature</th>
-          <th><a href="https://mitmproxy.org/">mitmproxy</a></th>
-          <th><a href="https://www.charlesproxy.com/">Charles</a></th>
-          <th><a href="https://www.telerik.com/fiddler">Fiddler</a></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Platform</strong></td>
-          <td>Cross-platform (CLI/GUI)</td>
-          <td>Cross-platform (macOS, Windows)</td>
-          <td>Cross-platform (Windows, macOS)</td>
-      </tr>
-      <tr>
-          <td><strong>Open Source</strong></td>
-          <td>Yes</td>
-          <td>No</td>
-          <td>No</td>
-      </tr>
-      <tr>
-          <td><strong>Interface</strong></td>
-          <td>CLI and web-based GUI</td>
-          <td>GUI-focused</td>
-          <td>GUI-focused</td>
-      </tr>
-      <tr>
-          <td><strong>Ease of Use</strong></td>
-          <td>Medium (CLI requires learning)</td>
-          <td>High (intuitive GUI)</td>
-          <td>High (intuitive GUI)</td>
-      </tr>
-      <tr>
-          <td><strong>Protocol Support</strong></td>
-          <td>HTTP/HTTPS, WebSocket</td>
-          <td>HTTP/HTTPS</td>
-          <td>HTTP/HTTPS, WebSocket</td>
-      </tr>
-      <tr>
-          <td><strong>Advanced Features</strong></td>
-          <td>Scriptable in Python</td>
-          <td>Extensive session handling</td>
-          <td>Scriptable with .NET</td>
-      </tr>
-      <tr>
-          <td><strong>Price</strong></td>
-          <td>Free</td>
-          <td>Paid (trial available)</td>
-          <td>Free (Pro version available)</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th>Feature</th>
+<th><a href="https://mitmproxy.org/">mitmproxy</a></th>
+<th><a href="https://www.charlesproxy.com/">Charles</a></th>
+<th><a href="https://www.telerik.com/fiddler">Fiddler</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Platform</strong></td>
+<td>Cross-platform (CLI/GUI)</td>
+<td>Cross-platform (macOS, Windows)</td>
+<td>Cross-platform (Windows, macOS)</td>
+</tr>
+<tr>
+<td><strong>Open Source</strong></td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Interface</strong></td>
+<td>CLI and web-based GUI</td>
+<td>GUI-focused</td>
+<td>GUI-focused</td>
+</tr>
+<tr>
+<td><strong>Ease of Use</strong></td>
+<td>Medium (CLI requires learning)</td>
+<td>High (intuitive GUI)</td>
+<td>High (intuitive GUI)</td>
+</tr>
+<tr>
+<td><strong>Protocol Support</strong></td>
+<td>HTTP/HTTPS, WebSocket</td>
+<td>HTTP/HTTPS</td>
+<td>HTTP/HTTPS, WebSocket</td>
+</tr>
+<tr>
+<td><strong>Advanced Features</strong></td>
+<td>Scriptable in Python</td>
+<td>Extensive session handling</td>
+<td>Scriptable with .NET</td>
+</tr>
+<tr>
+<td><strong>Price</strong></td>
+<td>Free</td>
+<td>Paid (trial available)</td>
+<td>Free (Pro version available)</td>
+</tr>
+</tbody>
 </table>
 <p>This post uses <strong>mitmproxy</strong> because it is free and works well.</p>
 <h2 id="basic-setup">Basic Setup</h2>
@@ -525,7 +520,7 @@ redsocks {
 </a>
 </div>
     <small class="footer_copyright">
-        © 2025 Nicolas Delorme.
+        © 2026 Nicolas Delorme.
         
     </small>
 </footer>

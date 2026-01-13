@@ -14,9 +14,8 @@
       
       <guid>https://ndelor.me/posts/hai-computer-vision/</guid>
       
-      <description>&lt;p&gt;I have 2,000,000 images which all containt a watermark pattern. This post will explore options for removing the watermarks in order to improve the quality of the OCR operations to follow.&lt;/p&gt;
-&lt;h1 id=&#34;1-skipping-watermark-removal&#34;&gt;1) Skipping Watermark Removal&lt;/h1&gt;
-&lt;p&gt;The cheapest option in terms of time and resources is to skip watermark removal altogether. This can be done by filtering out the known watermark text from the OCR results. This is the best short-term solution, as it is relatively easy to implement and does not require any additional software.&lt;/p&gt;</description>
+      <description>I have 2,000,000 images which all containt a watermark pattern. This post will explore options for removing the watermarks in order to improve the quality of the OCR operations to follow.
+1) Skipping Watermark Removal The cheapest option in terms of time and resources is to skip watermark removal altogether. This can be done by filtering out the known watermark text from the OCR results. This is the best short-term solution, as it is relatively easy to implement and does not require any additional software.</description>
       
     </item>
     

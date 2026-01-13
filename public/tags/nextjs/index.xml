@@ -14,8 +14,8 @@
       
       <guid>https://ndelor.me/posts/next-thoughts/</guid>
       
-      <description>&lt;p&gt;In 2022, I launched &lt;a href=&#34;https://www.4ks.io&#34;&gt;www.4ks.io&lt;/a&gt;, a recipe editing and forking website. I used React and ViteJS v2 for the front-end and was really impressed with its performance, particularly its quick Time to Interactive (TTI) metrics.&lt;/p&gt;
-&lt;p&gt;Recently, I began exploring NextJS, initially with version 13 and then upgrading to Next 14, to integrate server-side rendering (SSR) for better SEO and providing better i18n tooling. The performance with NextJS was on par with ViteJS, but I ran into some challenges, such as duplicate API calls during SSR. I utilized openapi-typescript-codegen for API swagger definition and highly recommended tRPC based a very positive experience.&lt;/p&gt;</description>
+      <description>In 2022, I launched www.4ks.io, a recipe editing and forking website. I used React and ViteJS v2 for the front-end and was really impressed with its performance, particularly its quick Time to Interactive (TTI) metrics.
+Recently, I began exploring NextJS, initially with version 13 and then upgrading to Next 14, to integrate server-side rendering (SSR) for better SEO and providing better i18n tooling. The performance with NextJS was on par with ViteJS, but I ran into some challenges, such as duplicate API calls during SSR.</description>
       
     </item>
     

@@ -68,27 +68,23 @@
     </script>
 
 
-<meta name="generator" content="Hugo 0.140.2">
+<meta name="generator" content="Hugo 0.123.7">
 
     
-    <meta property="og:url" content="https://ndelor.me/posts/gcp-gpu-instance/">
-  <meta property="og:site_name" content="ndelor.me">
-  <meta property="og:title" content="GCP Instance with NVIDIA Tesla T4">
-  <meta property="og:description" content="Context Many interesting projects now require a modern GPU (or M1, but I’m not desperate enough to downgrade from Linux to OSX). Below are notes on how to spin up a VM instance with GPU in GCP and run a basic PyTorch workload. I chose Watermark-Removal-Pytorch.
-Cost/Performance After studying the available GPU configurations as well as [VM instance pricing][https://cloud.google.com/compute/vm-instance-pricing] I determined that the most affordable Accelerator optimized configuration (~$250/month) is the N1 &#43; nvidia-tesla-t4 (I operated in the europe-west1 region). This was plenty computing-power for my modest needs. This exercice set me back $0.83 USD.">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-01-12T09:11:12+00:00">
-    <meta property="article:modified_time" content="2024-01-12T09:11:12+00:00">
+    <meta property="og:title" content="GCP Instance with NVIDIA Tesla T4" />
+<meta property="og:description" content="Context Many interesting projects now require a modern GPU (or M1, but I&rsquo;m not desperate enough to downgrade from Linux to OSX). Below are notes on how to spin up a VM instance with GPU in GCP and run a basic PyTorch workload. I chose Watermark-Removal-Pytorch.
+Cost/Performance After studying the available GPU configurations as well as [VM instance pricing][https://cloud.google.com/compute/vm-instance-pricing] I determined that the most affordable Accelerator optimized configuration (~$250/month) is the N1 &#43; nvidia-tesla-t4 (I operated in the europe-west1 region)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ndelor.me/posts/gcp-gpu-instance/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-01-12T09:11:12+00:00" />
+<meta property="article:modified_time" content="2024-01-12T09:11:12+00:00" />
+
 
 
     
-    
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="GCP Instance with NVIDIA Tesla T4">
-  <meta name="twitter:description" content="Context Many interesting projects now require a modern GPU (or M1, but I’m not desperate enough to downgrade from Linux to OSX). Below are notes on how to spin up a VM instance with GPU in GCP and run a basic PyTorch workload. I chose Watermark-Removal-Pytorch.
-Cost/Performance After studying the available GPU configurations as well as [VM instance pricing][https://cloud.google.com/compute/vm-instance-pricing] I determined that the most affordable Accelerator optimized configuration (~$250/month) is the N1 &#43; nvidia-tesla-t4 (I operated in the europe-west1 region). This was plenty computing-power for my modest needs. This exercice set me back $0.83 USD.">
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="GCP Instance with NVIDIA Tesla T4"/>
+<meta name="twitter:description" content="Context Many interesting projects now require a modern GPU (or M1, but I&rsquo;m not desperate enough to downgrade from Linux to OSX). Below are notes on how to spin up a VM instance with GPU in GCP and run a basic PyTorch workload. I chose Watermark-Removal-Pytorch.
+Cost/Performance After studying the available GPU configurations as well as [VM instance pricing][https://cloud.google.com/compute/vm-instance-pricing] I determined that the most affordable Accelerator optimized configuration (~$250/month) is the N1 &#43; nvidia-tesla-t4 (I operated in the europe-west1 region)."/>
 
 
     
@@ -382,7 +378,7 @@ stroke-linejoin="round" class="feather feather-home">
 </a>
 </div>
     <small class="footer_copyright">
-        © 2025 Nicolas Delorme.
+        © 2026 Nicolas Delorme.
         
     </small>
 </footer>

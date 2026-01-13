@@ -6,7 +6,31 @@
     <description>Recent content in Ai on ndelor.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Jan 2025 09:46:58 +0000</lastBuildDate><atom:link href="https://ndelor.me/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Jan 2026 05:39:01 +0000</lastBuildDate><atom:link href="https://ndelor.me/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI Frameworks &amp; Formats</title>
+      <link>https://ndelor.me/posts/ai-stacks/</link>
+      <pubDate>Tue, 13 Jan 2026 05:39:01 +0000</pubDate>
+      
+      <guid>https://ndelor.me/posts/ai-stacks/</guid>
+      
+      <description>Overview We often choose a specific model to solve a specific problem. Once that model is located, and without wanting to perform any conversion, we&amp;rsquo;re at the mercy of its current format which might dictate the stack. Stacks aren&amp;rsquo;t created equal: some focus on ease of use and portability, while others are all about performance and cost. Complexity matters in a world where speed is kind.
+A Concrete Example: Fara-7B Fara-7B is Microsoft&amp;rsquo;s first production-grade small language model (SLM) designed specifically for computer use.</description>
+      
+    </item>
+    
+    <item>
+      <title>AI Untwined</title>
+      <link>https://ndelor.me/posts/ai-untwined/</link>
+      <pubDate>Wed, 12 Feb 2025 06:55:09 +0000</pubDate>
+      
+      <guid>https://ndelor.me/posts/ai-untwined/</guid>
+      
+      <description>Operations There are several fundamental types of AI/ML operations, including:
+Embedding – Converts input data into vector representations. Inference – Applies a trained model to make predictions or classifications. Training – Adjusts model parameters based on data to learn patterns. Fine-tuning – Adapts a pre-trained model to a specific task. Preprocessing – Cleans, normalizes, or structures raw data before use. Postprocessing – Refines model outputs for final consumption. Retrieval – Searches and fetches relevant information (e.</description>
+      
+    </item>
+    
     <item>
       <title>Chansons du Vieux Québec</title>
       <link>https://ndelor.me/posts/ai-quebec/</link>
@@ -14,12 +38,8 @@
       
       <guid>https://ndelor.me/posts/ai-quebec/</guid>
       
-      <description>&lt;div style=&#34;display: flex; justify-content: center;&#34;&gt;
-  &lt;img src=&#34;https://ndelor.me/images/je-me-souviens.png&#34; alt=&#34;je me souviens&#34; 
-       style=&#34;max-width: 50%; height: auto; border-radius: 50%; border: 0px;&#34;&gt;
-&lt;/div&gt;
-&lt;h3 id=&#34;breathing-new-life-into-traditional-quebecois-songs-with-ai&#34;&gt;Breathing New Life into Traditional Quebecois Songs with AI&lt;/h3&gt;
-&lt;p&gt;In late 2024, I stumbled upon a delightful book titled &lt;em&gt;Chansons du Vieux Québec&lt;/em&gt; at the Last Bookshop Jericho in Oxford. Published in 1946, this book is a treasure trove of traditional Quebecois songs, complete with music scores. The idea of using AI to revive these songs struck me as a fascinating project.&lt;/p&gt;</description>
+      <description>Breathing New Life into Traditional Quebecois Songs with AI In late 2024, I stumbled upon a delightful book titled Chansons du Vieux Québec at the Last Bookshop Jericho in Oxford. Published in 1946, this book is a treasure trove of traditional Quebecois songs, complete with music scores. The idea of using AI to revive these songs struck me as a fascinating project.
+The complete outcome of this project can be found ndelor.</description>
       
     </item>
     
@@ -30,95 +50,8 @@
       
       <guid>https://ndelor.me/posts/hai-img-distribution/</guid>
       
-      <description>&lt;h1 id=&#34;scraping-results&#34;&gt;Scraping Results&lt;/h1&gt;
-&lt;p&gt;This table shows some metadata about the images scraped.&lt;/p&gt;
-&lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Prefix  &lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Size (GB)  &lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Images  &lt;/th&gt;
-          &lt;th&gt;Distinct Images  &lt;/th&gt;
-          &lt;th&gt;Duplicate Images  &lt;/th&gt;
-          &lt;th&gt;Duplicate Images %  &lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;A&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;12&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;71077&lt;/td&gt;
-          &lt;td&gt;48126&lt;/td&gt;
-          &lt;td&gt;22951&lt;/td&gt;
-          &lt;td&gt;32.3%&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;B&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;456&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;1672477&lt;/td&gt;
-          &lt;td&gt;1667500&lt;/td&gt;
-          &lt;td&gt;4977&lt;/td&gt;
-          &lt;td&gt;0.3%&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;C&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;48&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;290248&lt;/td&gt;
-          &lt;td&gt;278891&lt;/td&gt;
-          &lt;td&gt;11357&lt;/td&gt;
-          &lt;td&gt;3.9%&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;D&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;29&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;122001&lt;/td&gt;
-          &lt;td&gt;121977&lt;/td&gt;
-          &lt;td&gt;24&lt;/td&gt;
-          &lt;td&gt;0.0%&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;E&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;29&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;212701&lt;/td&gt;
-          &lt;td&gt;209391&lt;/td&gt;
-          &lt;td&gt;3310&lt;/td&gt;
-          &lt;td&gt;1.6%&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;F&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;5&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;40301&lt;/td&gt;
-          &lt;td&gt;40301&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0.0%&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;G&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;0.04&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;216&lt;/td&gt;
-          &lt;td&gt;215&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;0.5%&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-&lt;/td&gt;
-          &lt;td&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-&lt;/td&gt;
-          &lt;td&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&lt;/td&gt;
-          &lt;td&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Total&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;579&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;2409021&lt;/td&gt;
-          &lt;td&gt;2366401&lt;/td&gt;
-          &lt;td&gt;42620&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;The scraping process resulted in 2.4M images. Current cost is $0.374/day in storage for 543.35GB. From the looks of it, GCP buckets are smart enough to save on storage by not duplicating images that are identical. This size discrepancy was also a hint that lead to the duplicate analysis.&lt;/p&gt;</description>
+      <description>Scraping Results This table shows some metadata about the images scraped.
+Prefix Size (GB) Images Distinct Images Duplicate Images Duplicate Images % A 12 71077 48126 22951 32.3% B 456 1672477 1667500 4977 0.3% C 48 290248 278891 11357 3.9% D 29 122001 121977 24 0.0% E 29 212701 209391 3310 1.6% F 5 40301 40301 0 0.0% G 0.04 216 215 1 0.5% &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;- &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;- &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash; &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;- Total 579 2409021 2366401 42620 0 The scraping process resulted in 2.</description>
       
     </item>
     
@@ -129,9 +62,8 @@
       
       <guid>https://ndelor.me/posts/hai-computer-vision/</guid>
       
-      <description>&lt;p&gt;I have 2,000,000 images which all containt a watermark pattern. This post will explore options for removing the watermarks in order to improve the quality of the OCR operations to follow.&lt;/p&gt;
-&lt;h1 id=&#34;1-skipping-watermark-removal&#34;&gt;1) Skipping Watermark Removal&lt;/h1&gt;
-&lt;p&gt;The cheapest option in terms of time and resources is to skip watermark removal altogether. This can be done by filtering out the known watermark text from the OCR results. This is the best short-term solution, as it is relatively easy to implement and does not require any additional software.&lt;/p&gt;</description>
+      <description>I have 2,000,000 images which all containt a watermark pattern. This post will explore options for removing the watermarks in order to improve the quality of the OCR operations to follow.
+1) Skipping Watermark Removal The cheapest option in terms of time and resources is to skip watermark removal altogether. This can be done by filtering out the known watermark text from the OCR results. This is the best short-term solution, as it is relatively easy to implement and does not require any additional software.</description>
       
     </item>
     
@@ -142,10 +74,8 @@
       
       <guid>https://ndelor.me/posts/hai-scraping/</guid>
       
-      <description>&lt;h1 id=&#34;target&#34;&gt;Target&lt;/h1&gt;
-&lt;p&gt;The target site is completely free and public. While the site&amp;rsquo;s performance is sufficient it unfortunately isn&amp;rsquo;t well maintained: SSL cert is expired. Luckily the sought after information is available directly via REST calls. No html parsing necessary.&lt;/p&gt;
-&lt;h1 id=&#34;process&#34;&gt;Process&lt;/h1&gt;
-&lt;p&gt;The scraping process was performed on a Cloud Compute, Regular Performance, $5/month VM on Vultr.com. The attached 120GB block storage was quickly expanded to 500GB, which increased the cost from $3.00/month to $12.50/month. The scraping operation completed in approximately 1 month using tmux.&lt;/p&gt;</description>
+      <description>Target The target site is completely free and public. While the site&amp;rsquo;s performance is sufficient it unfortunately isn&amp;rsquo;t well maintained: SSL cert is expired. Luckily the sought after information is available directly via REST calls. No html parsing necessary.
+Process The scraping process was performed on a Cloud Compute, Regular Performance, $5/month VM on Vultr.com. The attached 120GB block storage was quickly expanded to 500GB, which increased the cost from $3.</description>
       
     </item>
     
@@ -156,16 +86,7 @@
       
       <guid>https://ndelor.me/posts/hai-system-breakdown/</guid>
       
-      <description>&lt;h1 id=&#34;assumptions--constraints&#34;&gt;Assumptions / Constraints&lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;We will operate on a dataset of ~2,000,000 jpeg images / ~500GB&lt;/li&gt;
-&lt;li&gt;The initial budget is $1000. It is expected that this will increase, but the goal is to re-evaluate the budget prior to spending.&lt;/li&gt;
-&lt;li&gt;We will operate using the Google Cloud Platform (GCP) but might explore other cloud offerings when performance or cost become a concern&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&#34;system-design&#34;&gt;System Design&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;https://ndelor.me/images/hai-system-breakdown.svg&#34; alt=&#34;breakdown&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;scraping&#34;&gt;Scraping&lt;/h2&gt;
-&lt;p&gt;I&amp;rsquo;ve implemented scrapers using various languages including PowerShell, Node.js, Python, and Go. This scraper will also be implemented using Go. At a very high level, the scraping service outputs jpeg images in a folder structure specific to the site being scraped.&lt;/p&gt;</description>
+      <description>Assumptions / Constraints We will operate on a dataset of ~2,000,000 jpeg images / ~500GB The initial budget is $1000. It is expected that this will increase, but the goal is to re-evaluate the budget prior to spending. We will operate using the Google Cloud Platform (GCP) but might explore other cloud offerings when performance or cost become a concern System Design Scraping I&amp;rsquo;ve implemented scrapers using various languages including PowerShell, Node.</description>
       
     </item>
     
