@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">Practical Local AI | ndelor.me</title>
+<meta property="og:title" content="Practical Local AI | ndelor.me" />
+<meta name="twitter:title" content="Practical Local AI | ndelor.me" />
+<meta itemprop="name" content="Practical Local AI | ndelor.me" />
+<meta name="application-name" content="Practical Local AI | ndelor.me" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+  <link rel="alternate" hreflang="en" href="https://ndelor.me/posts/ai-practical-local/" title="" />
+
+
+
+
+
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2026-01-14T07:46:24Z />
+    <meta property="article:published_time" content=2026-01-14T07:46:24Z />
+    <meta property="og:url" content="https://ndelor.me/posts/ai-practical-local/" />
+
+    
+    <meta property="og:article:author" content="Nicolas Delorme" />
+    <meta property="article:author" content="Nicolas Delorme" />
+    <meta name="author" content="Nicolas Delorme" />
+    
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "Practical Local AI",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2026-01-14",
+        "description": "",
+        "wordCount":  1473 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2026-01-14",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "ndelor.me"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.123.7">
+
+    
+    <meta property="og:title" content="Practical Local AI" />
+<meta property="og:description" content="Running Fara-7B Locally: Hardware, CUDA, VRAM, and Lessons Learned in 2026 Why This Exists I wanted to run Fara-7B, a computer-use &#43; vision &#43; long-context model, locally. The motivation was simple: experiment with agentic models without depending on cloud GPUs or paid APIs, and understand what “local computer use” currently requires in 2026.
+Model Selection &amp; Expectations Fara-7B looks small on paper (“7B”), but two features make it materially heavier:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ndelor.me/posts/ai-practical-local/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-01-14T07:46:24+00:00" />
+<meta property="article:modified_time" content="2026-01-14T07:46:24+00:00" />
+
+
+
+    
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Practical Local AI"/>
+<meta name="twitter:description" content="Running Fara-7B Locally: Hardware, CUDA, VRAM, and Lessons Learned in 2026 Why This Exists I wanted to run Fara-7B, a computer-use &#43; vision &#43; long-context model, locally. The motivation was simple: experiment with agentic models without depending on cloud GPUs or paid APIs, and understand what “local computer use” currently requires in 2026.
+Model Selection &amp; Expectations Fara-7B looks small on paper (“7B”), but two features make it materially heavier:"/>
+
+
+    
+
+    <link rel="canonical" href="https://ndelor.me/posts/ai-practical-local/">
+    <link href="/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://ndelor.me/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+    
+</head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="https://ndelor.me/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title></title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/about/">
+                        About
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/projects/">
+                        Projects
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/tags/">
+                        Tags
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Practical Local AI</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2026-01-14T07:46:24&#43;00:00" itemprop="datePublished"> Jan 14, 2026 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <h1 id="running-fara-7b-locally-hardware-cuda-vram-and-lessons-learned-in-2026">Running Fara-7B Locally: Hardware, CUDA, VRAM, and Lessons Learned in 2026</h1>
+<h2 id="why-this-exists">Why This Exists</h2>
+<p>I wanted to run <strong>Fara-7B</strong>, a computer-use + vision + long-context model, <strong>locally</strong>. The motivation was simple: experiment with agentic models without depending on cloud GPUs or paid APIs, and understand what “local computer use” currently requires in 2026.</p>
+<h2 id="model-selection--expectations">Model Selection &amp; Expectations</h2>
+<p>Fara-7B looks small on paper (“7B”), but two features make it materially heavier:</p>
+<ol>
+<li><strong>Vision</strong> (screenshots + multimodal)</li>
+<li><strong>Long context</strong> (128k tokens advertised)</li>
+</ol>
+<p>Both increase VRAM needs. Vision models tend to be closer to “chat + encoder” stacks than pure decoders. Long context implies larger KV caches and higher activation footprints.</p>
+<blockquote>
+<p><strong>Lesson</strong>: <em>don’t use parameter count alone as the sizing metric.</em></p>
+</blockquote>
+<h2 id="cuda--driver--toolkit-triangle">CUDA / Driver / Toolkit Triangle</h2>
+<p>A useful mental model:</p>
+<pre tabindex="0"><code>                      +------------------+
+                      |  NVIDIA Driver   |
+                      +------------------+
+                               |
+                               v
+                      +------------------+
+                      |  CUDA Runtime    |
+                      +------------------+
+                               |
+                               v
+                      +------------------+
+                      |  PyTorch Wheels  |
+                      +------------------+
+                               |
+                               v
+                      +------------------+
+                      |  Model Runtimes  |
+                      +------------------+
+</code></pre><ul>
+<li>
+<p>Hardware</p>
+<ul>
+<li>Example hardware referenced in this post: GTX 1070 8GB (Pascal, compute_cap:6.1 / sm_61) and the upgraded RTX 5060 16GB Ti (Blackwell, compute_cap:12.0).</li>
+<li>Pascal compatibility caveat: Pascal-era cards may appear driver-compatible but lack modern SM features (tensor cores, newer instructions). Driver-level passthrough does not guarantee that recent CUDA/PyTorch/model runtimes will function correctly on Pascal devices.</li>
+</ul>
+</li>
+<li>
+<p>Driver</p>
+<ul>
+<li>The kernel-level and user-space driver lets the operating system talk to the GPU hardware. It provides low-level libraries (libcuda, libnvidia-*) that every CUDA app ultimately depends on. If the driver is missing or too old, higher layers cannot talk to the GPU at all.</li>
+</ul>
+</li>
+<li>
+<p>CUDA Runtime (CUDA Toolkit)</p>
+<ul>
+<li>The user-space toolkit (headers, libcuda runtime, nvcc compiler, development libraries) that applications use to compile and run CUDA code. PyTorch and other frameworks are built against a particular CUDA runtime ABI. The runtime supplies libcudart and other libraries that PyTorch expects at runtime.</li>
+</ul>
+</li>
+<li>
+<p>PyTorch Wheels</p>
+<ul>
+<li>A &ldquo;wheel&rdquo; is Python binary package format (a .whl file). A wheel contains compiled binaries so you don&rsquo;t have to build from source.</li>
+<li>PyTorch wheels are prebuilt binary distributions compiled for a specific CUDA toolkit (for example, cu130 means CUDA 13.0). Installing the matching wheel gives you a PyTorch that knows how to call CUDA libraries without compiling them yourself. A mismatch can cause import errors or silent failures where CUDA calls are unavailable.</li>
+</ul>
+</li>
+<li>
+<p>Model Runtimes (vLLM, GGUF runtimes, etc.)</p>
+<ul>
+<li>Runtimes are higher-level libraries and applications that load model weights, manage memory (activations, KV cache), provide quantized kernels, and implement generation logic. They depend on PyTorch (or other backends) to do GPU work. They also add their own expectations (e.g., certain torch APIs, specific CUDA kernels, or extensions) so they can fail if the PyTorch &lt;-&gt; CUDA link is mismatched.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Lesson</strong>: <em>pick CUDA intentionally based on PyTorch availability, not the other way around.</em></p>
+</blockquote>
+<h3 id="a-note-on-_pascal-compatibility-cuda-applications_">A note on <em>Pascal Compatibility CUDA Applications</em></h3>
+<p>NVIDIA introduced a compatibility mode specifically for <strong>Pascal (sm_61)</strong> GPUs to allow some CUDA <strong>drivers of newer major versions</strong> to run <strong>binaries compiled against older CUDA</strong> toolkits. This is often surfaced as “Pascal Compatibility CUDA Applications” in discussion threads and driver release notes.</p>
+<p>This matters because:</p>
+<ul>
+<li>Pascal-era GPUs (GTX 10-series) stopped receiving native support in certain CUDA toolchains.</li>
+<li>CUDA runtimes &gt;11.x increasingly expect <strong>Turing / Ampere / Ada</strong> capabilities absent in Pascal.</li>
+<li>Passthrough compatibility is <strong>not the same</strong> as full support — many model runtimes and PyTorch wheels simply don’t ship builds targeting Pascal anymore.</li>
+</ul>
+<p>In practical terms: <strong>a GTX 1070 may appear compatible at the driver level but cannot run modern AI runtimes</strong>, especially those expecting tensor cores, newer memory instructions, or SM &gt;=70 scheduling. The “compatibility” layer mainly targets enterprise longevity, not modern ML workloads.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ nvidia-smi --query-gpu<span style="color:#f92672">=</span>name,compute_cap --format<span style="color:#f92672">=</span>csv
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>name, compute_cap
+</span></span><span style="display:flex;"><span>NVIDIA GeForce RTX <span style="color:#ae81ff">5060</span> Ti, 12.0
+</span></span></code></pre></div><ul>
+<li>GTX 1070 → compute_cap = 6.1 → sm_61</li>
+<li>RTX 5060 → compute_cap = 12.0 → sm_120</li>
+</ul>
+<h2 id="vram-budgeting--fitting-the-model">VRAM Budgeting &amp; Fitting the Model</h2>
+<p>What consumes VRAM for LLM workloads:</p>
+<ul>
+<li><strong>Weights</strong> (precision matters: fp16 vs q5 vs q4, etc.)</li>
+<li><strong>Activations</strong></li>
+<li><strong>KV cache</strong></li>
+<li><strong>Sequence length</strong></li>
+<li><strong>Batch size</strong></li>
+</ul>
+<p>Fara-7B vision + long context wants more than a trivial 7B chat model.</p>
+<p>Even with <strong>16GB</strong>, <strong>vLLM OOM’ed</strong>, partly due to KV allocation and runtime overhead. Quantization and GGUF runtimes helped reduce the footprint.</p>
+<blockquote>
+<p><strong>Lesson</strong>: <em>VRAM is the bottleneck, not compute.</em></p>
+</blockquote>
+<h2 id="hardware-reality-check">Hardware Reality Check</h2>
+<p>The original attempt using the <strong>GTX 1070 (sm_61, 8GB)</strong> failed almost immediately with modern AI runtimes:</p>
+<ul>
+<li>Unsupported by new PyTorch wheels</li>
+<li>Unsupported by vLLM CUDA wheels</li>
+<li>Too little VRAM for 7B vision</li>
+</ul>
+<p>Upgrading meant choosing between consumer tiers:</p>
+<ul>
+<li>“60-class” (xx60) → better value, sometimes AI-nerfed</li>
+<li>“70-class” (xx70) → better compute, more VRAM options</li>
+<li>“80-class” (xx80) → strong compute, more heat + power</li>
+<li>“90-class” (xx90) → expensive and overkill for experimentation</li>
+</ul>
+<p>For LLM workloads, <strong>VRAM beat FLOPs</strong> as the limiting factor. I ended up with an <strong>RTX 5060 Ti (16GB)</strong>. 16GB turned out to be “just enough” for Fara-7B.</p>
+<h3 id="why-the-rtx-5060-failed-on-the-b450m-platform">Why the RTX 5060 failed on the B450M platform</h3>
+<p>A critical blocker surfaced when the RTX 5060 would not initialize on a B450M-class motherboard. The system powered on, fans spun, but there was no display output and no successful boot. BIOS updates, PCIe configuration changes, and power-related adjustments did not resolve the issue.</p>
+<p>The root cause was not bandwidth — PCIe 3.0 ×16 is sufficient for modern GPUs — but firmware and platform expectations. Recent NVIDIA cards assume newer UEFI firmware behavior, updated PCIe link training, and features such as Resizable BAR. Many B450-era boards either lack these entirely or implement them inconsistently.</p>
+<p>Once the platform was replaced with a newer B850M-class board, the GPU posted immediately, drivers loaded cleanly, and CUDA initialized without workarounds.</p>
+<blockquote>
+<p><strong>Lesson</strong>: PCIe generations aren’t just bandwidth lines on a spec sheet. They carry firmware and platform assumptions forward. Modern GPUs push those assumptions harder than CPUs do. If you’re skipping multiple GPU generations, expect the motherboard to become the hidden limiter.</p>
+</blockquote>
+<h2 id="using-the-igpu-for-display-to-free-vram">Using the iGPU for Display to Free VRAM</h2>
+<p>This mattered more than expected. Running Xorg/GNOME on the NVIDIA GPU burned <strong>~1.4GB VRAM idle</strong>, which reduced available headroom for the model. Thankfully my motherboard has an integrated GPU (igpu) which both HDMI and Display port connectors.</p>
+<p>Switching BIOS primary display → <strong>iGPU (igfx)</strong> freed almost all of that:</p>
+<ul>
+<li>BIOS: <code>Advanced → NB Configuration → Primary Video Device → igfx</code></li>
+<li>Ubuntu: confirmed via
+<code>glxinfo | grep renderer</code> → AMD iGPU
+<code>nvidia-smi</code> → 15MiB idle</li>
+</ul>
+<blockquote>
+<p><strong>Lesson</strong>: <em>local LLM = datacenter mentality: ideally, the GPU should not be rendering the desktop.</em></p>
+</blockquote>
+<h2 id="monitoring--debugging-tooling">Monitoring &amp; Debugging Tooling</h2>
+<p>These tools made the process less blind:</p>
+<ul>
+<li><strong><code>nvidia-smi</code></strong>: Processes + VRAM per process + sanity during loading/generation.</li>
+<li><strong><code>nvtop</code></strong>: Real-time GPU + VRAM + utilization. (Ubuntu packaged version initially failed on 5060 → fallback to newer build.)</li>
+<li><strong><code>gotop</code></strong>: Simple terminal system monitor. CPU/RAM trends while tinkering.</li>
+<li><strong><code>btop</code></strong>: Temporary fallback when nvtop was missing/failed.</li>
+<li><strong>ChatGPT / Claude</strong>: Debugging and explaining long python error stacks.</li>
+</ul>
+<p>Basic workflow for debugging OOM:</p>
+<pre tabindex="0"><code>start model → load phase → prefill → generate → compare peaks
+</code></pre><p>Watching idle vs peak VRAM was the most informative metric.</p>
+<h2 id="cloud-alternatives-sanity-check">Cloud Alternatives (Sanity Check)</h2>
+<p>Before spending money on hardware, I compared against cloud GPUs:</p>
+<ul>
+<li>Hetzner: continues to charge until VM deleted (<a href="https://docs.hetzner.com/cloud/billing/faq/?utm_source=chatgpt.com#do-you-bill-servers-that-are-off">link</a>)</li>
+<li>Vultr: continues to charge while VM stopped (<a href="https://docs.vultr.com/support/platform/billing/are-stopped-instances-still-billed-on-vultr?utm_source=chatgpt.com">link</a>)</li>
+<li>AWS EC2: instance compute (incl GPU) not billed when stopped; storage/IPs still billed</li>
+<li>Google Cloud (example CGP): GPU not billed when stopped; storage/IPs still billed</li>
+</ul>
+<p>Hourly pricing on A10/A100/4090 looks attractive, but usage patterns matter.
+£500 buys a surprising amount of hours, but I preferred:</p>
+<ul>
+<li>Local latency</li>
+<li>No queueing</li>
+<li>No ongoing cost</li>
+<li>Learning</li>
+</ul>
+<p>Note: billing models differ — some providers can continue to bill for attached resources (storage, reserved IPs, or GPU allocations) even when a VM is stopped or &ldquo;powered off&rdquo;. This matters for hobby projects where unexpected charges can accumulate.</p>
+<blockquote>
+<p><strong>Lesson</strong>: <em>cloud is great for benchmarking; local is great for iterative tinkering.</em></p>
+</blockquote>
+<h2 id="the-python--runtime-ecosystem-maze">The Python &amp; Runtime Ecosystem Maze</h2>
+<p>Models today are more than just weights. Fara required:</p>
+<ul>
+<li>Model weights</li>
+<li>Runtime (GGUF/VLLM/etc.)</li>
+<li>Browser automation for CUA</li>
+<li>OpenAI-like API glue</li>
+<li>Python dependencies (PIL, openai, tenacity, etc.)</li>
+</ul>
+<p>Most failures came from mismatches in:</p>
+<ul>
+<li>CUDA versions</li>
+<li>Wheels</li>
+<li>Device selection</li>
+<li>Memory fragmentation</li>
+<li>Missing Python deps</li>
+</ul>
+<p>A separate note on Python: dependency management remains surprisingly fragile. Even with <code>venv</code> and modern tooling like <code>uv</code>, dependency resolution, binary wheels, platform-specific packages, and transitive breakage remain a drag. This matters because Python is the de facto language of the AI community; brittle environments slow experimentation and adoption. Of all the issues encountered, this is the area where improvement would have the highest payoff over the next few years.</p>
+<blockquote>
+<p><strong>Lesson</strong>: <em>agentic models are full ecosystems, not single binaries.</em></p>
+</blockquote>
+<h2 id="final-lessons-distilled">Final Lessons (Distilled)</h2>
+<ul>
+<li><strong>VRAM is king</strong></li>
+<li><strong>CUDA compatibility cannot be improvised</strong></li>
+<li><strong>Pick GPU → pick CUDA → pick PyTorch → then install runtimes</strong></li>
+<li><strong>iGPU offload is a free ~1–2GB VRAM win</strong></li>
+<li><strong>Quantization makes the difference between “works” and “OOM”</strong></li>
+<li><strong>Vision + long context inflate model footprints dramatically</strong></li>
+<li><strong>Consumer GPUs remain viable, but everything assumes cloud-scale</strong></li>
+</ul>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+    <img height="48" style="padding-bottom: 16px;" class="author-avatar" src="/images/logo.png" alt="Nicolas Delorme">
+
+    <div class="footer_social-icons">
+<a href="https://github.com/cyber-nic" target="_blank" rel="noopener noreferrer me"
+    title="GitHub">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://www.linkedin.com/in/nicolas-delorme-588ba619/" target="_blank" rel="noopener noreferrer me"
+    title="LinkedIn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        © 2026 Nicolas Delorme.
+        
+    </small>
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="https://ndelor.me/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>

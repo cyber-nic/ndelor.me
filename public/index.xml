@@ -6,7 +6,19 @@
     <description>Recent content on ndelor.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 13 Jan 2026 05:39:01 +0000</lastBuildDate><atom:link href="https://ndelor.me/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 14 Jan 2026 07:46:24 +0000</lastBuildDate><atom:link href="https://ndelor.me/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Practical Local AI</title>
+      <link>https://ndelor.me/posts/ai-practical-local/</link>
+      <pubDate>Wed, 14 Jan 2026 07:46:24 +0000</pubDate>
+      
+      <guid>https://ndelor.me/posts/ai-practical-local/</guid>
+      
+      <description>Running Fara-7B Locally: Hardware, CUDA, VRAM, and Lessons Learned in 2026 Why This Exists I wanted to run Fara-7B, a computer-use + vision + long-context model, locally. The motivation was simple: experiment with agentic models without depending on cloud GPUs or paid APIs, and understand what “local computer use” currently requires in 2026.
+Model Selection &amp;amp; Expectations Fara-7B looks small on paper (“7B”), but two features make it materially heavier:</description>
+      
+    </item>
+    
     <item>
       <title>AI Stacks</title>
       <link>https://ndelor.me/posts/ai-stacks/</link>
